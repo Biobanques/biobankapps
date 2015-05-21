@@ -9,7 +9,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'BioBankApps.com',
 	//par defaut en français
-	'language'=>'fr',
+	'language'=>'en',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
