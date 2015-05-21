@@ -55,6 +55,7 @@
 			'items'=>array(
 				array('label'=>Yii::t('common','home'), 'url'=>array('/site/index')),
 				array('label'=>Yii::t('common','software_list'), 'url'=>array('/logiciel/admin')),
+                                array('label'=>Yii::t('common','add_software'), 'url'=>array('/logiciel/create')),
 				array('label'=>Yii::t('common','contact'), 'url'=>array('/site/contact')),
 				array('label'=>Yii::t('common','about'), 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>Yii::t('common','login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
@@ -62,11 +63,7 @@
 			),
 		)); ?>
 	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
+
 	<?php
 			$flashMessages = Yii::app()->user->getFlashes();
 			if ($flashMessages) {
