@@ -158,7 +158,7 @@ class Logiciel extends CActiveRecord
 		$criteria->compare('langue_en',$this->langue_en);
 		$criteria->compare('langue_autres',$this->langue_autres);
                 //random pour afficher de maniere aleatoire les resultats
-                $criteria->order = 'rand()';
+                //$criteria->order = 'rand()';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
