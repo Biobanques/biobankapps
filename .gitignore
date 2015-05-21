@@ -1,0 +1,12 @@
+/notes.txt
+/update_appli_dist.sh
+/db_rebuild_local.sh
+/scripts/script_rebuild_proto_dist.sh
+/biobankapps/CommonProperties.php
+/biobankapps/protected/data/init.sql
+/biobankapps/protected/data/reconstruct_db.sql
+/biobankapps/protected/data/demo.sql
+/biobankapps/protected/data/schema.mysql.sql
+/biobankapps/protected/data/script_reconstruct_db.sh
+/biobankapps/assets/
+/biobankapps/protected/runtime/
