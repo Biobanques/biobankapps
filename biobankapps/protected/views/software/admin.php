@@ -1,11 +1,4 @@
 <?php
-/* @var $this LogicielController */
-/* @var $model Logiciel */
-
-$this->breadcrumbs=array(
-	'Manage',
-);
-
 $this->menu=array(
 	array('label'=>Yii::t('common','list_printable_logiciels'), 'url'=>array('index')),
 	array('label'=>Yii::t('common','add_software'), 'url'=>array('create')),
@@ -17,7 +10,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#logiciel-grid').yiiGridView('update', {
+	$('#software-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -40,9 +33,8 @@ $('.search-form form').submit(function(){
 
 <?php
  $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'logiciel-grid',
+	'id'=>'software-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
 	'columns'=>array(
 		'nom',
 		'societe',
@@ -58,7 +50,7 @@ $('.search-form form').submit(function(){
 									'label'=>'Update',
 									'visible'=>'$data->id==Yii::app()->user->id',
 									'imageUrl'=>Yii::app()->request->baseUrl.'/images/pencil.png',
-									'url'=>'Yii::app()->createUrl("logiciel/update", array("id"=>$data->id))',
+									'url'=>'Yii::app()->createUrl("software/update", array("id"=>$data->id))',
 							),
 					),
 				),

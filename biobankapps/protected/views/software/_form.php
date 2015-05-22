@@ -38,21 +38,9 @@
 	</div>
 
 	<div class="row" style="clear:both;">
-		<?php echo $form->labelEx($model,'descriptif_fr'); ?>
-		<?php echo $form->textArea($model,'descriptif_fr',array('maxlength'=>500, 'rows' => 5, 'cols' => 50)); ?>
-		<?php echo $form->error($model,'descriptif_fr'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'descriptif_en'); ?>
 		<?php echo $form->textArea($model,'descriptif_en',array('maxlength'=>500, 'rows' => 5, 'cols' => 50)); ?>
 		<?php echo $form->error($model,'descriptif_en'); ?>
-	</div>
-
-	<div class="row" style="float:left;">
-		<?php echo $form->labelEx($model,'keywords_fr'); ?>
-		<?php echo $form->textField($model,'keywords_fr',array('size'=>20,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'keywords_fr'); ?>
 	</div>
 
 	<div class="row" style="float:left;padding-left:10px;">

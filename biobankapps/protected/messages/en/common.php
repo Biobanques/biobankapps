@@ -23,7 +23,7 @@ return array (
 		'screenshot_5' => 'Screenshot 5',
 		'logo_logiciel' => 'Logo',
 		'keywords_fr' => 'Keywords in french',
-		'keywords_en' => 'Keywords in english',
+		'keywords_en' => 'Keywords',
 		'contact_nom' => 'Contact Name',
 		'contact_prenom' => 'Contact Firstname',
 		'contact_login' => 'Login',

@@ -2,7 +2,7 @@
 /**
  * class to manage software. Extends the main controller to add lang support.
  */
-class LogicielController extends BSFController
+class SoftwareController extends BSFController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -64,16 +64,12 @@ class LogicielController extends BSFController
 	 */
 	public function actionCreate()
 	{
-		$model=new Logiciel;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Logiciel']))
+		$model=new Software;
+		if(isset($_POST['Software']))
 		{
-			$model->attributes=$_POST['Logiciel'];
+			$model->attributes=$_POST['Software'];
 			if($model->save()){
-				Yii::app()->user->setFlash('success','Votre fiche logiciel a été créée avec succès.');
+				Yii::app()->user->setFlash('success','Your software file has been added with sucess.');
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -91,13 +87,9 @@ class LogicielController extends BSFController
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Logiciel']))
+		if(isset($_POST['Software']))
 		{
-			$model->attributes=$_POST['Logiciel'];
+			$model->attributes=$_POST['Software'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -126,7 +118,7 @@ class LogicielController extends BSFController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Logiciel');
+		$dataProvider=new CActiveDataProvider('Software');
 		$this->render('index',array(
 				'dataProvider'=>$dataProvider,
 		));
@@ -137,10 +129,10 @@ class LogicielController extends BSFController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Logiciel('search');
+		$model=new Software('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Logiciel']))
-			$model->attributes=$_GET['Logiciel'];
+		if(isset($_GET['Software']))
+			$model->attributes=$_GET['Software'];
 
 		$this->render('admin',array(
 				'model'=>$model,
@@ -207,7 +199,7 @@ class LogicielController extends BSFController
 			if(file_exists($pathfile)){
 				unlink($pathfile);
 			}else{
-				Yii::log("file inesits cannot delete:".$pathfile,"error");
+				Yii::log("file inexist cannot delete:".$pathfile,"error");
 			}
 				
 			$model->$name=null;
@@ -276,7 +268,7 @@ class LogicielController extends BSFController
 	 */
 	public function loadModel($id)
 	{
-		$model=Logiciel::model()->findByPk($id);
+		$model=Software::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -288,7 +280,7 @@ class LogicielController extends BSFController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='logiciel-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='software-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

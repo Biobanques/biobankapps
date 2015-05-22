@@ -9,7 +9,7 @@ $this->pageTitle=Yii::app()->name;
 <br>
 <?php 
 //affichage des 10 derniers applications
-$models = Logiciel::model()->findAll(array(
+$models = Software::model()->findAll(array(
     //"order" => "rand()",
     "limit" => 20,
 ));
@@ -20,7 +20,7 @@ foreach($models as $model){
 	if($model->logo!=null){
 		$imgurl=Yii::app()->request->baseUrl.'/photos/'.$model->logo;
 	}
-        echo CHtml::link(CHtml::image($imgurl,'logo',$htmlOptions=array ("style"=>$style,"class"=>"logo-logiciel")),array('logiciel/view', 'id'=>$model->id)); 
+        echo CHtml::link(CHtml::image($imgurl,'logo',$htmlOptions=array ("style"=>$style,"class"=>"logo-logiciel")),array('software/view', 'id'=>$model->id)); 
 	echo "</div>";
 	echo "<div style=\"float:left;width:70%;padding-left:10px;\">";
 	$this->widget('zii.widgets.CDetailView', array(
@@ -29,7 +29,7 @@ foreach($models as $model){
                             array(
 							'name'=>'nom',
 							'type'=>'html',
-							'value'=>CHtml::link(CHtml::encode($model->nom), array('logiciel/view', 'id'=>$model->id))
+							'value'=>CHtml::link(CHtml::encode($model->nom), array('software/view', 'id'=>$model->id))
 					),
 					'societe',
 					array(

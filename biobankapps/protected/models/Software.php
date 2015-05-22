@@ -31,7 +31,7 @@
  * @property integer $langue_en
  * @property integer $langue_autres
  */
-class Logiciel extends CActiveRecord
+class Software extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -130,24 +130,25 @@ class Logiciel extends CActiveRecord
 	public function search()
 	{
 		$criteria=new CDbCriteria;
-
+                //or condition between keywords fr and en ( keep this condition order)
+                $criteria->compare('keywords_en',$this->keywords_en,true);
+                 //if keywords french are given into keyworkds fields
+                $criteria->compare('keywords_fr',$this->keywords_en,true,'OR');
+                
 		$criteria->compare('id',$this->id);
 		$criteria->compare('nom',$this->nom,true);
 		$criteria->compare('societe',$this->societe,true);
-		$criteria->compare('url_societe',$this->url_societe,true);
+                $criteria->compare('licence',$this->licence,true);
+               
+                
+		/*$criteria->compare('url_societe',$this->url_societe,true);
 		$criteria->compare('url_logiciel',$this->url_logiciel,true);
-		$criteria->compare('licence',$this->licence,true);
+		
 		$criteria->compare('prix',$this->prix);
 		$criteria->compare('descriptif_fr',$this->descriptif_fr,true);
 		$criteria->compare('descriptif_en',$this->descriptif_en,true);
-		$criteria->compare('screenshot_1',$this->screenshot_1,true);
-		$criteria->compare('screenshot_2',$this->screenshot_2,true);
-		$criteria->compare('screenshot_3',$this->screenshot_3,true);
-		$criteria->compare('screenshot_4',$this->screenshot_4,true);
-		$criteria->compare('screenshot_5',$this->screenshot_5,true);
-		$criteria->compare('logo',$this->logo,true);
-		$criteria->compare('keywords_fr',$this->keywords_fr,true);
-		$criteria->compare('keywords_en',$this->keywords_en,true);
+                    
+                    
 		$criteria->compare('contact_nom',$this->contact_nom,true);
 		$criteria->compare('contact_prenom',$this->contact_prenom,true);
 		$criteria->compare('contact_login',$this->contact_login,true);
@@ -156,7 +157,7 @@ class Logiciel extends CActiveRecord
 		$criteria->compare('contact_phone',$this->contact_phone,true);
 		$criteria->compare('langue_fr',$this->langue_fr);
 		$criteria->compare('langue_en',$this->langue_en);
-		$criteria->compare('langue_autres',$this->langue_autres);
+		$criteria->compare('langue_autres',$this->langue_autres);*/
                 //random pour afficher de maniere aleatoire les resultats
                 //$criteria->order = 'rand()';
 

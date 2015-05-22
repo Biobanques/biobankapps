@@ -1,11 +1,4 @@
 <?php
-/* @var $this LogicielController */
-/* @var $model Logiciel */
-
-$this->breadcrumbs=array(
-	'Logiciels'=>array('admin'),
-	$model->nom,
-);
 if(Yii::app()->user->id==$model->id){
 	$this->menu=array(
 		array('label'=>Yii::t('common','update_software'), 'url'=>array('update', 'id'=>$model->id,'visible'=>Yii::app()->user->id==$model->id)),
