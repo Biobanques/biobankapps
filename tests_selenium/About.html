@@ -4,32 +4,37 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost/biobankapps/index.php?r=logiciel/create" />
-<title>CheckPageAccueil</title>
+<title>About</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">CheckPageAccueil</td></tr>
+<tr><td rowspan="1" colspan="3">About</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/biobankapps/index.php</td>
+	<td>/biobankapps/index.php?r=site/contact</td>
 	<td></td>
 </tr>
 <tr>
-	<td>assertTitle</td>
-	<td>biobankapps.com</td>
+	<td>clickAndWait</td>
+	<td>link=About</td>
 	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>About</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=p</td>
+	<td>Biobankapps.com is a website to help biobankers to research tools around their activity of biobanking.<br /> Tools included in this site are only software.</td>
 </tr>
 <tr>
 	<td>assertText</td>
 	<td>id=footer</td>
-	<td>Copyright © 2013 by BioSoftware Factory.<br /> All Rights Reserved.</td>
-</tr>
-<tr>
-	<td>assertText</td>
-	<td></td>
-	<td>Les dernières applications ajoutées:</td>
+	<td>Copyright © 2015 by Biobanques.<br /> Project Biobanques www.biobanques.eu<br /> All Rights Reserved.</td>
 </tr>
 
 </tbody></table>

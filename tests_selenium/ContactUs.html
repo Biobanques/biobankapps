@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/biobankapps/index.php?r=logiciel/create" />
+<title>ContactUs</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ContactUs</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/biobankapps/index.php?r=software/view&amp;id=16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Contact</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ContactForm_name</td>
+	<td>nicolas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ContactForm_email</td>
+	<td>nicolas@malservet.eu</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ContactForm_subject</td>
+	<td>hello i search</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ContactForm_body</td>
+	<td>yes it s</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ContactForm_verifyCode</td>
+	<td>esnepa</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.validating</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=yt0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=yt0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.flash-success</td>
+	<td>Thank you for contacting us. We will respond to you as soon as possible.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>Contact us</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

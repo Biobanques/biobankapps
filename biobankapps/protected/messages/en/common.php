@@ -15,7 +15,7 @@ return array (
 		'licence' => 'License',
 		'prix' => 'Price',
 		'descriptif_fr' => 'Description in french',
-		'descriptif_en' => 'Description in english',
+		'descriptif_en' => 'Description',
 		'screenshot_1' => 'Screenshot 1',
 		'screenshot_2' => 'Screenshot 2',
 		'screenshot_3' => 'Screenshot 3',

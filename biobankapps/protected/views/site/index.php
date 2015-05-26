@@ -33,15 +33,20 @@ foreach($models as $model){
 					),
 					'societe',
 					array(
-							'name'=>'Prix & Licence',
+							'name'=>'Price & License',
 							'type'=>'html',
-							'value'=>	$model->prix.'€ sous licence <i>'.$model->licence.'</i>',
+							'value'=>	$model->prix.'€ under license <i>'.$model->licence.'</i>',
 					),
 					array(
-							'name'=>'Mots-clés',
+							'name'=>'Keywords',
 							'type'=>'html',
-							'value'=>$model->keywords_fr.' '.$model->keywords_en
-					),		
+							'value'=>$model->keywords_en
+					),
+                            array(
+							'name'=>'More infos',
+							'type'=>'html',
+							'value'=>CHtml::link("See more info.", array('software/view', 'id'=>$model->id))
+					),
 			),
 	));
 	echo "</div>";

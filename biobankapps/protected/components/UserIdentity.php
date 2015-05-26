@@ -15,7 +15,7 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$record=Logiciel::model()->findByAttributes(array('contact_login'=>$this->username));
+		$record=Software::model()->findByAttributes(array('contact_login'=>$this->username));
 		if($record==null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		elseif($record->contact_password!=$this->password)

@@ -34,7 +34,7 @@ for($i=1;$i<6;$i++){
 }
 if(Yii::app()->user->id==$model->id){
 	if($nbEmplacementsVides>0){
-		echo "<br><div class=\"flash-notice\"><b>Vous pouvez encore ajouter ".$nbEmplacementsVides." images pour votre logiciel</b></div>";
+		echo "<br><div class=\"flash-notice\"><b>You can add ".$nbEmplacementsVides." pictures for your software.</b></div>";
 		echo "<br>";
 	}
 }
@@ -57,13 +57,11 @@ $this->widget('zii.widgets.CDetailView', array(
 		'url_logiciel',
 		'licence',
 		array(
-					'name'=>'Prix',
+					'name'=>'Price',
 					'type'=>'html',
 					'value'=>$model->prix.'€ ',
 		),
-		'descriptif_fr',
 		'descriptif_en',
-		'keywords_fr',
 		'keywords_en',
 		array(
 				'name'=>'Contact',

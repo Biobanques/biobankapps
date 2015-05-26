@@ -39,8 +39,12 @@
 		<div style="float:left;">
 		<?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/logobb.png','logo',array('height'=>150,'width'=>200)); ?>
 		</div>
+                    
 		<div style="float:left;">
-		<?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/ndd_logo.png','logo',array('height'=>90,'width'=>550)); ?>
+		<?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/ndd_logo.png','logo',array('height'=>80,'width'=>400)); ?>
+		</div>
+                    <div style="float:left;">
+		<?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/bbmri_eric.png','logo',array('height'=>120,'width'=>300)); ?>
 		</div>
 		<div style="float:right;">
 				<a href="./index.php?lang=fr"><?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/fr.png'); ?></a>
