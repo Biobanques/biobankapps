@@ -81,7 +81,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by Biobanques.<br/>
+		Version 1.1  Copyright &copy; <?php echo date('Y'); ?> by Biobanques.<br/>
                 Project Biobanques <a href="http://www.biobanques.eu">www.biobanques.eu</a><br/>
 		All Rights Reserved.<br/>
 	</div><!-- footer -->
