@@ -26,7 +26,7 @@ for($i=1;$i<6;$i++){
 		//echo "<img id=\"".$name."\" name=\"".$name."\" src=\"".$src." />";
 		//si le user ets l admin affichage du lien pour supprimer al screenshot
 		if($model->id==Yii::app()->user->id){
-			$images.="<br>".CHtml::link('Supprimer',"#", array("submit"=>array('logiciel/deletePhoto', 'i'=>$i), 'confirm' => 'Êtes vous sûr de vouloir supprimer cette photo?'));
+			$images.="<br>".CHtml::link('Supprimer',"#", array("submit"=>array('logiciel/deletePhoto', 'i'=>$i), 'confirm' => 'Are you sure you want to delete this picture?'));
 			$images.="</div>";
 		}
 		$nbEmplacementsVides--;
