@@ -101,7 +101,7 @@
 
 	<div class="row" style="float:left;padding-left:10px;">
 		<?php echo $form->labelEx($model,'contact_password'); ?>
-		<?php echo $form->textField($model,'contact_password',array('size'=>20,'maxlength'=>100)); ?>
+		<?php echo $form->passwordField($model,'contact_password',array('size'=>20,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'contact_password'); ?>
 	</div>
 
