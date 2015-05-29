@@ -30,8 +30,8 @@ class BBAConstants
 
 	public function getYesNoOption(){
 		return array(
-				BBAConstants::OUI=>'oui',
-				BBAConstants::NON=>'non',
+				BBAConstants::OUI=>'yes',
+				BBAConstants::NON=>'no',
 		);
 	}
 	public function getYesNo($stat)
@@ -45,8 +45,8 @@ class BBAConstants
 	 */
 	public function getStatusOption(){
 		return array(
-				BBAConstants::STATUT_ACTIF=>'Actif',
-				BBAConstants::STATUT_INACTIF=>'Inactif',
+				BBAConstants::STATUT_ACTIF=>'Active',
+				BBAConstants::STATUT_INACTIF=>'Inactive',
 		);
 	}
 	/**
