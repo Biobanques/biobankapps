@@ -14,7 +14,12 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-	<!-- custom js -->
+	
+         <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" >
+
+        
+        <!-- custom js -->
 	<script src='js/script.js'></script>
 	<!-- inclusion google analytics -->
 	<script type="text/javascript">

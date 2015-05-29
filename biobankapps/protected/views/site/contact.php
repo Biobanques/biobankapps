@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 	'Contact',
 );
 ?>
-
+<div class="col-lg-6">
 <h1><?php echo Yii::t('common','contact_us');?></h1>
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
@@ -79,3 +79,4 @@ $this->breadcrumbs=array(
 </div><!-- form -->
 
 <?php endif; ?>
+</div>

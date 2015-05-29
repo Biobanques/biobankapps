@@ -2,6 +2,7 @@
 
 class SiteController extends BSFController {
 
+    public $layout = '//layouts/column1';
     /**
      * Declares class-based actions.
      */

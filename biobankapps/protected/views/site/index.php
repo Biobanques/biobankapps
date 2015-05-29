@@ -1,56 +1,49 @@
 <?php
 /* @var $this SiteController */
-
-$this->pageTitle=Yii::app()->name;
+$this->pageTitle = Yii::app()->name;
 ?>
 
-<h1><?php echo Yii::t('common','home').' <i>'.CHtml::encode(Yii::app()->name); ?></i></h1>
-<?php echo Yii::t('common','homepage'); ?>
+<div class="page-header">
+    <div class="container">
+        <h1><?php echo Yii::t('common', 'home') . ' <i>' . CHtml::encode(Yii::app()->name); ?></i></h1>
+        <p>
+            <?php echo Yii::t('common', 'homepage'); ?>
+        </p>
+    </div>
+</div>
 <br>
-<?php 
-//affichage des 10 derniers applications
-$models = Software::model()->findAll(array(
-    //"order" => "rand()",
-    "limit" => 20,
-));
-foreach($models as $model){
-	echo "<div style=\"float:left;padding-left:10px;padding-right:15px;height:120px;width:120px;max-width:120px;max-height:120px;text-align:center;\" >";
-	$style="max-height:100%;max-width:100%;height:auto;width:auto";
-        $imgurl=Yii::app()->request->baseUrl."/images/nologo.png";// class=\"logo-logiciel\" ".$style."/>";
-	if($model->logo!=null){
-		$imgurl=Yii::app()->request->baseUrl.'/photos/'.$model->logo;
-	}
-        echo CHtml::link(CHtml::image($imgurl,'logo',$htmlOptions=array ("style"=>$style,"class"=>"logo-logiciel")),array('software/view', 'id'=>$model->id)); 
-	echo "</div>";
-	echo "<div style=\"float:left;width:70%;padding-left:10px;\">";
-	$this->widget('zii.widgets.CDetailView', array(
-			'data'=>$model,
-			'attributes'=>array(
-                            array(
-							'name'=>'nom',
-							'type'=>'html',
-							'value'=>CHtml::link(CHtml::encode($model->nom), array('software/view', 'id'=>$model->id))
-					),
-					'societe',
-					array(
-							'name'=>'Price & License',
-							'type'=>'html',
-							'value'=>	$model->prix.'€ under license <i>'.$model->licence.'</i>',
-					),
-					array(
-							'name'=>'Keywords',
-							'type'=>'html',
-							'value'=>$model->keywords_en
-					),
-                            array(
-							'name'=>'More infos',
-							'type'=>'html',
-							'value'=>CHtml::link("See more info.", array('software/view', 'id'=>$model->id))
-					),
-			),
-	));
-	echo "</div>";
-	echo "<div style=\"border-bottom:1px solid #D788F1;clear:both;margin-bottom:5px;\"></div>";
-}
 
-?>
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class=" panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">If you are a biobanker</h3></div>
+                <div class="panel-body">
+                    You can search softwares related to your activities into the <?php echo CHtml::link(Yii::t('common', 'software_list'), array('software/admin')); ?>
+                    <br><br>
+                    If you are interested by some softwares, contact informations are provided into each detailled view of each software.<br>
+                    Software publishers are free to publish their own softwares on this website.<br>
+                    <br><br>
+                    If you have question or suggestion, feel free to contact us : <?php echo CHtml::link(Yii::t('common', 'contact'), array('site/contact')); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">If you are a software publisher</h3></div>
+                <div class="panel-body">
+                    You can add your softwares related to the biobing activities with this form <?php echo CHtml::link(Yii::t('common', 'add_software'), array('software/create')); ?>
+                    <br> <br>
+                    Publishing your software on this list is free.
+                    <br>
+                    You can update directly your informations for each software.
+                    <br>
+                    This website is maintained by the Biobanques-IT Team, in collaboration with the BBMRI-IT node.
+                    <br><br>
+                    If you have question or suggestion, feel free to contact us : <?php echo CHtml::link(Yii::t('common', 'contact'), array('site/contact')); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+

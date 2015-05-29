@@ -120,6 +120,7 @@ class SoftwareController extends BSFController {
      * Manages all models.
      */
     public function actionAdmin() {
+        $this->layout='//layouts/column1';
         $model = new Software('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Software']))

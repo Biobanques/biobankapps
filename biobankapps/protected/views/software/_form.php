@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<div class="col-lg-8 form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'logiciel-form',

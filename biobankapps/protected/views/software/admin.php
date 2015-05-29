@@ -32,7 +32,8 @@ $('.search-form form').submit(function(){
     ?>
 </div><!-- search-form -->
 
-
+<div class="row">
+    <div class="col-lg-11">
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'software-grid',
@@ -65,3 +66,5 @@ $this->widget('zii.widgets.grid.CGridView', array(
     ),
 ));
 ?>
+    </div>
+</div>
