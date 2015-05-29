@@ -234,9 +234,13 @@ div.search-form
 	padding:3px;
 }
 .logo-logiciel{
-	border:1px solid black;
-	border-radius:5px;
 	padding:3px;
-	width:80px;
-	height:80px;
+	width:25px;
+	height:25px;
+}
+
+.logo-logiciel-mini{
+	padding:1px;
+	width:30px;
+	height:30px;
 }
