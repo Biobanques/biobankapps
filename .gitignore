@@ -10,3 +10,7 @@
 /biobankapps/protected/data/script_reconstruct_db.sh
 /biobankapps/assets/
 /biobankapps/protected/runtime/
+/nbproject/private/
+/biobankapps/photos/
+/biobankapps/img/
+/biobankapps/images/

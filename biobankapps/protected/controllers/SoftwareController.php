@@ -1,10 +1,12 @@
 <?php
 
+Yii::import('ext.uploadedImage.EUploadedImage');
+
 /**
  * class to manage software. Extends the main controller to add lang support.
  */
-class SoftwareController extends BSFController {
-
+class SoftwareController extends BSFController
+{
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -120,7 +122,7 @@ class SoftwareController extends BSFController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $this->layout='//layouts/column1';
+        $this->layout = '//layouts/column1';
         $model = new Software('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Software']))
@@ -128,7 +130,6 @@ class SoftwareController extends BSFController {
         $this->render('admin', array(
             'model' => $model,
         ));
-       
     }
 
     /**
@@ -140,7 +141,16 @@ class SoftwareController extends BSFController {
         $fichierForm = new FichierForm;
         if (isset($_POST['FichierForm'])) {
             $fichierForm->attributes = $_POST['FichierForm'];
-            $uploadedFile = CUploadedFile::getInstance($fichierForm, 'fichier');
+            $uploadedFile = EUploadedImage::getInstance($fichierForm, 'fichier');
+            $uploadedFile->maxWidth = 800;
+            $uploadedFile->maxHeight = 600;
+
+            $uploadedFile->thumb = array(
+                'maxWidth' => 100,
+                'maxHeight' => 100,
+                'dir' => 'tn',
+                'prefix' => '',
+            );
             //selon les valeurs dans le model, renommage du nom en id+x.suffix
             $prefix = "sc_";
             $name = $id . "_1";
@@ -168,10 +178,13 @@ class SoftwareController extends BSFController {
             }
 
             if ($model->save()) {
+
                 //copie du fichier dans le repo adapate
-                $uploadedFile->saveAs(Yii::app()->basePath . BBAConstants::PATH_PHOTOS . $prefix . $name . "." . $suffix);
-                //redirection sur la vue
-                $this->redirect(array('view', 'id' => $model->id));
+                if ($uploadedFile->saveAs(Yii::app()->basePath . BBAConstants::PATH_PHOTOS . $prefix . $name . "." . $suffix)) {
+                    //redirection sur la vue
+                } else {
+                    Yii::app()->user->setFlash('error', 'L\'image n\'a pas été enregistrée.');
+                } $this->redirect(array('update', 'id' => $model->id));
             }
         }
         $this->render('ajouter_photo_logiciel', array(
@@ -179,23 +192,36 @@ class SoftwareController extends BSFController {
         ));
     }
 
-    public function actionDeletePhoto($i) {
-        if (isset(Yii::app()->user->id)) {
-            $model = $this->loadModel(Yii::app()->user->id);
-            $name = "screenshot_" . $i;
-            //suppression du fichier physique
-            $pathfile = Yii::app()->basePath . BBAConstants::PATH_PHOTOS . $model->$name;
-            if (file_exists($pathfile)) {
-                unlink($pathfile);
-            } else {
-                Yii::log("file inexist cannot delete:" . $pathfile, "error");
-            }
+    public function actionDeletePhoto() {
+        if (isset($_GET['i'])) {
+            $i = $_GET['i'];
 
-            $model->$name = null;
-            if ($model->save()) {
-                Yii::app()->user->setFlash('success', 'L\'image a été supprimée avec succès.');
+            if (isset(Yii::app()->user->id)) {
+                $model = $this->loadModel(Yii::app()->user->id);
+                $name = "screenshot_" . $i;
+                //suppression du fichier physique
+                $pathfile = Yii::app()->basePath . BBAConstants::PATH_PHOTOS . $model->$name;
+                if (file_exists($pathfile)) {
+                    unlink($pathfile);
+                } else {
+                    Yii::log("file inexist cannot delete:" . $pathfile, "error");
+                }
+
+                $model->$name = null;
+                if ($model->save()) {
+                    Yii::app()->user->setFlash('success', 'L\'image a été supprimée avec succès.');
+                } else
+                    Yii::app()->user->setFlash('error', 'L\'image n\'a pas été supprimée.');
+
+//                $this->renderPartial('_displayImages', array(
+//                    'model' => $model,
+//                ));
             }
-            $this->redirect(array('view', 'id' => $model->id));
+        }else {
+            Yii::app()->user->setFlash('error', 'L\'image n\'a pas été supprimée.');
+            $this->render('view', array(
+                'model' => $model,
+            ));
         }
     }
 
