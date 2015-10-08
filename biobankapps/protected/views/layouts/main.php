@@ -78,7 +78,7 @@
                     <div style="float:left;">
                         <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/logobb.png', 'logo', array('height' => 75, 'width' => 100)); ?>
                     </div>
-                    <div style="float:left;padding-left:200px;">Version 1.1  Copyright &copy; <?php echo date('Y'); ?> by Biobanques.<br/>
+                    <div style="float:left;padding-left:200px;">Version 1.2  Copyright &copy; <?php echo date('Y'); ?> by Biobanques.<br/>
                         Project Biobanques <a href="http://www.biobanques.eu">www.biobanques.eu</a><br/>
                         All Rights Reserved.<br/></div>
                     <div style="float:left;padding-left:200px;">
