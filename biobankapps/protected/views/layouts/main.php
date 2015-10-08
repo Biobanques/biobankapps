@@ -16,11 +16,13 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" >
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
             <!-- custom js -->
             <script src='js/script.js'></script>
+            <!-- bootstrap -->
+            <script src='js/bootstrap-3.3.5-dist/js/bootstrap.min.js'></script>
             <!-- inclusion google analytics -->
             <script type="text/javascript">
 
@@ -42,29 +44,8 @@
     </head>
     <body>
         <div class="container" id="page">
-            <div id="header">
-                <div id="logo">
-                    <div style="float:left;">
-                        <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/logobb.png', 'logo', array('height' => 150, 'width' => 200)); ?>
-                    </div>
-
-                    <div style="float:left;">
-                        <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/ndd_logo.png', 'logo', array('height' => 80, 'width' => 400)); ?>
-                    </div>
-                    <div style="float:left;">
-                        <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/bbmri_eric.png', 'logo', array('height' => 120, 'width' => 300)); ?>
-                    </div>
-                    <div style="float:right;">
-                        <a href="./index.php?lang=fr"><?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/fr.png'); ?></a>
-                        <a style="padding-left: 10px;" href="./index.php?lang=en"><?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/gb.png'); ?></a>
-                    </div>
-                </div>
-            </div>
-            <!-- header -->
-
-            <div id="mainmenu" style="clear:both;">
-                <?php
-                $this->widget('zii.widgets.CMenu', array(
+            <?php
+                $this->widget('ext.bootstrap3.Navbar', array(
                     'items' => array(
                         array('label' => Yii::t('common', 'home'), 'url' => array('/site/index')),
                         array('label' => Yii::t('common', 'software_list'), 'url' => array('/software/admin')),
@@ -73,11 +54,13 @@
                         array('label' => Yii::t('common', 'about'), 'url' => array('/site/page', 'view' => 'about')),
                         array('label' => Yii::t('common', 'login'), 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                         array('label' => Yii::t('common', 'logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
-                    ),
+                    
+                       ),
                 ));
                 ?>
-            </div><!-- mainmenu -->
-
+          
+            
+            <!-- header -->
             <?php
             $flashMessages = Yii::app()->user->getFlashes();
             if ($flashMessages) {
@@ -90,13 +73,31 @@
 
             <div class="clear"></div>
 
+            <div >
+                <div id="logo">
+                    
+                    
+                </div>
+            </div>
+             <div class="clear"></div>
             <div id="footer">
-                Version 1.1  Copyright &copy; <?php echo date('Y'); ?> by Biobanques.<br/>
-                Project Biobanques <a href="http://www.biobanques.eu">www.biobanques.eu</a><br/>
-                All Rights Reserved.<br/>
+                
             </div><!-- footer -->
 
         </div><!-- page -->
-
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container">
+      <div style="float:left;">
+                        <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/logobb.png', 'logo', array('height' => 75, 'width' => 100)); ?>
+                    </div>
+      <div style="float:left;padding-left:200px;">Version 1.1  Copyright &copy; <?php echo date('Y'); ?> by Biobanques.<br/>
+                Project Biobanques <a href="http://www.biobanques.eu">www.biobanques.eu</a><br/>
+                All Rights Reserved.<br/></div>
+                    <div style="float:left;padding-left:200px;">
+                        <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/bbmri_eric.png', 'logo', array('height' => 60, 'width' => 150)); ?>
+                    </div>
+    
+  </div>
+</nav>
     </body>
 </html>

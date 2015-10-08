@@ -2,14 +2,17 @@
 /* @var $this SiteController */
 $this->pageTitle = Yii::app()->name;
 ?>
-
 <div class="page-header">
-    <div class="container">
+    <div >
         <h1><?php echo Yii::t('common', 'home') . ' <i>' . CHtml::encode(Yii::app()->name); ?></i></h1>
         <p>
             <?php echo Yii::t('common', 'homepage'); ?>
         </p>
     </div>
+      <div style="float:right;">
+                        <a href="./index.php?lang=fr"><?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/fr.png'); ?></a>
+                        <a style="padding-left: 10px;" href="./index.php?lang=en"><?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/gb.png'); ?></a>
+                    </div>
 </div>
 <br>
 
