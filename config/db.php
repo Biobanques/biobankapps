@@ -1,5 +1,7 @@
 <?php
 
+use app\components\CommonProperties;
+
 return [
     'class' => 'yii\db\Connection',
     'dsn' => CommonProperties::$CONNECTION_STRING,

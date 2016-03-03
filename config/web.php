@@ -1,6 +1,7 @@
 <?php
 
-//use app\components\CommonProperties;
+use app\components\CommonProperties;
+
 $basePath = dirname(__DIR__);
 $params = require(__DIR__ . '/params.php');
 
