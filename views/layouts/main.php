@@ -21,7 +21,9 @@ AppAsset::register($this);
     </head>
     <body>
         <?php $this->beginBody() ?>
-
+<div style="float:left;padding-left:200px;">
+                    <?php echo Html::img(Yii::$app->request->baseUrl . '/images/bbmri_eric.png', array('height' => 60, 'width' => 150)); ?>
+                </div>
         <div class="wrap">
             <?php
             NavBar::begin([
@@ -70,11 +72,8 @@ AppAsset::register($this);
 
         <footer class="footer">
             <div class="container">
-                <div style="float:left;">
-                    <?php echo Html::img(Yii::$app->request->baseUrl . '/images/logobb.png', array('height' => 75, 'width' => 100)); ?>
-                </div>
-                <div style="float:left;padding-left:200px;">Version 1.2  Copyright &copy; <?php echo date('Y'); ?> by Biobanques.<br/>
-                    Project Biobanques <a href="http://www.biobanques.eu">www.biobanques.eu</a><br/>
+                <div style="float:left;padding-left:200px;">Version 2.0  Copyright &copy; <?php echo date('Y'); ?> by BBMRI-ERIC.<br/>
+                    Project BBMRI-ERIC IT <a href="http://bbmri-eric.eu">www.bbmri-eric.eu</a><br/>
                     All Rights Reserved.<br/></div>
                 <div style="float:left;padding-left:200px;">
                     <?php echo Html::img(Yii::$app->request->baseUrl . '/images/bbmri_eric.png', array('height' => 60, 'width' => 150)); ?>
