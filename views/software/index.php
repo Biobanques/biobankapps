@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\DetailView;
@@ -16,7 +17,7 @@ $this->title = 'Softwares';
     <h1><?= Html::encode($this->title) ?></h1>
 
 <!--    <p>
-    <?php //        echo Html::a('Create Software', ['create'], ['class' => 'btn btn-success']) ?>
+    <?php //        echo Html::a('Create Software', ['create'], ['class' => 'btn btn-success'])  ?>
     </p>-->
     <?php $dataProvider->setPagination(FALSE);
     ?>
@@ -28,33 +29,14 @@ $this->title = 'Softwares';
     return DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    //  'id',
-                    'nom',
-                    'societe',
-                    'url_societe:url',
-                    'url_logiciel:url',
-                    'licence',
-                    ['label' => 'prix',
+                    'name',
+                    'company',
+                    'url_company:url',
+                    'url_software:url',
+                    'license',
+                    ['label' => 'price',
                         'type' => 'html',
-                        'value' => $model->prix . '€ '], //'logo',
-//                    'descriptif_en',
-//                    'keywords_en',
-//                    ['label' => 'Contact',
-//                        'type' => 'html',
-//                        'value' => $model->contact_nom . ' ' . $model->contact_prenom,],
-//                    'contact_email:email',
-//                    'contact_phone',
-//                    ['label' => 'langue_en',
-//                        'type' => 'html',
-//                        'value' => BBAConstants::getYesNo($model->langue_en),]
-//                    ,
-//                    ['label' => 'langue_fr',
-//                        'type' => 'html',
-//                        'value' => BBAConstants::getYesNo($model->langue_fr),]
-//                    ,
-//                    ['label' => 'langue_autres',
-//                        'type' => 'html',
-//                        'value' => BBAConstants::getYesNo($model->langue_autres),]
+                        'value' => $model->price . '€ '],
                 ]
     ]);
 },

@@ -34,7 +34,7 @@ $this->title = 'Softwares';
 //
         ?>
         <?=
-        Html::a('<span class="glyphicon glyphicon-print"></span> ' . Yii::t('common', 'list_printable_logiciels'), ['software/index'], ['class' => 'btn btn-success btn-lg']) .
+        Html::a('<span class="glyphicon glyphicon-print"></span> ' . Yii::t('common', 'list_printable_softwares'), ['software/index'], ['class' => 'btn btn-success btn-lg']) .
         '';
         ?>
     </p>
@@ -62,30 +62,10 @@ $this->title = 'Softwares';
                     return Html::img($data->getLogoPicture(), ['class' => "img-responsive", "width" => "60", "height" => "60"]);
                     // return $data->getLogoPicture();
                 }],
-                    'nom',
-                    'societe',
-                    'url_societe:url',
-                    'url_logiciel:url',
-                    // 'licence',
-                    // 'prix',
-                    // 'descriptif_fr',
-                    // 'descriptif_en',
-                    // 'screenshot_1',
-                    // 'screenshot_2',
-                    // 'screenshot_3',
-                    // 'screenshot_4',
-                    // 'screenshot_5',
-                    // 'keywords_fr',
-                    // 'keywords_en',
-                    // 'contact_nom',
-                    // 'contact_prenom',
-                    // 'contact_login',
-                    // 'contact_password',
-                    // 'contact_email:email',
-                    // 'contact_phone',
-                    // 'langue_fr',
-                    // 'langue_en',
-                    // 'langue_autres',
+                    'name',
+                    'company',
+                    'url_company:url',
+                    'url_software:url',
                     ['class' => 'yii\grid\ActionColumn', 'template' => ' {view} {update}', 'buttons' => [
                             'update' => function ($url, $data) {
                                 return Html::a(

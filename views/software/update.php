@@ -13,9 +13,6 @@ use yii\helpers\Html;
 
 $this->title = 'Update Software: ' . ' ' . "$model->societe - $model->nom";
 
-//$this->params['breadcrumbs'][] = ['label' => 'Softwares', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-//$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="software-update">
 

@@ -152,7 +152,7 @@ class SoftwareController extends Controller
         $fichierForm = new FichierForm;
         if ($fichierForm->load(Yii::$app->request->post())) {
             if ($fichierForm->validate()) {
-                $uploadedFile = UploadedFile::getInstance($fichierForm, 'fichier');
+                $uploadedFile = UploadedFile::getInstance($fichierForm, 'file');
 //                $uploadedFile->maxWidth = 800;
 //                $uploadedFile->maxHeight = 600;
 //                $uploadedFile->thumb = array(
@@ -191,14 +191,14 @@ class SoftwareController extends Controller
 
                 //copie du fichier dans le repo adapate
                 if ($uploadedFile->saveAs(Yii::$app->basePath . BBAConstants::PATH_PHOTOS . $prefix . $name . "." . $suffix)) {
-                    Yii::$app->session->setFlash('success', 'L\'image a bien été enregistrée.');
+                    Yii::$app->session->setFlash('success', 'The picture has been saved.');
                     return $this->redirect(array('update', 'id' => $model->id));
                 } else {
-                    Yii::$app->session->setFlash('error', 'L\'image n\'a pas été enregistrée.');
+                    Yii::$app->session->setFlash('error', 'The picture has not been saved.');
                 } return $this->redirect(array('update', 'id' => $model->id));
             }
         }
-        return $this->render('ajouter_photo_logiciel', array(
+        return $this->render('add_software_picture', array(
                     'model' => $fichierForm,
         ));
     }
@@ -220,14 +220,14 @@ class SoftwareController extends Controller
 
                 $model->$name = null;
                 if ($model->save()) {
-                    Yii::$app->session->setFlash('success', 'L\'image a été supprimée avec succès.');
+                    Yii::$app->session->setFlash('success', 'The picture has been deleted.');
 
                     return $this->render('update', ['model' => $model]);
                 } else
-                    Yii::$app->session->setFlash('error', 'L\'image n\'a pas été supprimée.');
+                    Yii::$app->session->setFlash('error', 'The picture has not been deleted.');
             }
         }else {
-            Yii::$app->session->setFlash('error', 'L\'image n\'a pas été supprimée.');
+            Yii::$app->session->setFlash('error', 'The picture has not been deleted.');
             // return $this->render('update', array(
             // 'model' => $model,
             //    ));
@@ -250,7 +250,7 @@ class SoftwareController extends Controller
                 return $this->redirect(array('update', 'model' => $model));
             }
         }
-        return $this->render('ajouter_logo_logiciel', array(
+        return $this->render('add_software_logo', array(
                     'model' => $fichierForm,
         ));
     }
@@ -270,7 +270,7 @@ class SoftwareController extends Controller
 //            }
             $model->logo = null;
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Le logo a été supprimée avec succès.');
+                Yii::$app->session->setFlash('success', 'The logo picture has been deleted with success.');
             }
             return $this->render('update', ['model' => $model]);
         }

@@ -24,69 +24,59 @@ $form = ActiveForm::begin([
             ],
         ]);
 ?>
-<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_logiciels') ?></h4></div>
+<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_software') ?></h4></div>
 <?=
-$form->field($model, 'nom', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
+$form->field($model, 'name', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 <?=
-$form->field($model, 'url_logiciel', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
+$form->field($model, 'url_software', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 <?=
-$form->field($model, 'licence', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
-?>
-
-<?=
-$form->field($model, 'prix', ['options' => ['class' => "col-sm-6"]])->textInput()
-?>
-
-
-
-
-
-
-<?=
-$form->field($model, 'descriptif_fr', ['options' => ['class' => "col-sm-6"]])->textarea(['maxlength' => true])
+$form->field($model, 'license', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 
 <?=
-$form->field($model, 'descriptif_en', ['options' => ['class' => "col-sm-6"]])->textarea(['maxlength' => true])
+$form->field($model, 'price', ['options' => ['class' => "col-sm-6"]])->textInput()
 ?>
+
+
+
+
+
+
 <?=
-$form->field($model, 'keywords_fr', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
+$form->field($model, 'description', ['options' => ['class' => "col-sm-6"]])->textarea(['maxlength' => true])
 ?>
 
 <?=
-$form->field($model, 'keywords_en', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
+$form->field($model, 'keywords', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 
-<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'support_langues') ?></h4></div>
-<?=
-$form->field($model, 'langue_fr', ['options' => ['class' => "col-sm-2"]])->checkbox()
-?>
+<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'support_languages') ?></h4></div>
 
 <?=
-$form->field($model, 'langue_en', ['options' => ['class' => "col-sm-2"]])->checkbox()
+$form->field($model, 'language_en', ['options' => ['class' => "col-sm-2"]])->checkbox()
 ?>
 
 <?=
-$form->field($model, 'langue_autres', ['options' => ['class' => "col-sm-2"]])->checkbox()
+$form->field($model, 'language_others', ['options' => ['class' => "col-sm-2"]])->checkbox()
 ?>
-<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_societe') ?></h4></div>
+<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_company') ?></h4></div>
 <?=
-$form->field($model, 'societe', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
+$form->field($model, 'company', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 
 
 <?=
-$form->field($model, 'url_societe', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
+$form->field($model, 'url_company', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 <div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_contact') ?></h4></div>
 <?=
-$form->field($model, 'contact_nom', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
+$form->field($model, 'contact_name', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 
 <?=
-$form->field($model, 'contact_prenom', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
+$form->field($model, 'contact_firstname', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 
 <?=

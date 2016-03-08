@@ -9,9 +9,7 @@ $('.carousel').carousel();
 /* @var $this yii\web\View */
 /* @var $model app\models\Software */
 
-$this->title = "$model->societe - $model->nom";
-//$this->params['breadcrumbs'][] = ['label' => 'Softwares', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+$this->title = "$model->company - $model->name";
 ?>
 <div class="software-view">
 
@@ -40,33 +38,29 @@ $this->title = "$model->societe - $model->nom";
         'model' => $model,
         'attributes' => [
             //  'id',
-            'nom',
-            'societe',
-            'url_societe:url',
-            'url_logiciel:url',
-            'licence',
-            ['label' => 'prix',
+            'name',
+            'company',
+            'url_company:url',
+            'url_software:url',
+            'license',
+            ['label' => 'price',
                 'type' => 'html',
-                'value' => $model->prix . '€ '],
+                'value' => $model->price . '€ '],
             //'logo',
-            'descriptif_en',
-            'keywords_en',
+            'description',
+            'keywords',
             ['label' => 'Contact',
                 'type' => 'html',
-                'value' => $model->contact_nom . ' ' . $model->contact_prenom,],
+                'value' => $model->contact_name . ' ' . $model->contact_firstname,],
             'contact_email:email',
             'contact_phone',
-            ['label' => 'langue_en',
+            ['label' => 'language_en',
                 'type' => 'html',
-                'value' => BBAConstants::getYesNo($model->langue_en),]
+                'value' => BBAConstants::getYesNo($model->language_en),]
             ,
-            ['label' => 'langue_fr',
+            ['label' => 'language_others',
                 'type' => 'html',
-                'value' => BBAConstants::getYesNo($model->langue_fr),]
-            ,
-            ['label' => 'langue_autres',
-                'type' => 'html',
-                'value' => BBAConstants::getYesNo($model->langue_autres),]
+                'value' => BBAConstants::getYesNo($model->language_others),]
         ],
     ])
     ?>

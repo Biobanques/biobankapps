@@ -5,17 +5,17 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "logiciel".
+ * This is the model class for table "software".
  *
  * @property integer $id
  * @property string $nom
- * @property string $societe
- * @property string $url_societe
- * @property string $url_logiciel
- * @property string $licence
+ * @property string $company
+ * @property string $url_company
+ * @property string $url_software
+ * @property string $license
  * @property integer $prix
- * @property string $descriptif_fr
- * @property string $descriptif_en
+ * @property string $description_fr
+ * @property string $description_en
  * @property string $screenshot_1
  * @property string $screenshot_2
  * @property string $screenshot_3
@@ -41,7 +41,7 @@ class Software extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
      * @inheritdoc
      */
     public static function tableName() {
-        return 'logiciel';
+        return 'software';
     }
 
     /**
@@ -49,12 +49,12 @@ class Software extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
      */
     public function rules() {
         return [
-            [['nom', 'societe', 'url_societe', 'url_logiciel', 'licence', 'contact_login', 'contact_password'], 'required'],
-            [['prix', 'langue_fr', 'langue_en', 'langue_autres'], 'integer'],
-            [['nom', 'societe', 'url_societe', 'url_logiciel', 'licence'], 'string', 'max' => 200],
-            [['descriptif_fr', 'descriptif_en'], 'string', 'max' => 500],
+            [['name', 'company', 'url_company', 'url_software', 'license', 'contact_login', 'contact_password'], 'required'],
+            [['price', 'language_en', 'language_others'], 'integer'],
+            [['nom', 'company', 'url_company', 'url_software', 'license'], 'string', 'max' => 200],
+            [['description'], 'string', 'max' => 500],
             [['screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo'], 'string', 'max' => 50],
-            [['keywords_fr', 'keywords_en', 'contact_nom', 'contact_prenom', 'contact_login', 'contact_password'], 'string', 'max' => 100],
+            [['keywords', 'contact_nom', 'contact_prenom', 'contact_login', 'contact_password'], 'string', 'max' => 100],
             [['contact_email'], 'string', 'max' => 128],
             [['contact_phone'], 'string', 'max' => 20],
             [['contact_login'], 'unique']
@@ -67,31 +67,28 @@ class Software extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'nom' => 'Nom',
-            'societe' => 'Societe',
-            'url_societe' => 'Url Societe',
-            'url_logiciel' => 'Url Logiciel',
-            'licence' => 'Licence',
-            'prix' => 'Prix',
-            'descriptif_fr' => 'Descriptif Fr',
-            'descriptif_en' => 'Descriptif En',
+            'name' => 'Name',
+            'company' => 'Company',
+            'url_company' => 'Url Company',
+            'url_software' => 'Url Software',
+            'license' => 'License',
+            'price' => 'Price',
+            'description' => 'Description',
             'screenshot_1' => 'Screenshot 1',
             'screenshot_2' => 'Screenshot 2',
             'screenshot_3' => 'Screenshot 3',
             'screenshot_4' => 'Screenshot 4',
             'screenshot_5' => 'Screenshot 5',
             'logo' => 'Logo',
-            'keywords_fr' => 'Keywords Fr',
-            'keywords_en' => 'Keywords En',
-            'contact_nom' => 'Contact Nom',
-            'contact_prenom' => 'Contact Prenom',
+            'keywords' => 'Keywords',
+            'contact_name' => 'Contact Name',
+            'contact_firstname' => 'Contact Firstname',
             'contact_login' => 'Contact Login',
             'contact_password' => 'Contact Password',
             'contact_email' => 'Contact Email',
             'contact_phone' => 'Contact Phone',
-            'langue_fr' => 'Langue Fr',
-            'langue_en' => 'Langue En',
-            'langue_autres' => 'Langue Autres',
+            'language_en' => 'Language En',
+            'language_others' => 'Others Languages',
         ];
     }
 

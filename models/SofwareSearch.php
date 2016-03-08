@@ -10,8 +10,8 @@ use app\models\Software;
 /**
  * SofwareSearch represents the model behind the search form about `app\models\Software`.
  */
-class SofwareSearch extends Software
-{
+class SofwareSearch extends Software {
+
     public $global_keywords;
 
     /**
@@ -19,8 +19,8 @@ class SofwareSearch extends Software
      */
     public function rules() {
         return [
-            [['id', 'prix', 'langue_fr', 'langue_en', 'langue_autres'], 'integer'],
-            [['nom', 'societe', 'url_societe', 'url_logiciel', 'licence', 'descriptif_fr', 'descriptif_en', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords_fr', 'keywords_en', 'contact_nom', 'contact_prenom', 'contact_login', 'contact_password', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
+            [['id', 'price', 'language_en', 'language_others'], 'integer'],
+            [['name', 'company', 'url_company', 'url_software', 'licence', 'description', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords', 'contact_name', 'contact_firstname', 'contact_login', 'contact_password', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
         ];
     }
 
@@ -63,27 +63,20 @@ class SofwareSearch extends Software
         ]);
 
         $query->andFilterWhere(['like', 'nom', $this->nom])
-                ->andFilterWhere(['like', 'societe', $this->societe])
-                ->andFilterWhere(['like', 'url_societe', $this->url_societe])
-                ->andFilterWhere(['like', 'url_logiciel', $this->url_logiciel])
+                ->andFilterWhere(['like', 'company', $this->company])
+                ->andFilterWhere(['like', 'url_company', $this->url_company])
+                ->andFilterWhere(['like', 'url_software', $this->url_software])
                 ->andFilterWhere(['like', 'licence', $this->licence])
-                ->andFilterWhere(['like', 'descriptif_fr', $this->descriptif_fr])
-                ->andFilterWhere(['like', 'descriptif_en', $this->descriptif_en])
+                ->andFilterWhere(['like', 'description', $this->description])
                 ->andFilterWhere(['like', 'screenshot_1', $this->screenshot_1])
                 ->andFilterWhere(['like', 'screenshot_2', $this->screenshot_2])
                 ->andFilterWhere(['like', 'screenshot_3', $this->screenshot_3])
                 ->andFilterWhere(['like', 'screenshot_4', $this->screenshot_4])
                 ->andFilterWhere(['like', 'screenshot_5', $this->screenshot_5])
                 ->andFilterWhere(['like', 'logo', $this->logo])
-//            ->andFilterWhere(['like', 'keywords_fr', $this->keywords_fr])
-//            ->andFilterWhere(['like', 'keywords_en', $this->keywords_en])
-                //  Add or condition for keywords language
-                ->andFilterWhere(['or',
-                    ['like', 'keywords_fr', $this->global_keywords],
-                    ['like', 'keywords_en', $this->global_keywords]
-                ])
-                ->andFilterWhere(['like', 'contact_nom', $this->contact_nom])
-                ->andFilterWhere(['like', 'contact_prenom', $this->contact_prenom])
+                ->andFilterWhere(['like', 'keywords', $this->global_keywords])
+                ->andFilterWhere(['like', 'contact_name', $this->contact_name])
+                ->andFilterWhere(['like', 'contact_firstname', $this->contact_firstname])
                 ->andFilterWhere(['like', 'contact_login', $this->contact_login])
                 ->andFilterWhere(['like', 'contact_password', $this->contact_password])
                 ->andFilterWhere(['like', 'contact_email', $this->contact_email])
