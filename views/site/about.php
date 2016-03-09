@@ -18,10 +18,10 @@ $this->title = Yii::$app->name . ' - ' . Yii::t('common', 'about');
     </div>
     <div style="clear:both;">
         <h3>The team</h3>
-        By chronological order:
-        <ul><li>Nicolas Malservet : project manager
-            <li>Matthieu Penicaud : software developer
-            <li>Heimo Muller : project manager
+        <ul><li>Nicolas Malservet
+            <li>Heimo Muller
+            <li>Matthieu Penicaud
+            
         </ul></p>
     </div>
 

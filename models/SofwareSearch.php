@@ -20,7 +20,7 @@ class SofwareSearch extends Software {
     public function rules() {
         return [
             [['id', 'price', 'language_en', 'language_others'], 'integer'],
-            [['name', 'company', 'url_company', 'url_software', 'licence', 'description', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords', 'contact_name', 'contact_firstname', 'contact_login', 'contact_password', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
+            [['name', 'company', 'url_company', 'url_software', 'license', 'description', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords', 'contact_name', 'contact_firstname', 'contact_login', 'contact_password', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
         ];
     }
 
@@ -56,17 +56,16 @@ class SofwareSearch extends Software {
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'prix' => $this->prix,
-            'langue_fr' => $this->langue_fr,
-            'langue_en' => $this->langue_en,
-            'langue_autres' => $this->langue_autres,
+            'price' => $this->price,
+            'language_en' => $this->language_en,
+            'language_others' => $this->language_others,
         ]);
 
-        $query->andFilterWhere(['like', 'nom', $this->nom])
+        $query->andFilterWhere(['like', 'name', $this->name])
                 ->andFilterWhere(['like', 'company', $this->company])
                 ->andFilterWhere(['like', 'url_company', $this->url_company])
                 ->andFilterWhere(['like', 'url_software', $this->url_software])
-                ->andFilterWhere(['like', 'licence', $this->licence])
+                ->andFilterWhere(['like', 'license', $this->license])
                 ->andFilterWhere(['like', 'description', $this->description])
                 ->andFilterWhere(['like', 'screenshot_1', $this->screenshot_1])
                 ->andFilterWhere(['like', 'screenshot_2', $this->screenshot_2])
