@@ -12,10 +12,6 @@ $this->title = Yii::$app->name;
 
         </p>
     </div>
-    <div style="float:right;">
-        <a href="./index.php?lang=fr"><?php echo Html::img(Yii::$app->request->baseUrl . '/images/fr.png'); ?></a>
-        <a style="padding-left: 10px;" href="./index.php?lang=en"><?php echo Html::img(Yii::$app->request->baseUrl . '/images/gb.png'); ?></a>
-    </div>
 </div>
 <br>
 
