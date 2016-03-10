@@ -14,6 +14,9 @@ use yii\filters\VerbFilter;
  */
 class AuthorController extends Controller
 {
+    
+    public $layout = 'administration';
+    
     public function behaviors()
     {
         return [
@@ -63,6 +66,7 @@ class AuthorController extends Controller
         $model = new Author();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

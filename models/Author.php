@@ -28,8 +28,11 @@ class Author extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'name', 'firstname', 'email'], 'required'],
+            [[ 'name', 'firstname', 'email'], 'required'],
             [['id'], 'integer'],
+            
+        // the email attribute should be a valid email address
+        ['email', 'email'],
             [['name', 'firstname', 'email'], 'string', 'max' => 200]
         ];
     }

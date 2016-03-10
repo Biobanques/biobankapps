@@ -13,31 +13,13 @@ class SiteController extends BSFController
 {
     public $layout = 'column1';
 
-    /**
-     * Declares class-based actions.
-     */
-//    public function actions() {
-//        return array(
-//            // captcha action renders the CAPTCHA image displayed on the contact page
-//            'captcha' => array(
-//                'class' => 'CCaptchaAction',
-//                'backColor' => 0xFFFFFF,
-//            ),
-//            // page action renders "static" pages stored under 'protected/views/site/pages'
-//            // They can be accessed via: index.php?r=site/page&view=FileName
-//            'page' => array(
-//                'class' => 'CViewAction',
-//            ),
-//        );
-//    }
-
     public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'index', 'contact', 'captcha', 'about'],
+                        'actions' => ['login', 'error', 'index', 'contact', 'captcha', 'about','administration'],
                         'allow' => true,
                     ],
                     [
@@ -134,5 +116,6 @@ class SiteController extends BSFController
     public function actionAbout() {
         return $this->render('about');
     }
+
 
 }

@@ -14,6 +14,9 @@ use yii\filters\VerbFilter;
  */
 class EvaluationController extends Controller
 {
+    
+    public $layout = 'administration';
+    
     public function behaviors()
     {
         return [

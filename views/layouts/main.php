@@ -21,26 +21,24 @@ AppAsset::register($this);
     </head>
     <body>
         <?php $this->beginBody() ?>
-<div style="float:left;padding-left:200px;">
-                    <?php echo Html::img(Yii::$app->request->baseUrl . '/images/bbmri_eric.png', array('height' => 60, 'width' => 150)); ?>
-                </div>
         <div class="wrap">
             <?php
             NavBar::begin([
                 'brandLabel' => 'BiobankApps',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
+                    'class' => 'navbar-default navbar-fixed-top',
                 ],
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
+                    ['label' => 'Home', 'icon' => 'home','url' => ['/site/index']],
                     ['label' => Yii::t('common', 'software_list'), 'url' => array('/software/admin')],
                     ['label' => Yii::t('common', 'add_software'), 'url' => array('/software/create')],
                     ['label' => Yii::t('common', 'contact'), 'url' => array('/site/contact')],
                     ['label' => Yii::t('common', 'about'), 'url' => array('/site/about')],
+                    ['label' => 'Administration', 'url' => array('/administration/index')],
                     Yii::$app->user->isGuest ? (
                             ['label' => 'Login', 'url' => ['/site/login']]
                             ) : (
