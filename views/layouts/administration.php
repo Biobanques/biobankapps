@@ -15,9 +15,9 @@ use kartik\sidenav\SideNav;
             // Important: you need to specify url as 'controller/action',
             ['label' => 'Softwares', 'icon' => 'book', 'url' => Url::to(['/administration/softwares' ])],
             ['label' => 'Users', 'icon' => 'user', 'url' => Url::to(['/user/index'])],
-            ['label' => 'Criteria', 'icon' => 'user', 'url' => Url::to(['/criterion/index'])],
-            ['label' => 'Authors', 'icon' => 'user', 'url' => Url::to(['/author/index'])],
-            ['label' => 'Evaluation', 'icon' => 'user', 'url' => Url::to(['/evaluation/index'])],
+            ['label' => 'Criteria', 'icon' => 'tag', 'url' => Url::to(['/criterion/index'])],
+            ['label' => 'Authors', 'icon' => 'pencil', 'url' => Url::to(['/author/index'])],
+            ['label' => 'Evaluation', 'icon' => 'list-alt', 'url' => Url::to(['/evaluation/index'])],
             /*['label' => '<span class="pull-right badge">3</span> Categories', 'icon' => 'tags', 'items' => [
                 ['label' => 'Fiction', 'url' => Url::to(['/site/fiction'])],
                 ['label' => 'Historical', 'url' => Url::to(['/site/historical'])],
