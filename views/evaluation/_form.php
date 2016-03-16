@@ -18,24 +18,29 @@ use app\models\Author;
 
     <p> Date into mysql format </p>
     <?= $form->field($model, 'date_evaluation')->textInput() ?>
-    
+
     <?php
     //generate form with criterion
-    $criteria=Criterion::find()->all();
-    $values=array(1,2,3,4);
-    //for each criterion display an input
-    foreach ($criteria as $criterion){
-        echo $form->field($criterion,"[$i]name")->dropDownList($values);
+    
+    if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
+       $values = array(1, 2, 3, 4);
+        //for each criterion display an input
+        foreach ($evaluationCriteria as $i => $evalCriterion) {
+            echo "<div><div class=\"col-lg-8\"><b>".$evalCriterion->name.":".$evalCriterion->question."</b></div>";
+            echo "<div class=\"col-lg-2\">".$form->field($evalCriterion,"[{$evalCriterion->id}]score")->dropDownList($values)."</div>";
+            echo "</div>";
+        }
     }
     ?>
-
+    <div class="col-lg-8">
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
+    </div>
 
-    
-    
-    
+
+
+
     <?php ActiveForm::end(); ?>
 
 </div>

@@ -28,8 +28,11 @@ class EvaluationCriterion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'evaluation_id', 'score', 'criterion_id'], 'required'],
-            [['id', 'evaluation_id', 'score', 'criterion_id'], 'integer']
+            [[ 'evaluation_id', 'criterion_id','name', 'question', 'weight'], 'required'],
+            [['id', 'evaluation_id', 'score', 'criterion_id'], 'integer'],
+            [['weight'], 'integer'],
+            [['name'], 'string', 'max' => 25],
+            [['question'], 'string', 'max' => 300]
         ];
     }
 

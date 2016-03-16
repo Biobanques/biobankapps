@@ -33,12 +33,36 @@ $config = [
             'useFileTransport' => true,
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
+            //'traceLevel' => YII_DEBUG ? 3 : 0,
+            //traceLevel=3 enable file name and file number displaying into log 
+            'traceLevel'=>3,
+            'flushInterval' => 1,
             'targets' => [
-                [
+               'file' => [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                   'logFile' => '@runtime/logs/application.log',
                 ],
+                /*'file' => [
+                    'class' => 'yii\log\FileTarget',
+                    'categories' => ['yii\web\HttpException:404'],
+                    'levels' => ['error', 'warning'],
+                    'logFile' => '@runtime/logs/404.log',
+                ],*/
+                /*
+                 * custom error log to only have errors in a straight way
+                 */
+                'errorFile' => [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error'],
+                    'logVars' => [],//no vars ( too verbose)
+                    'logFile' => '@runtime/logs/errors.log',
+                ],
+               /* 'email' => [
+                    'class' => 'yii\log\EmailTarget',
+                    'except' => ['yii\web\HttpException:404'],
+                    'levels' => ['error', 'warning'],
+                    'message' => ['from' => 'nicolas@malservet.eu', 'to' => 'nicolas@malservet.eu'],
+                ],*/
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
@@ -72,15 +96,15 @@ $config = [
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'debug';
+   /*$config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-    ];
+    ];*/
 
-    $config['bootstrap'][] = 'gii';
+   /* $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-    ];
+    ];*/
 }
 
 return $config;
