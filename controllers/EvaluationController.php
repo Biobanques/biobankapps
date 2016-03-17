@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\base\Model;
 use app\models\Evaluation;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -49,8 +50,12 @@ class EvaluationController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
+        $model = $this->findModel($id);
+        $evaluationCriteria = EvaluationCriterion::find()->where(['evaluation_id' => $model->id])
+                ->orderBy('id')
+                ->all();
         return $this->render('view', [
-                    'model' => $this->findModel($id),
+                    'model' => $model, 'evaluationCriteria' => $evaluationCriteria
         ]);
     }
 
@@ -60,43 +65,45 @@ class EvaluationController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        //Yii::trace('here');
+//Yii::trace('here');
         $model = new Evaluation();
-        $model->author_id = 1;
-        $model->date_evaluation = date("Y-m-d H:m:s");
-        if (!$model->save()) {
-            // validation failed: $errors is an array containing error messages
-            Yii::error("error saving model:" . print_r($model->errors), __METHOD__);
-        }
-        //create EvaluationCriterion with criterion
+//get current criteria
         $criteria = Criterion::find()->all();
-        foreach ($criteria as $criterion) {
-            $evalCriterion = new EvaluationCriterion();
-            $evalCriterion->evaluation_id = $model->id;
-            $evalCriterion->criterion_id = $criterion->id;
-            $evalCriterion->name = $criterion->name;
-            $evalCriterion->question = $criterion->question;
-            $evalCriterion->weight = $criterion->weight;
-            if (!$evalCriterion->save()) {
-                // validation failed: $errors is an array containing error messages
-                Yii::error("error saving model:" . print_r($evalCriterion->errors), __METHOD__);
-            }
-        }
-
-        //$evaluationCriteria = array();
-        try {
-            $evaluationCriteria = EvaluationCriterion::find()->where(['evaluation_id' => $model->id])
-                    ->orderBy('id')
-                    ->all();
-        } catch (Exception $ex) {
-            Yii::error("error findall:" . $ex, __METHOD__);
-        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $crits = [];
+            $crits[] = new Criterion();
+            if (Model::loadMultiple($crits, Yii::$app->request->post())) {
+                $criterions = Yii::$app->request->post('Criterion');
+                foreach ($criterions as $i => $crit) {
+                    $id = $crit['id'];
+                    $score = $crit['score'];
+                    echo $id . "=>" . $score;
+                    if ($score != null && $id != null) {
+                        $criterion = Criterion::findOne($id);
+                        $evalCriterion = new EvaluationCriterion();
+                        $evalCriterion->evaluation_id = $model->id;
+                        $evalCriterion->criterion_id = $id;
+                        $evalCriterion->name = $criterion->name;
+                        $evalCriterion->question = $criterion->question;
+                        $evalCriterion->weight = $criterion->weight;
+                        $evalCriterion->score=$score;
+                        if (!$evalCriterion->save()) {
+                            Yii::error("error saving model:" . print_r($evalCriterion->errors), __METHOD__);
+                        }
+                    } else {
+                        Yii::error("error null value for criterion id:" . $criterion->id, __METHOD__);
+                    }
+                }
+                $evaluationCriteria = EvaluationCriterion::find()->where(['evaluation_id' => $model->id])
+                        ->orderBy('id')
+                        ->all();
+                return $this->redirect(['view', 'id' => $model->id, 'evaluationCriteria' => $evaluationCriteria]);
+            }
         } else {
-
+            $model->author_id = 1;
+            $model->date_evaluation = date("Y-m-d H:m:s");
             return $this->render('create', [
-                        'model' => $model, 'evaluationCriteria' => $evaluationCriteria
+                        'model' => $model, 'criteria' => $criteria
             ]);
         }
     }
@@ -111,7 +118,7 @@ class EvaluationController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'evaluationCriteria' => $evaluationCriteria]);
         } else {
             return $this->render('update', [
                         'model' => $model,

@@ -22,12 +22,13 @@ use app\models\Author;
     <?php
     //generate form with criterion
     
-    if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
-       $values = array(1, 2, 3, 4);
+    if ($criteria != null && is_array($criteria)) {
+       $values = array(1=>1, 2=>2, 3=>3, 4=>4);
         //for each criterion display an input
-        foreach ($evaluationCriteria as $i => $evalCriterion) {
-            echo "<div><div class=\"col-lg-8\"><b>".$evalCriterion->name.":".$evalCriterion->question."</b></div>";
-            echo "<div class=\"col-lg-2\">".$form->field($evalCriterion,"[{$evalCriterion->id}]score")->dropDownList($values)."</div>";
+        foreach ($criteria as $i=> $criterion) {
+            echo "<div><div class=\"col-lg-8\"><b>".$criterion->name.":".$criterion->question."</b></div>";
+            echo "<div class=\"col-lg-2\">".$form->field($criterion,"[$i]score")->dropDownList($values)."</div>";
+            echo "<div class=\"col-lg-2\">".$form->field($criterion,"[$i]id")->textInput()."</div>";
             echo "</div>";
         }
     }

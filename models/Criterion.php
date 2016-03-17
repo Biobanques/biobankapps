@@ -15,6 +15,11 @@ use Yii;
 class Criterion extends \yii\db\ActiveRecord
 {
     /**
+     * property to enable displaying in dynamic view evaluation/create
+     * @var type 
+     */
+    public $score;
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -45,6 +50,7 @@ class Criterion extends \yii\db\ActiveRecord
             'name' => 'Name',
             'question' => 'Question',
             'weight' => 'Weight',
+            'score' => 'Score',
         ];
     }
 }
