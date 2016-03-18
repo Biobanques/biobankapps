@@ -29,7 +29,8 @@ class Evaluation extends \yii\db\ActiveRecord
     {
         return [
             [[ 'author_id', 'date_evaluation'], 'required'],
-            [['id', 'author_id', 'grade'], 'integer'],
+            [['id', 'author_id'], 'integer'],
+            [['grade'], 'string', 'max' => 3],
             [['date_evaluation'], 'safe'],
             //['date_evaluation', 'date', 'format' => 'Y-m-d H:m:s']
         ];

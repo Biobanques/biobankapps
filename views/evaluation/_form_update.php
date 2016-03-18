@@ -18,15 +18,15 @@ use app\models\Author;
 
     <p> Date into mysql format </p>
     <?= $form->field($model, 'date_evaluation')->textInput() ?>
-
-    <table id="deail-view" class="table table-striped table-bordered detail-view">
+<table id="deail-view" class="table table-striped table-bordered detail-view">
         <tbody>
             <tr><th>Domain</th><th>Question</th><th>Score</th></tr>
     <?php
-    if ($criteria != null && is_array($criteria)) {
+    //generate form with criterion
+    if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
        $values = array(1=>1, 2=>2, 3=>3, 4=>4);
         //for each criterion display an input
-        foreach ($criteria as $i=> $criterion) {
+        foreach ($evaluationCriteria as $i=> $criterion) {
             echo "<th>".$criterion->name."</th><th>".$criterion->question."</th>";
             echo "<td>".$form->field($criterion,"[$i]score")->dropDownList($values);
             echo $form->field($criterion,"[$i]id")->hiddenInput()."</td></tr>";

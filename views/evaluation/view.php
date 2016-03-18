@@ -16,16 +16,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?=
+        Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
@@ -33,18 +36,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_evaluation',
             'grade',
         ],
-    ]) ?>
-    <?php
-    //display criteria and answers
-    if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
-       $values = array(1, 2, 3, 4);
-        //for each criterion display an input
-        foreach ($evaluationCriteria as $i => $evalCriterion) {
-            echo "<div><div class=\"col-lg-4\"><b>".$evalCriterion->name.":".$evalCriterion->question."</b></div>";
-            echo "<div class=\"col-lg-2\">score : ".$evalCriterion->score."</div>";
-            echo "</div>";
-        }
-    }
+    ])
     ?>
-
+    <table id="deail-view" class="table table-striped table-bordered detail-view">
+        <tbody>
+            <tr><th>Domain</th><th>Question</th><th>Score</th></tr>
+            <?php
+            //display criteria and answers
+            if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
+                $values = array(1, 2, 3, 4);
+                //for each criterion display an input
+                foreach ($evaluationCriteria as $i => $evalCriterion) {
+                    echo "<tr><th>" . $evalCriterion->name . "</th><th>" . $evalCriterion->question . "</th>";
+                    echo "<td>" . $evalCriterion->score . "</td>";
+                    echo "</tr>";
+                }
+            }
+            ?>
+        </tbody>
+    </table>
 </div>

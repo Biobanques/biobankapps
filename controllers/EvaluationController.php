@@ -65,19 +65,18 @@ class EvaluationController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-//Yii::trace('here');
         $model = new Evaluation();
-//get current criteria
         $criteria = Criterion::find()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $crits = [];
             $crits[] = new Criterion();
             if (Model::loadMultiple($crits, Yii::$app->request->post())) {
                 $criterions = Yii::$app->request->post('Criterion');
+                $grade = 0;
+                $gradeMax = 0;
                 foreach ($criterions as $i => $crit) {
                     $id = $crit['id'];
                     $score = $crit['score'];
-                    echo $id . "=>" . $score;
                     if ($score != null && $id != null) {
                         $criterion = Criterion::findOne($id);
                         $evalCriterion = new EvaluationCriterion();
@@ -86,14 +85,20 @@ class EvaluationController extends Controller {
                         $evalCriterion->name = $criterion->name;
                         $evalCriterion->question = $criterion->question;
                         $evalCriterion->weight = $criterion->weight;
-                        $evalCriterion->score=$score;
+                        $evalCriterion->score = $score;
                         if (!$evalCriterion->save()) {
                             Yii::error("error saving model:" . print_r($evalCriterion->errors), __METHOD__);
                         }
+                        //calculate grade
+                        $grade+=$score * $criterion->weight;
+                        $gradeMax+=4 * $criterion->weight;
                     } else {
                         Yii::error("error null value for criterion id:" . $criterion->id, __METHOD__);
                     }
                 }
+                //save grade
+                $model->grade = $this->calcGrade($grade / $gradeMax);
+                $model->save();
                 $evaluationCriteria = EvaluationCriterion::find()->where(['evaluation_id' => $model->id])
                         ->orderBy('id')
                         ->all();
@@ -108,6 +113,21 @@ class EvaluationController extends Controller {
         }
     }
 
+    public function calcGrade($sum) {
+        $result = "E";
+        if ($sum > 0.2)
+            $result = "D";
+        if ($sum > 0.4)
+            $result = "C";
+        if ($sum > 0.8)
+            $result = "A";
+        if ($sum > 0.6)
+            $result = "B";
+        
+        
+        return $result;
+    }
+
     /**
      * Updates an existing Evaluation model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -116,12 +136,44 @@ class EvaluationController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
+        $evaluationCriteria = EvaluationCriterion::find()->where(['evaluation_id' => $model->id])
+                ->orderBy('id')
+                ->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $crits = [];
+            $crits[] = new EvaluationCriterion();
+            if (Model::loadMultiple($crits, Yii::$app->request->post())) {
+                $criterions = Yii::$app->request->post('EvaluationCriterion');
+                $grade = 0;
+                $gradeMax = 0;
+                foreach ($criterions as $i => $crit) {
+                    $id = $crit['id'];
+                    $score = $crit['score'];
+                    //echo $id . "=>" . $score;
+                    if ($score != null && $id != null) {
+                        $evalCriterion = EvaluationCriterion::findOne($id);
+                        $evalCriterion->score = $score;
+                        if (!$evalCriterion->save()) {
+                            Yii::error("error saving model:" . print_r($evalCriterion->errors), __METHOD__);
+                        }
+                        //calculate grade
+                        $grade+=$score * $evalCriterion->weight;
+                        $gradeMax+=4 * $evalCriterion->weight;
+                    } else {
+                        Yii::error("error null value for criterion id:" . $id, __METHOD__);
+                    }
+                }
+                //save grade
+                Yii::error("grade:" . $grade, __METHOD__);
+                if ($gradeMax > 0) {
+                    $model->grade = $this->calcGrade($grade / $gradeMax);
+                    $model->save();
+                }
+            }
             return $this->redirect(['view', 'id' => $model->id, 'evaluationCriteria' => $evaluationCriteria]);
         } else {
             return $this->render('update', [
-                        'model' => $model,
+                        'model' => $model, 'evaluationCriteria' => $evaluationCriteria
             ]);
         }
     }
