@@ -28,8 +28,8 @@ use app\models\Author;
         //for each criterion display an input
         foreach ($evaluationCriteria as $i=> $criterion) {
             echo "<th>".$criterion->name."</th><th>".$criterion->question."</th>";
-            echo "<td>".$form->field($criterion,"[$i]score")->dropDownList($values);
-            echo $form->field($criterion,"[$i]id")->hiddenInput()."</td></tr>";
+            echo "<td>".$form->field($criterion,"[$i]score")->dropDownList($values)->label(false);
+            echo $form->field($criterion,"[$i]id")->hiddenInput()->label(false)."</td></tr>";
         }
     }
     ?>
