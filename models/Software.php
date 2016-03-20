@@ -34,7 +34,7 @@ use Yii;
  * @property integer $langue_en
  * @property integer $langue_autres
  */
-class Software extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class Software extends \yii\db\ActiveRecord 
 {
 
     /**
@@ -127,34 +127,9 @@ class Software extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
         return $listPictures;
     }
 
-    public function getAuthKey() {
 
-    }
 
-    public function getId() {
-        return $this->id;
-    }
 
-    public function validateAuthKey($authKey) {
 
-    }
-
-    public static function findIdentity($id) {
-        return self::findOne($id);
-    }
-
-    public static function findByUsername($username) {
-        return self::findOne(['contact_login' => $username]);
-    }
-
-    public static function findIdentityByAccessToken($token, $type = null) {
-
-    }
-
-    public function validatePassword($password) {
-        if ($this->contact_password === $password)
-            return true;
-        return false;
-    }
 
 }

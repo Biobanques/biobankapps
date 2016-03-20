@@ -51,7 +51,7 @@ Icon::map($this);
                             '<li>'
                             . Html::beginForm(['/site/logout'], 'post')
                             . Html::submitButton(
-                                    'Logout (' . Yii::$app->user->identity->contact_login . ')', ['class' => 'btn btn-link', 'style' => 'height:50px']
+                                    'Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link', 'style' => 'height:50px']
                             )
                             . Html::endForm()
                             . '</li>'

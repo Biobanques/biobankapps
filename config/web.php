@@ -88,7 +88,7 @@ $config = [
             ],
         ],
         'user' => [
-            'identityClass' => 'app\models\Software',
+            'identityClass' => 'app\models\User',
         ],
     ],
     'params' => $params,
