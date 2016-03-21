@@ -16,17 +16,7 @@ use kartik\sidenav\SideNav;
             ['label' => 'Softwares', 'icon' => 'book', 'url' => Url::to(['/administration/softwares' ])],
             ['label' => 'Users', 'icon' => 'user', 'url' => Url::to(['/user/index'])],
             ['label' => 'Criteria', 'icon' => 'tag', 'url' => Url::to(['/criterion/index'])],
-            ['label' => 'Authors', 'icon' => 'pencil', 'url' => Url::to(['/author/index'])],
             ['label' => 'Evaluation', 'icon' => 'list-alt', 'url' => Url::to(['/evaluation/index'])],
-            /*['label' => '<span class="pull-right badge">3</span> Categories', 'icon' => 'tags', 'items' => [
-                ['label' => 'Fiction', 'url' => Url::to(['/site/fiction'])],
-                ['label' => 'Historical', 'url' => Url::to(['/site/historical'])],
-                ['label' => '<span class="pull-right badge">2</span> Announcements', 'icon' => 'bullhorn', 'items' => [
-                    ['label' => 'Event 1', 'url' => Url::to(['/site/event-1'])],
-                    ['label' => 'Event 2', 'url' => Url::to(['/site/event-2'])]
-                ]],
-            ]],*/
-            
         ],
     ]);   
     ?>

@@ -28,8 +28,8 @@ class Evaluation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'author_id', 'date_evaluation'], 'required'],
-            [['id', 'author_id'], 'integer'],
+            [[ 'user_id', 'date_evaluation'], 'required'],
+            [['id', 'user_id'], 'integer'],
             [['grade'], 'string', 'max' => 3],
             [['date_evaluation'], 'safe'],
             //['date_evaluation', 'date', 'format' => 'Y-m-d H:m:s']

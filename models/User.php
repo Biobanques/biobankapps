@@ -28,8 +28,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password', 'email'], 'required'],
-            [['username', 'password', 'email'], 'string', 'max' => 128]
+            [['username', 'password', 'email','name', 'firstname',], 'required'],
+            [['username', 'password', 'email'], 'string', 'max' => 128],
+            [['role'], 'integer'],
+            [['id'], 'integer'],
+        // the email attribute should be a valid email address
+            ['email', 'email'],
+            [['name', 'firstname', 'email'], 'string', 'max' => 200]
         ];
     }
 
@@ -43,6 +48,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'Username',
             'password' => 'Password',
             'email' => 'Email',
+            'name' => 'Name',
+            'firstname' => 'Firstname',
         ];
     }
     
@@ -75,4 +82,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function getId() {
         return $this->id;
     }
+    
+    public $isAdmin=true;
+    
+    public function isAdmin(){
+        return $this->isAdmin;
+    }
+    
+    public $roleValues = array(1=>'software editor', 2=>'author evaluation', 3=>'administrator');
 }
