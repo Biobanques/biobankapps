@@ -33,7 +33,7 @@ class AdministrationController extends Controller
                     [
                         'actions' => ['softwares','index'],
                         'allow' => true,
-                        //'roles' => ['@'],
+                        'roles' => ['@'],
                     ],
                     
                 ],

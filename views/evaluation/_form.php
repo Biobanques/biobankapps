@@ -14,7 +14,7 @@ use app\models\Author;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'author_id')->dropDownList(ArrayHelper::map(Author::find()->all(), 'id', 'name')) ?>
+    <?= $form->field($model, 'user_id')->dropDownList(ArrayHelper::map(User::find()->all(), 'id', 'name')) ?>
 
     <p> Date into mysql format </p>
     <?= $form->field($model, 'date_evaluation')->textInput() ?>
