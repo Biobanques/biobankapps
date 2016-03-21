@@ -18,9 +18,9 @@ $this->title = Yii::$app->name . ' - ' . Yii::t('common', 'about');
     </div>
     <div style="clear:both;">
         <h3>The team</h3>
-        <ul><li>Nicolas Malservet
-            <li>Heimo Muller
-            <li>Matthieu Penicaud
+        <ul><li>Nicolas Malservet ( Biobanques, BBMRI-FR)
+            <li>Heimo Muller ( Medical Univesity of Graz, BBMRI-AT)
+            <li>Matthieu Penicaud ( Biobanques, BBMRI-FR)
             
         </ul></p>
     </div>

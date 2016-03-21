@@ -14,6 +14,12 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    
+    const ROLE_SOFTWARE_PUBLISHER = 1;
+    const ROLE_AUTHOR = 2;
+    const ROLE_ADMIN = 3;
+
+
     /**
      * @inheritdoc
      */
@@ -84,8 +90,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
     
     public function isAdmin(){
-        return $this->role==3?true:false;
+        return $this->role==self::ROLE_ADMIN?true:false;
     }
     
-    public $roleValues = array(1=>'software editor', 2=>'author evaluation', 3=>'administrator');
+    public $roleValues = array(self::ROLE_SOFTWARE_PUBLISHER=>'software editor', self::ROLE_AUTHOR=>'author evaluation', self::ROLE_ADMIN=>'administrator');
 }

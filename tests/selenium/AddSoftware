@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://biobankappsv2.local/" />
+<title>AddSoftware</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AddSoftware</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/index.php?r=software%2Fcreate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-name</td>
+	<td>my software</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-url_software</td>
+	<td>truc</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-license</td>
+	<td>bidule</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-price</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-description</td>
+	<td>ma desc</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-keywords</td>
+	<td>biobank test</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=software-language_en</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-company</td>
+	<td>bsf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-url_company</td>
+	<td>http://bsf.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-contact_name</td>
+	<td>nic</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-contact_firstname</td>
+	<td>mals</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-contact_login</td>
+	<td>nmals</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-contact_password</td>
+	<td>pass86</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-contact_email</td>
+	<td>nic@mals.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=software-contact_phone</td>
+	<td>1234567</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Exception</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>css=div.alert.alert-success</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

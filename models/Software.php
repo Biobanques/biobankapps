@@ -7,32 +7,6 @@ use Yii;
 /**
  * This is the model class for table "software".
  *
- * @property integer $id
- * @property string $nom
- * @property string $company
- * @property string $url_company
- * @property string $url_software
- * @property string $license
- * @property integer $prix
- * @property string $description_fr
- * @property string $description_en
- * @property string $screenshot_1
- * @property string $screenshot_2
- * @property string $screenshot_3
- * @property string $screenshot_4
- * @property string $screenshot_5
- * @property string $logo
- * @property string $keywords_fr
- * @property string $keywords_en
- * @property string $contact_nom
- * @property string $contact_prenom
- * @property string $contact_login
- * @property string $contact_password
- * @property string $contact_email
- * @property string $contact_phone
- * @property integer $langue_fr
- * @property integer $langue_en
- * @property integer $langue_autres
  */
 class Software extends \yii\db\ActiveRecord 
 {
@@ -51,10 +25,10 @@ class Software extends \yii\db\ActiveRecord
         return [
             [['name', 'company', 'url_company', 'url_software', 'license', 'contact_login', 'contact_password'], 'required'],
             [['price', 'language_en', 'language_others'], 'integer'],
-            [['nom', 'company', 'url_company', 'url_software', 'license'], 'string', 'max' => 200],
+            [['name', 'company', 'url_company', 'url_software', 'license'], 'string', 'max' => 200],
             [['description'], 'string', 'max' => 500],
             [['screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo'], 'string', 'max' => 50],
-            [['keywords', 'contact_nom', 'contact_prenom', 'contact_login', 'contact_password'], 'string', 'max' => 100],
+            [['keywords', 'contact_name', 'contact_firstname', 'contact_login', 'contact_password'], 'string', 'max' => 100],
             [['contact_email'], 'string', 'max' => 128],
             [['contact_phone'], 'string', 'max' => 20],
             [['contact_login'], 'unique']

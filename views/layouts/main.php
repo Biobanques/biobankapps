@@ -29,7 +29,7 @@ Icon::map($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => 'BiobankApps',
+                'brandLabel' => 'BiobankApps.com',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-default navbar-fixed-top',
@@ -76,6 +76,9 @@ Icon::map($this);
 
         <footer class="footer">
             <div class="container">
+                <div style="float:left;padding-left:10px;">
+                    <?php echo Html::img(Yii::$app->request->baseUrl . '/images/logobb.png', array('height' => 75, 'width' => 100)); ?>
+                </div>
                 <div style="float:left;padding-left:200px;">Version 2.0  Copyright &copy; <?php echo date('Y'); ?> by BBMRI-ERIC.<br/>
                     Project BBMRI-ERIC IT <a href="http://bbmri-eric.eu">www.bbmri-eric.eu</a><br/>
                     All Rights Reserved.<br/></div>
