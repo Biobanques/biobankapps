@@ -83,10 +83,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->id;
     }
     
-    public $isAdmin=true;
-    
     public function isAdmin(){
-        return $this->isAdmin;
+        return $this->role==3?true:false;
     }
     
     public $roleValues = array(1=>'software editor', 2=>'author evaluation', 3=>'administrator');

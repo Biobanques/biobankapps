@@ -44,7 +44,7 @@ Icon::map($this);
                     ['label' => Icon::show('plus') .Yii::t('common', 'add_software'), 'url' => array('/software/create')],
                     ['label' => Icon::show('phone').Yii::t('common', 'contact'), 'url' => array('/site/contact')],
                     ['label' => Icon::show('info').Yii::t('common', 'about'), 'url' => array('/site/about')],
-                    !Yii::$app->user->isGuest ? (Yii::$app->user->identity->isAdmin?(['label' => Icon::show('wrench').'Administration', 'url' => array('/administration/index')]):('')):(''),
+                    !Yii::$app->user->isGuest ? (Yii::$app->user->identity->isAdmin()?(['label' => Icon::show('wrench').'Administration', 'url' => array('/administration/index')]):('')):(''),
                     Yii::$app->user->isGuest ? (
                             ['label' => 'Login'.Icon::show('arrow-right'), 'url' => ['/site/login']]
                             ) : (
