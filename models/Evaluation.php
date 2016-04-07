@@ -43,7 +43,7 @@ class Evaluation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'author_id' => 'Author ID',
+            'user_id' => 'User ID',
             'date_evaluation' => 'Date Evaluation',
             'grade' => 'Grade',
         ];

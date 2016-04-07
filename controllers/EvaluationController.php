@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\base\Model;
+use app\models\User;
 use app\models\Evaluation;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -105,7 +106,7 @@ class EvaluationController extends Controller {
                 return $this->redirect(['view', 'id' => $model->id, 'evaluationCriteria' => $evaluationCriteria]);
             }
         } else {
-            $model->author_id = 1;
+            $model->user_id = Yii::$app->user->id;
             $model->date_evaluation = date("Y-m-d H:m:s");
             return $this->render('create', [
                         'model' => $model, 'criteria' => $criteria
