@@ -32,6 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            'software_id',
+            'software.name',
+            'software_version',
             'user_id',
             'date_evaluation',
             'grade',

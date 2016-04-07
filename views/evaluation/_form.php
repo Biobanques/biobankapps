@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\User;
+use app\models\Software;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Evaluation */
@@ -16,6 +17,10 @@ use app\models\User;
 
     <?= $form->field($model, 'user_id')->dropDownList(ArrayHelper::map(User::find()->all(), 'id', 'name')) ?>
 
+    <?= $form->field($model, 'software_id')->dropDownList(ArrayHelper::map(Software::find()->all(), 'id', 'name')) ?>
+    
+    <?= $form->field($model, 'software_version')->textInput() ?>
+    
     <p> Date into mysql format </p>
     <?= $form->field($model, 'date_evaluation')->textInput() ?>
 

@@ -30,6 +30,8 @@ class Evaluation extends \yii\db\ActiveRecord
         return [
             [[ 'user_id', 'date_evaluation'], 'required'],
             [['id', 'user_id'], 'integer'],
+            [['software_id'], 'integer'],
+            [['software_version'], 'string', 'max' => 50],
             [['grade'], 'string', 'max' => 3],
             [['date_evaluation'], 'safe'],
             //['date_evaluation', 'date', 'format' => 'Y-m-d H:m:s']
@@ -44,8 +46,20 @@ class Evaluation extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
+            'software_id' => 'Software ID',
+            'software_version' => 'Software Version',
             'date_evaluation' => 'Date Evaluation',
             'grade' => 'Grade',
         ];
+    }
+    
+    /**
+     * relation with table software.
+     * @return type
+     * @since 2.1
+     */
+     public function getSoftware()
+    {
+        return $this->hasOne(Software::className(), ['id' => 'software_id']);
     }
 }
