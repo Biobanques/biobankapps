@@ -35,7 +35,7 @@ class Criterion extends \yii\db\ActiveRecord
         return [
             [['name', 'question', 'weight'], 'required'],
             [['weight'], 'integer'],
-            [['name'], 'string', 'max' => 25],
+            [['name'], 'string', 'max' => 50],
             [['question'], 'string', 'max' => 300]
         ];
     }
