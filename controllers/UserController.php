@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\components\BSFController;
 use Yii;
 use app\models\User;
+use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -12,7 +14,7 @@ use yii\filters\VerbFilter;
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends Controller {
+class UserController extends BSFController {
 
     public $layout = 'administration';
 
