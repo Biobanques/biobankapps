@@ -48,4 +48,14 @@ class EvaluationCriterion extends \yii\db\ActiveRecord
             'criterion_id' => 'Criterion ID',
         ];
     }
+    
+    /**
+     * relation with table evaluation
+     * @return type
+     * @since 2.0.2
+     */
+     public function getEvaluation()
+    {
+        return $this->hasOne(Evaluation::className(), ['id' => 'evaluation_id']);
+    }
 }

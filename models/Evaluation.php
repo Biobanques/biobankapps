@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "evaluation".
  *
  * @property integer $id
- * @property integer $author_id
+ * @property integer $user_id
  * @property string $date_evaluation
  * @property integer $grade
  */
@@ -56,10 +56,29 @@ class Evaluation extends \yii\db\ActiveRecord
     /**
      * relation with table software.
      * @return type
-     * @since 2.1
+     * @since 2.0.1
      */
      public function getSoftware()
     {
         return $this->hasOne(Software::className(), ['id' => 'software_id']);
+    }
+    
+    /**
+     * get the criteria for this evaluation
+     * @return type
+     * @since 2.0.2
+     */
+    public function getEvaluationcriteria() {
+        return $this->hasMany(EvaluationCriterion::className(), ['evaluation_id' => 'id']);
+    }
+    
+    /**
+     * relation with table software.
+     * @return type
+     * @since 2.0.1
+     */
+     public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }
