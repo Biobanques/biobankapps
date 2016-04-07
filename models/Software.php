@@ -8,8 +8,7 @@ use Yii;
  * This is the model class for table "software".
  *
  */
-class Software extends \yii\db\ActiveRecord 
-{
+class Software extends \yii\db\ActiveRecord {
 
     /**
      * @inheritdoc
@@ -101,11 +100,65 @@ class Software extends \yii\db\ActiveRecord
         return $listPictures;
     }
 
+    /**
+     * get the evaluations for this software
+     * @return type
+     */
+    public function getEvaluations() {
+        return $this->hasMany(Evaluation::className(), ['software_id' => 'id']);
+    }
 
-    
-    
+    /**
+     * get the evaluations and make an average if many evaluations are presents
+     */
+    public function getEvaluation() {
+        $result = "not available";
+        //get the evaluations if not null
+        $evaluations = $this->evaluations;
+        if ($evaluations != null) {
+            if (count($evaluations) == 1) {
+                $result = $evaluations[0]->grade;
+            } else {
+                //make the average of evaluations
+                $result = $this->getAverageEvaluation($evaluations);
+            }
+        }
+        return "$result";
+    }
 
-
-
+    /**
+     * calculate the average of evaluations.
+     * @param type $evaluations
+     * @return string
+     */
+    public function getAverageEvaluation($evaluations) {
+        $result = "E";
+        $count = 0;
+        foreach ($evaluations as $eval) {
+            switch ($eval->grade) {
+                case "A": $count+=4;
+                    break;
+                case "B": $count+=3;
+                    break;
+                case "C": $count+=2;
+                    break;
+                case "D": $count+=1;
+                    break;
+                case "E": $count+=0;
+                    break;
+            }
+        }
+        //calcul the average
+        $average =$count/count($evaluations);
+        if ($average > 0.5)
+            $result = "D";
+        if ($average > 1.5)
+            $result = "C";
+        if ($average > 2.5)
+            $result = "B";
+        if ($average > 3.5)
+            $result = "A";
+        return $result;
+    }
 
 }

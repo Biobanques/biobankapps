@@ -64,6 +64,11 @@ $this->title = 'Softwares';
                 }],
                     'name',
                     'company',
+                        ['attribute' => 'evaluation',
+                'format' => 'html',
+                'value' => function ($data) {
+                    return $data->getEvaluation();
+                }],
                     'url_company:url',
                     'url_software:url',
                     ['class' => 'yii\grid\ActionColumn', 'template' => ' {view} {update}', 'buttons' => [

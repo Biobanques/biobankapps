@@ -120,12 +120,10 @@ class EvaluationController extends Controller {
             $result = "D";
         if ($sum > 0.4)
             $result = "C";
-        if ($sum > 0.8)
-            $result = "A";
         if ($sum > 0.6)
             $result = "B";
-        
-        
+        if ($sum > 0.8)
+            $result = "A";
         return $result;
     }
 
