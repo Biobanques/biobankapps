@@ -64,26 +64,27 @@ $this->title = 'Softwares';
                 }],
                     'name',
                     'company',
-                        ['attribute' => 'evaluation',
-                'format' => 'html',
-                'value' => function ($data) {
-                    return $data->getEvaluation();
-                }],
-                    'url_company:url',
-                    'url_software:url',
-                    ['class' => 'yii\grid\ActionColumn', 'template' => ' {view} {update}', 'buttons' => [
-                            'update' => function ($url, $data) {
-                                return Html::a(
-                                                '<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                                            'title' => 'Update',
-                                            'data-pjax' => '0',
-                                            'style' => $data->id != Yii::$app->user->id ? 'display:none' : ''
-                                                ]
-                                );
-                            },
-                                ]],
-                        ],
-                    ]);
-                    ?>
-                    <?php \yii\widgets\Pjax::end(); ?>
+                    ['attribute' => 'evaluation',
+                        'format' => 'html',
+                        'value' => function ($data) {
+
+                            return $data->getEvaluation() == 'not available' && !Yii::$app->user->isGuest ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
+                        }],
+                            'url_company:url',
+                            'url_software:url',
+                            ['class' => 'yii\grid\ActionColumn', 'template' => ' {view} {update}', 'buttons' => [
+                                    'update' => function ($url, $data) {
+                                        return Html::a(
+                                                        '<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                                    'title' => 'Update',
+                                                    'data-pjax' => '0',
+                                                    'style' => $data->id != Yii::$app->user->id ? 'display:none' : ''
+                                                        ]
+                                        );
+                                    },
+                                        ]],
+                                ],
+                            ]);
+                            ?>
+                            <?php \yii\widgets\Pjax::end(); ?>
 </div>

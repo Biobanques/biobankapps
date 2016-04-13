@@ -16,8 +16,8 @@ use app\models\EvaluationCriterion;
 /**
  * EvaluationController implements the CRUD actions for Evaluation model.
  */
-class EvaluationController extends Controller {
-
+class EvaluationController extends Controller
+{
     public $layout = 'administration';
 
     public function behaviors() {
@@ -65,8 +65,13 @@ class EvaluationController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
+    public function actionCreate($id = null) {
+
         $model = new Evaluation();
+        if ($id != null) {
+            $model->software_id = $id;
+            $this->layout = 'main';
+        }
         $criteria = Criterion::find()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $crits = [];
@@ -171,6 +176,7 @@ class EvaluationController extends Controller {
             }
             return $this->redirect(['view', 'id' => $model->id, 'evaluationCriteria' => $evaluationCriteria]);
         } else {
+
             return $this->render('update', [
                         'model' => $model, 'evaluationCriteria' => $evaluationCriteria
             ]);

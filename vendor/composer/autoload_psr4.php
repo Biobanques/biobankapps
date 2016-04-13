@@ -16,6 +16,7 @@ return array(
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'kartik\\sidenav\\' => array($vendorDir . '/kartik-v/yii2-widget-sidenav'),
+    'kartik\\rating\\' => array($vendorDir . '/kartik-v/yii2-widget-rating'),
     'kartik\\icons\\' => array($vendorDir . '/kartik-v/yii2-icons'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
