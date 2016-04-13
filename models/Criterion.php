@@ -16,22 +16,21 @@ class Criterion extends \yii\db\ActiveRecord
 {
     /**
      * property to enable displaying in dynamic view evaluation/create
-     * @var type 
+     * @var type
      */
-    public $score;
+    public $score = 1;
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'criterion';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'question', 'weight'], 'required'],
             [['weight'], 'integer'],
@@ -43,8 +42,7 @@ class Criterion extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'name' => 'Name',
@@ -53,4 +51,5 @@ class Criterion extends \yii\db\ActiveRecord
             'score' => 'Score',
         ];
     }
+
 }

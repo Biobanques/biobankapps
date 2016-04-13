@@ -14,21 +14,20 @@ use Yii;
  */
 class EvaluationCriterion extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'evaluation_criterion';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [[ 'evaluation_id', 'criterion_id','name', 'question', 'weight'], 'required'],
+            [['evaluation_id', 'criterion_id', 'name', 'question', 'weight'], 'required'],
             [['id', 'evaluation_id', 'score', 'criterion_id'], 'integer'],
             [['weight'], 'integer'],
             [['name'], 'string', 'max' => 25],
@@ -39,8 +38,7 @@ class EvaluationCriterion extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'evaluation_id' => 'Evaluation ID',
@@ -48,14 +46,14 @@ class EvaluationCriterion extends \yii\db\ActiveRecord
             'criterion_id' => 'Criterion ID',
         ];
     }
-    
+
     /**
      * relation with table evaluation
      * @return type
      * @since 2.0.2
      */
-     public function getEvaluation()
-    {
+    public function getEvaluation() {
         return $this->hasOne(Evaluation::className(), ['id' => 'evaluation_id']);
     }
+
 }
