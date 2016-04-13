@@ -14,31 +14,27 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    
     const ROLE_SOFTWARE_PUBLISHER = 1;
     const ROLE_AUTHOR = 2;
     const ROLE_ADMIN = 3;
 
-
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'user';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['username', 'password', 'email','name', 'firstname',], 'required'],
+            [['username', 'password', 'email', 'name', 'firstname',], 'required'],
             [['username', 'password', 'email'], 'string', 'max' => 128],
             [['role'], 'integer'],
             [['id'], 'integer'],
-        // the email attribute should be a valid email address
+            // the email attribute should be a valid email address
             ['email', 'email'],
             [['name', 'firstname', 'email'], 'string', 'max' => 200]
         ];
@@ -47,8 +43,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'username' => 'Username',
@@ -58,12 +53,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'firstname' => 'Firstname',
         ];
     }
-    
-        public function getAuthKey() {
+
+    public function getAuthKey() {
 
     }
-    
-        public function validateAuthKey($authKey) {
+
+    public function validateAuthKey($authKey) {
 
     }
 
@@ -84,14 +79,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             return true;
         return false;
     }
-    
+
     public function getId() {
         return $this->id;
     }
-    
-    public function isAdmin(){
-        return $this->role==self::ROLE_ADMIN?true:false;
+
+    public function isAdmin() {
+        return $this->role == self::ROLE_ADMIN ? true : false;
     }
-    
-    public $roleValues = array(self::ROLE_SOFTWARE_PUBLISHER=>'software editor', self::ROLE_AUTHOR=>'author evaluation', self::ROLE_ADMIN=>'administrator');
+
+    public $roleValues = array(self::ROLE_SOFTWARE_PUBLISHER => 'software editor', self::ROLE_AUTHOR => 'author evaluation', self::ROLE_ADMIN => 'administrator');
 }

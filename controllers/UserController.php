@@ -14,8 +14,8 @@ use yii\filters\VerbFilter;
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends BSFController {
-
+class UserController extends BSFController
+{
     public $layout = 'administration';
 
     public function behaviors() {
@@ -24,7 +24,7 @@ class UserController extends BSFController {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['*'],
+                        //   'actions' => ['*'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
