@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
     <table id="deail-view" class="table table-striped table-bordered detail-view">
         <tbody>
-            <tr><th>Domain</th><th>Question</th><th>Score</th></tr>
+            <tr><th>Domain</th><th>Question</th><th>Evaluation method</th><th>Score</th></tr>
             <?php
             //display criteria and answers
             if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //for each criterion display an input
                 foreach ($evaluationCriteria as $i => $evalCriterion) {
                     echo "<tr><th>" . $evalCriterion->name . "</th><th>" . $evalCriterion->question . "</th>";
-                    echo "<td>" . $evalCriterion->score . "</td>";
+                    echo "<td>" . $evalCriterion->evaluation_method . "</td>"."<td>" . $evalCriterion->score . "</td>";
                     echo "</tr>";
                 }
             }

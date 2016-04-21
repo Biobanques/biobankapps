@@ -21,7 +21,7 @@ use yii\web\JsExpression;
 <?= $form->field($model, 'date_evaluation')->textInput() ?>
     <table id="deail-view" class="table table-striped table-bordered detail-view">
         <tbody>
-            <tr><th>Domain</th><th>Question</th><th>Score</th></tr>
+            <tr><th>Domain</th><th>Question</th><th>Evaluation method</th><th>Score</th></tr>
             <?php
             //generate form with criterion
             if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
@@ -29,6 +29,7 @@ use yii\web\JsExpression;
                 //for each criterion display an input
                 foreach ($evaluationCriteria as $i => $criterion) {
                     echo "<th>" . $criterion->name . "</th><th>" . $criterion->question . "</th>";
+                    echo "<td>".$criterion->evaluation_method."</td>";
                     //  echo "<td>".$form->field($criterion,"[$i]score")->dropDownList($values)->label(false);
                     echo "<td>" . $form->field($criterion, "[$i]score")->widget(StarRating::classname(), [
                         'name' => 'rating_21',

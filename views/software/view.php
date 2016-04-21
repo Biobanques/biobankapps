@@ -89,7 +89,7 @@ $this->title = "$model->company - $model->name";
             ?>
             <table id="deail-view" class="table table-striped table-bordered detail-view">
                 <tbody>
-                    <tr><th>Domain</th><th>Question</th><th>Score</th></tr>
+                    <tr><th>Domain</th><th>Question</th><th>Evaluation method</th><th>Score</th></tr>
                     <?php
                     $evaluationCriteria= $evaluation->evaluationcriteria;
                     //display criteria and answers
@@ -97,7 +97,7 @@ $this->title = "$model->company - $model->name";
                         $values = array(1, 2, 3, 4);
                         //for each criterion display an input
                         foreach ($evaluationCriteria as $i => $evalCriterion) {
-                            echo "<tr><th>" . $evalCriterion->name . "</th><th>" . $evalCriterion->question . "</th>";
+                            echo "<tr><th>" . $evalCriterion->name . "</th><td>" . $evalCriterion->question . "</td><td>" . $evalCriterion->evaluation_method . "</td>";
                             echo "<td>" . $evalCriterion->score . "</td>";
                             echo "</tr>";
                         }

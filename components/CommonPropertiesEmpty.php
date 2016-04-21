@@ -18,9 +18,9 @@ class CommonProperties
     /*
      * connection string used in ./protected/config/main_dev.php
      */
-    public static $CONNECTION_STRING = 'mysql:host=localhost;dbname=biobankapps';
-    public static $CONNECTION_LOGIN = 'root';
-    public static $CONNECTION_PASSWORD = 'root';
+    public static $CONNECTION_STRING = 'mysql:host=yourhost;dbname=yourDbName';
+    public static $CONNECTION_LOGIN = 'login';
+    public static $CONNECTION_PASSWORD = 'pwd';
     /**
      * Mail system active: true if you want to send email.
      */

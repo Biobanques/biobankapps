@@ -91,6 +91,7 @@ class EvaluationController extends Controller
                         $evalCriterion->name = $criterion->name;
                         $evalCriterion->question = $criterion->question;
                         $evalCriterion->weight = $criterion->weight;
+                        $evalCriterion->evaluation_method = $criterion->evaluation_method;
                         $evalCriterion->score = $score;
                         if (!$evalCriterion->save()) {
                             Yii::error("error saving model:" . print_r($evalCriterion->errors), __METHOD__);

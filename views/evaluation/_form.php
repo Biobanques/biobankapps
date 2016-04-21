@@ -27,13 +27,14 @@ use yii\web\JsExpression;
 
     <table id="deail-view" class="table table-striped table-bordered detail-view">
         <tbody>
-            <tr><th>Domain</th><th>Question</th><th>Score</th></tr>
+            <tr><th>Domain</th><th>Question</th><th>Evaluation method</th><th>Score</th></tr>
             <?php
             if ($criteria != null && is_array($criteria)) {
                 $values = array(1 => 1, 2 => 2, 3 => 3, 4 => 4);
                 //for each criterion display an input
                 foreach ($criteria as $i => $criterion) {
                     echo "<th>" . $criterion->name . "</th><th>" . $criterion->question . "</th>";
+                    echo "<td>".$criterion->evaluation_method."</td>";
                     //   echo "<td>" . $form->field($criterion, "[$i]score")->dropDownList($values)->label(false);
                     echo "<td>" . $form->field($criterion, "[$i]score")->widget(StarRating::classname(), [
                         'name' => 'rating_21',

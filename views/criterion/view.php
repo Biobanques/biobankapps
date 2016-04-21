@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'question',
             'weight',
+            'evaluation_method'
         ],
     ]) ?>
 

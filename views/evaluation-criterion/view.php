@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'evaluation_id',
             'score',
             'criterion_id',
+            'evaluation_method'
         ],
     ]) ?>
 

@@ -19,6 +19,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'score')->textInput() ?>
 
     <?= $form->field($model, 'criterion_id')->textInput() ?>
+    
+    <p>Explain here how to evalute this criteria, with a  score from 0 to 4, only an integer value</p>
+    <?= $form->field($model, 'evaluation_method')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
