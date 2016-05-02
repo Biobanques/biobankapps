@@ -67,6 +67,20 @@ $this->title = "$model->company - $model->name";
     ?>
     <?= \yii\bootstrap\Carousel::widget(['items' => $model->getListPictures(), 'options' => ['style' => 'width:750px']]);
     ?>
+    <!-- display reviews -->
+    <!-- display review form -->
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <?php
+            if ($mreview->user_id != null) {
+                echo $this->render('_form_review', [
+                    'model' => $mreview,
+                ]);
+            }
+            ?>
+        </div>
+    </div>
     <!-- display evaluations -->
     <h3>Evaluations</h3>
     <?php
@@ -91,7 +105,7 @@ $this->title = "$model->company - $model->name";
                 <tbody>
                     <tr><th>Domain</th><th>Question</th><th>Evaluation method</th><th>Score</th></tr>
                     <?php
-                    $evaluationCriteria= $evaluation->evaluationcriteria;
+                    $evaluationCriteria = $evaluation->evaluationcriteria;
                     //display criteria and answers
                     if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
                         $values = array(1, 2, 3, 4);
@@ -107,10 +121,10 @@ $this->title = "$model->company - $model->name";
             </table>
             <?php
         }
-    }else{
+    } else {
         ?>
-    <h4>No evaluation available</h4>
-    <?php
+        <h4>No evaluation available</h4>
+        <?php
     }
     ?>
 </div>

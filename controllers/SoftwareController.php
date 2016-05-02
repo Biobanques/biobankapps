@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Software;
 use app\models\SofwareSearch;
+use app\models\Review;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -75,8 +76,22 @@ class SoftwareController extends Controller
      * @return mixed
      */
     public function actionView($id) {
+        $mreview= new Review();
+        $mreview->software_id=$id;
+        if(!Yii::$app->user->isGuest&&isset(Yii::$app->user->identity->id))
+            $mreview->user_id=Yii::$app->user->identity->id;
+        else
+            $mreview->user_id=null;
+        if ($mreview->load(Yii::$app->request->post()) && $mreview->save()) {
+            //message validation
+            
+        } else {
+            //message error
+           
+        }
+        
         return $this->render('view', [
-                    'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),'mreview'=>$mreview
         ]);
     }
 
