@@ -8,6 +8,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
 
 class SiteController extends BSFController
 {
@@ -19,7 +20,7 @@ class SiteController extends BSFController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'index', 'contact', 'captcha', 'about','administration'],
+                        'actions' => ['login','signup', 'error', 'index', 'contact', 'captcha', 'about'],
                         'allow' => true,
                     ],
                     [
@@ -59,6 +60,20 @@ class SiteController extends BSFController
         return $this->render('index');
     }
 
+    /**
+     * Render sign in form
+     */
+    public function actionSignup() {
+        $model = new User();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->render('signupsuccess', ['model' => $model,]);
+        } else {
+            return $this->render('signup', [
+                        'model' => $model,
+            ]);
+        }
+    }
     /**
      * This is the action to handle external exceptions.
      */

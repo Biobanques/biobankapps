@@ -17,6 +17,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const ROLE_SOFTWARE_PUBLISHER = 1;
     const ROLE_AUTHOR = 2;
     const ROLE_ADMIN = 3;
+    const ROLE_BBMRI_MEMBER = 4;
 
     /**
      * @inheritdoc
@@ -88,5 +89,5 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->role == self::ROLE_ADMIN ? true : false;
     }
 
-    public $roleValues = array(self::ROLE_SOFTWARE_PUBLISHER => 'software editor', self::ROLE_AUTHOR => 'author evaluation', self::ROLE_ADMIN => 'administrator');
+    public $roleValues = array(self::ROLE_SOFTWARE_PUBLISHER => 'software editor', self::ROLE_AUTHOR => 'author evaluation', self::ROLE_ADMIN => 'administrator', self::ROLE_BBMRI_MEMBER => 'bbmri member');
 }
