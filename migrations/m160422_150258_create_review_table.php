@@ -14,6 +14,7 @@ class m160422_150258_create_review_table extends Migration
             'rating' => $this->integer()->notNull(),
             'title'=> $this->string(),
             'comment' => $this->text(),
+            'date_review'=>$this->dateTime(),
         ]);
     }
 

@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\components\BBAConstants;
+use app\models\Review;
+use kartik\rating\StarRating;
 
 $this->registerJs("$(document).ready(function() {
 $('.carousel').carousel();
@@ -86,7 +88,7 @@ $this->title = "$model->company - $model->name";
             </div>
             <div role="tabpanel" class="tab-pane" id="reviews">
 
-                <!-- display reviews -->
+
                 <!-- display review form -->
 
                 <div class="panel panel-default">
@@ -100,6 +102,39 @@ $this->title = "$model->company - $model->name";
                         ?>
                     </div>
                 </div>
+                <!-- display reviews -->
+                <?php
+                $reviews = Review::findAll([
+                            'software_id' => $model->id,
+                ]);
+                if ($reviews != null) {
+                    foreach ($reviews as $review) {
+                        ?>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <?= StarRating::widget([
+    'name' => 'rating_'.$review->id,
+                            'value'=>$review->rating,
+    'pluginOptions' => ['disabled'=>true, 'showClear'=>false,'animate' => false,
+        
+                            'stars' => 5,
+                            'min' => 0,
+                            'max' => 5,
+                            'step' => 1,
+                            'size' => 'xs',
+                            'showCaption' => false,
+                           ]
+]);
+        ?>
+                        <h4><?= $review->title?></h4>
+                        <h5><i>by <?= $review->user_id?></i></h5>
+                        <p><?= $review->comment?></p>
+                    </div>
+                </div>
+                <?php
+                    }
+                }
+                ?>
 
             </div>
             <div role="tabpanel" class="tab-pane" id="short-analysis">...</div>

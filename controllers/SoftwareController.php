@@ -82,6 +82,7 @@ class SoftwareController extends Controller
             $mreview->user_id=Yii::$app->user->identity->id;
         else
             $mreview->user_id=null;
+        $mreview->date_review=date("Y-m-d H:m:s");
         if ($mreview->load(Yii::$app->request->post()) && $mreview->save()) {
             //message validation
             

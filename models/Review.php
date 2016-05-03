@@ -30,10 +30,11 @@ class Review extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'software_id', 'rating'], 'required'],
+            [['user_id', 'software_id', 'rating','date_review'], 'required'],
             [['user_id', 'software_id', 'rating'], 'integer'],
             [['comment'], 'string'],
             [['title'], 'string', 'max' => 255],
+            [['date_review'], 'safe'],
         ];
     }
 
