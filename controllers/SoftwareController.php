@@ -78,10 +78,15 @@ class SoftwareController extends Controller
     public function actionView($id) {
         $mreview= new Review();
         $mreview->software_id=$id;
-        if(!Yii::$app->user->isGuest&&isset(Yii::$app->user->identity->id))
+        
+        if(!Yii::$app->user->isGuest&&isset(Yii::$app->user->identity->id)){
             $mreview->user_id=Yii::$app->user->identity->id;
-        else
+            //get the review of the user if existing
+            $mreview = Review::find()->where(['user_id' => Yii::$app->user->identity->id,'software_id'=>$id])->one();
+        }
+        else{
             $mreview->user_id=null;
+        }
         $mreview->date_review=date("Y-m-d H:m:s");
         if ($mreview->load(Yii::$app->request->post()) && $mreview->save()) {
             //message validation
