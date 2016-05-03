@@ -127,7 +127,7 @@ $this->title = "$model->company - $model->name";
 ]);
         ?>
                         <h4><?= $review->title?></h4>
-                        <h5><i>by <?= $review->user_id?></i></h5>
+                        <h5><i>by <?=$review->user->name." ".$review->user->firstname?></i></h5>
                         <p><?= $review->comment?></p>
                     </div>
                 </div>

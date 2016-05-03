@@ -52,4 +52,23 @@ class Review extends \yii\db\ActiveRecord
             'comment' => 'Comment',
         ];
     }
+    
+    /**
+     * relation with table software.
+     * @return type
+     * @since 2.0.4
+     */
+     public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    /**
+     * relation with table software.
+     * @return type
+     * @since 2.0.4
+     */
+     public function getSoftware()
+    {
+        return $this->hasOne(Software::className(), ['id' => 'software_id']);
+    }
 }
