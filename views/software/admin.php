@@ -66,9 +66,9 @@ $this->title = 'Softwares';
                     'company',
                     ['attribute' => 'evaluation',
                         'format' => 'html',
+                        'visible'=>Yii::$app->user->identity->isBBMRIMember,
                         'value' => function ($data) {
-
-                            return $data->getEvaluation() == 'not available' && !Yii::$app->user->isGuest ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
+                            return $data->getEvaluation() == 'not available' && Yii::$app->user->identity->isBBMRIMember ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
                         }],
                             'url_company:url',
                             'url_software:url',

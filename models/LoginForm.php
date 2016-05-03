@@ -52,7 +52,12 @@ class LoginForm extends Model
      */
     public function login() {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            
+            //set the admin attribuet in session
+            $user = $this->getUser();
+            //set the bbmri member attribute in session
+            $user->isBBMRIMember = $user->role == ($user::ROLE_BBMRI_MEMBER) ? true : false;
+            return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         return false;
     }

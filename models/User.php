@@ -18,7 +18,15 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const ROLE_AUTHOR = 2;
     const ROLE_ADMIN = 3;
     const ROLE_BBMRI_MEMBER = 4;
-
+    /**
+     * attributes to use with user session
+     */
+    /**
+     *is bbmri member false by default
+     * @var type 
+     */
+    public $isBBMRIMember = false;
+    
     /**
      * @inheritdoc
      */
