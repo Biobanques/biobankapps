@@ -18,8 +18,7 @@ use yii\filters\AccessControl;
 /**
  * SoftwareController implements the CRUD actions for Software model.
  */
-class SoftwareController extends Controller
-{
+class SoftwareController extends Controller {
 
     public function behaviors() {
         return [
@@ -31,7 +30,7 @@ class SoftwareController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => [ 'create','update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
+                        'actions' => [ 'create', 'update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -77,31 +76,29 @@ class SoftwareController extends Controller
      */
     public function actionView($id) {
         //display review available if connected
-        if(!Yii::$app->user->isGuest){
-        $mreview= new Review();
-        $mreview->software_id=$id;
-        
-        if(!Yii::$app->user->isGuest&&isset(Yii::$app->user->identity->id)){
-            $mreview->user_id=Yii::$app->user->identity->id;
-            //get the review of the user if existing
-            $mreview = Review::find()->where(['user_id' => Yii::$app->user->identity->id,'software_id'=>$id])->one();
+        $mreview = null;
+        if (!Yii::$app->user->isGuest) {
+            $mreview = new Review();
+            $mreview->software_id = $id;
+            if (isset(Yii::$app->user->identity->id)) {
+                $mreview->user_id = Yii::$app->user->identity->id;
+                //get the review of the user if existing
+                $mreviewOld = Review::find()->where(['user_id' => Yii::$app->user->identity->id, 'software_id' => $id])->one();
+                if ($mreviewOld != null)
+                    $mreview = $reviewOld;
+                $mreview->date_review = date("Y-m-d H:m:s");
+                if ($mreview->load(Yii::$app->request->post()) && $mreview->save()) {
+                    //message validation
+                } else {
+                    //message error
+                }
+            } else {
+                $mreview->user_id = null;
+            }
         }
-        else{
-            $mreview->user_id=null;
-        }
-        $mreview->date_review=date("Y-m-d H:m:s");
-        if ($mreview->load(Yii::$app->request->post()) && $mreview->save()) {
-            //message validation
-            
-        } else {
-            //message error
-           
-        }
-        
-        }
-        
+
         return $this->render('view', [
-                    'model' => $this->findModel($id),'mreview'=>$mreview
+                    'model' => $this->findModel($id), 'mreview' => $mreview
         ]);
     }
 
