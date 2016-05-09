@@ -27,11 +27,11 @@ class SoftwareController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'admin', 'create'],
+                        'actions' => ['index', 'view', 'admin'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
+                        'actions' => [ 'create','update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -76,6 +76,8 @@ class SoftwareController extends Controller
      * @return mixed
      */
     public function actionView($id) {
+        //display review available if connected
+        if(!Yii::$app->user->isGuest){
         $mreview= new Review();
         $mreview->software_id=$id;
         
@@ -94,6 +96,8 @@ class SoftwareController extends Controller
         } else {
             //message error
            
+        }
+        
         }
         
         return $this->render('view', [

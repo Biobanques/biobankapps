@@ -71,21 +71,6 @@ $form->field($model, 'company', ['options' => ['class' => "col-sm-6"]])->textInp
 $form->field($model, 'url_company', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 <div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_contact') ?></h4></div>
-<?=
-$form->field($model, 'contact_name', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
-?>
-
-<?=
-$form->field($model, 'contact_firstname', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
-?>
-
-<?=
-$form->field($model, 'contact_login', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
-?>
-
-<?=
-$form->field($model, 'contact_password', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
-?>
 
 <?=
 $form->field($model, 'contact_email', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])

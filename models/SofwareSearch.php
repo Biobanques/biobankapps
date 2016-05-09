@@ -20,7 +20,7 @@ class SofwareSearch extends Software {
     public function rules() {
         return [
             [['id', 'price', 'language_en', 'language_others'], 'integer'],
-            [['name', 'company', 'url_company', 'url_software', 'license', 'description', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords', 'contact_name', 'contact_firstname', 'contact_login', 'contact_password', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
+            [['name', 'company', 'url_company', 'url_software', 'license', 'description', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
         ];
     }
 
@@ -74,10 +74,6 @@ class SofwareSearch extends Software {
                 ->andFilterWhere(['like', 'screenshot_5', $this->screenshot_5])
                 ->andFilterWhere(['like', 'logo', $this->logo])
                 ->andFilterWhere(['like', 'keywords', $this->global_keywords])
-                ->andFilterWhere(['like', 'contact_name', $this->contact_name])
-                ->andFilterWhere(['like', 'contact_firstname', $this->contact_firstname])
-                ->andFilterWhere(['like', 'contact_login', $this->contact_login])
-                ->andFilterWhere(['like', 'contact_password', $this->contact_password])
                 ->andFilterWhere(['like', 'contact_email', $this->contact_email])
                 ->andFilterWhere(['like', 'contact_phone', $this->contact_phone]);
 
