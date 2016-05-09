@@ -22,15 +22,14 @@ class Software extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'company', 'url_company', 'url_software', 'license', 'contact_login', 'contact_password'], 'required'],
+            [['name', 'company', 'url_company', 'url_software', 'license','user_id'], 'required'],
             [['price', 'language_en', 'language_others'], 'integer'],
             [['name', 'company', 'url_company', 'url_software', 'license'], 'string', 'max' => 200],
             [['description'], 'string', 'max' => 500],
             [['screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo'], 'string', 'max' => 50],
-            [['keywords', 'contact_name', 'contact_firstname', 'contact_login', 'contact_password'], 'string', 'max' => 100],
+            [['keywords'], 'string', 'max' => 100],
             [['contact_email'], 'string', 'max' => 128],
-            [['contact_phone'], 'string', 'max' => 20],
-            [['contact_login'], 'unique']
+            [['contact_phone'], 'string', 'max' => 20]
         ];
     }
 
@@ -54,10 +53,7 @@ class Software extends \yii\db\ActiveRecord {
             'screenshot_5' => 'Screenshot 5',
             'logo' => 'Logo',
             'keywords' => 'Keywords',
-            'contact_name' => 'Contact Name',
-            'contact_firstname' => 'Contact Firstname',
-            'contact_login' => 'Contact Login',
-            'contact_password' => 'Contact Password',
+            'user_id' => 'User',
             'contact_email' => 'Contact Email',
             'contact_phone' => 'Contact Phone',
             'language_en' => 'Language En',
