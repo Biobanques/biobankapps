@@ -16,7 +16,9 @@ use kartik\sidenav\SideNav;
             ['label' => 'Softwares', 'icon' => 'book', 'url' => Url::to(['/administration/softwares' ])],
             ['label' => 'Users', 'icon' => 'user', 'url' => Url::to(['/user/index'])],
             ['label' => 'Criteria', 'icon' => 'tag', 'url' => Url::to(['/criterion/index'])],
-            ['label' => 'Evaluation', 'icon' => 'list-alt', 'url' => Url::to(['/evaluation/index'])],
+            ['label' => 'Evaluations', 'icon' => 'list-alt', 'url' => Url::to(['/evaluation/index'])],
+            ['label' => 'Reviews', 'icon' => 'list-alt', 'url' => Url::to(['/review/index'])],
+            ['label' => 'Quick analysis', 'icon' => 'list-alt', 'url' => Url::to(['/quick-analysis/index'])],
         ],
     ]);   
     ?>
