@@ -6,6 +6,7 @@ use Yii;
 use app\models\Software;
 use app\models\SofwareSearch;
 use app\models\Review;
+use app\models\QuickAnalysis;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -85,7 +86,7 @@ class SoftwareController extends Controller {
                 //get the review of the user if existing
                 $mreviewOld = Review::find()->where(['user_id' => Yii::$app->user->identity->id, 'software_id' => $id])->one();
                 if ($mreviewOld != null)
-                    $mreview = $reviewOld;
+                    $mreview = $mreviewOld;
                 $mreview->date_review = date("Y-m-d H:m:s");
                 if ($mreview->load(Yii::$app->request->post()) && $mreview->save()) {
                     //message validation
@@ -96,9 +97,11 @@ class SoftwareController extends Controller {
                 $mreview->user_id = null;
             }
         }
+        //quick analysis
+        $quickanalysis=QuickAnalysis::find()->where(['software_id' => $id])->orderBy('id')->all();
 
         return $this->render('view', [
-                    'model' => $this->findModel($id), 'mreview' => $mreview
+                    'model' => $this->findModel($id), 'mreview' => $mreview,'quickanalysis'=>$quickanalysis
         ]);
     }
 

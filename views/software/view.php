@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\components\BBAConstants;
 use app\models\Review;
+use app\models\QuickAnalysis;
 use kartik\rating\StarRating;
 
 $this->registerJs("$(document).ready(function() {
@@ -24,8 +25,8 @@ $this->title = "$model->company - $model->name";
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#file" aria-controls="file" role="tab" data-toggle="tab">File</a></li>
             <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
-            <li role="presentation"><a href="#short-analysis" aria-controls="short-analysis" role="tab" data-toggle="tab">Short analysis</a></li>
-            <li role="presentation"><a href="#detailed-analysis" aria-controls="detailed-analysis" role="tab" data-toggle="tab">Detailed-analysis</a></li>
+            <li role="presentation"><a href="#quick-analysis" aria-controls="quick-analysis" role="tab" data-toggle="tab">Quick analysis</a></li>
+            <li role="presentation"><a href="#detailed-analysis" aria-controls="detailed-analysis" role="tab" data-toggle="tab">Detailed analysis</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -91,7 +92,7 @@ $this->title = "$model->company - $model->name";
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <?php
-                        if ($mreview->user_id != null) {
+                        if ($mreview != null && $mreview->user_id != null) {
                             echo $this->render('_form_review', [
                                 'model' => $mreview,
                             ]);
@@ -107,34 +108,57 @@ $this->title = "$model->company - $model->name";
                 if ($reviews != null) {
                     foreach ($reviews as $review) {
                         ?>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <?= StarRating::widget([
-    'name' => 'rating_'.$review->id,
-                            'value'=>$review->rating,
-    'pluginOptions' => ['disabled'=>true, 'showClear'=>false,'animate' => false,
-        
-                            'stars' => 5,
-                            'min' => 0,
-                            'max' => 5,
-                            'step' => 1,
-                            'size' => 'xs',
-                            'showCaption' => false,
-                           ]
-]);
-        ?>
-                        <h4><?= $review->title?></h4>
-                        <h5><i>by <?=$review->user->name." ".$review->user->firstname?></i></h5>
-                        <p><?= $review->comment?></p>
-                    </div>
-                </div>
-                <?php
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <?=
+                                StarRating::widget([
+                                    'name' => 'rating_' . $review->id,
+                                    'value' => $review->rating,
+                                    'pluginOptions' => ['disabled' => true, 'showClear' => false, 'animate' => false,
+                                        'stars' => 5,
+                                        'min' => 0,
+                                        'max' => 5,
+                                        'step' => 1,
+                                        'size' => 'xs',
+                                        'showCaption' => false,
+                                    ]
+                                ]);
+                                ?>
+                                <h4><?= $review->title ?></h4>
+                                <h5><i>by <?= $review->user->name . " " . $review->user->firstname ?></i></h5>
+                                <p><?= $review->comment ?></p>
+                            </div>
+                        </div>
+                        <?php
                     }
                 }
                 ?>
 
             </div>
-            <div role="tabpanel" class="tab-pane" id="short-analysis">...</div>
+            <div role="tabpanel" class="tab-pane" id="quick-analysis">
+                <h3>Quick analysis</h3>
+                <div>
+                    <?php
+                    if ($quickanalysis != null) {
+                        foreach ($quickanalysis as $analysis) {
+                            if ($analysis != null) {
+                                echo DetailView::widget([
+                                    'model' => $analysis,
+                                    'attributes' => [
+                                        'user.name',
+                                        'date_update',
+                                        'goals:ntext',
+                                        'main_features:ntext',
+                                        'helpful_tool:ntext',
+                                        'value_added:ntext',
+                                    ],
+                                ]);
+                            }
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
             <div role="tabpanel" class="tab-pane" id="detailed-analysis">
                 <!-- display evaluations -->
                 <h3>Evaluations</h3>
