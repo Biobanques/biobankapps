@@ -18,14 +18,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const ROLE_AUTHOR = 2;
     const ROLE_ADMIN = 3;
     const ROLE_BBMRI_MEMBER = 4;
-    /**
-     * attributes to use with user session
-     */
-    /**
-     *is bbmri member false by default
-     * @var type 
-     */
-    public $isBBMRIMember = false;
     
     /**
      * @inheritdoc
@@ -95,6 +87,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function isAdmin() {
         return $this->role == self::ROLE_ADMIN ? true : false;
+    }
+    
+    public function isBBMRIMember(){
+        return $this->role == self::ROLE_ADMIN ||$this->role == self::ROLE_BBMRI_MEMBER? true : false;
     }
 
     public $roleValues = array(self::ROLE_SOFTWARE_PUBLISHER => 'software editor', self::ROLE_AUTHOR => 'author evaluation', self::ROLE_ADMIN => 'administrator', self::ROLE_BBMRI_MEMBER => 'bbmri member');

@@ -92,9 +92,9 @@ $this->title = 'Softwares';
                                         }],
                                             ['attribute' => 'evaluation',
                                                 'format' => 'html',
-                                                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember,
+                                                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember(),
                                                 'value' => function ($data) {
-                                                    return $data->getEvaluation() == 'not available' && !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
+                                                    return $data->getEvaluation() == 'not available' && !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember() ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
                                                 }],
                                                     'url_company:url',
                                                     'url_software:url',

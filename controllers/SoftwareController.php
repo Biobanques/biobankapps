@@ -27,11 +27,11 @@ class SoftwareController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'admin'],
+                        'actions' => ['index', 'view', 'admin', 'create'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => [ 'create', 'update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
+                        'actions' => [ 'update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -98,10 +98,10 @@ class SoftwareController extends Controller {
             }
         }
         //quick analysis
-        $quickanalysis=QuickAnalysis::find()->where(['software_id' => $id])->orderBy('id')->all();
+        $quickanalysis = QuickAnalysis::find()->where(['software_id' => $id])->orderBy('id')->all();
 
         return $this->render('view', [
-                    'model' => $this->findModel($id), 'mreview' => $mreview,'quickanalysis'=>$quickanalysis
+                    'model' => $this->findModel($id), 'mreview' => $mreview, 'quickanalysis' => $quickanalysis
         ]);
     }
 
@@ -111,15 +111,20 @@ class SoftwareController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        $model = new Software();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Your software is recorded, you can now add logo and screenshots from the update view.');
-            return $this->redirect(['view', 'id' => $model->id]);
+        //if not logged, redirect to a explicit page
+        if (Yii::$app->user->isGuest) {
+            return $this->render('account_needed');
         } else {
-            return $this->render('create', [
-                        'model' => $model,
-            ]);
+            $model = new Software();
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Your software is recorded, you can now add logo and screenshots from the update view.');
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                            'model' => $model,
+                ]);
+            }
         }
     }
 

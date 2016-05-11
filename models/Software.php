@@ -126,7 +126,7 @@ class Software extends \yii\db\ActiveRecord {
     public function getEvaluation() {
         $result = "not available";
         //get the evaluations if not null
-        $evaluations = $this->evaluations;
+        $evaluations = $this->getDetailedAnalysis();
         if ($evaluations != null) {
             if (count($evaluations) == 1) {
                 $result = $evaluations[0]->grade;

@@ -163,6 +163,7 @@ $this->title = "$model->company - $model->name";
                 <!-- display evaluations -->
                 <h3>Detailed Analysis</h3>
                 <?php
+                if( !Yii::$app->user->isGuest&&Yii::$app->user->identity->isBBMRIMember()){
                 $evaluations = $model->detailedAnalysis;
                 if ($evaluations != null) {
                     //display the evaluations
@@ -203,6 +204,14 @@ $this->title = "$model->company - $model->name";
                 } else {
                     ?>
                     <h4>No evaluation available</h4>
+                    <?php
+                }
+                
+                }else{
+                    ?>
+                    <div class="alert alert-warning" role="alert">You must be a BBMRI Member to view the detailed analysis.<br>
+                    Contact the administrator to get a BBMRI member account if you are in the BBMRI network.</div>
+                    
                     <?php
                 }
                 ?></div>
