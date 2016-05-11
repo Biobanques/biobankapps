@@ -22,7 +22,7 @@ class Software extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'company', 'url_company', 'url_software', 'license','user_id'], 'required'],
+            [['name', 'company', 'url_company', 'url_software', 'license', 'user_id'], 'required'],
             [['price', 'language_en', 'language_others'], 'integer'],
             [['name', 'company', 'url_company', 'url_software', 'license'], 'string', 'max' => 200],
             [['description'], 'string', 'max' => 500],
@@ -97,11 +97,27 @@ class Software extends \yii\db\ActiveRecord {
     }
 
     /**
+     * get the reviews for this software
+     * @return type
+     */
+    public function getReviews() {
+        return $this->hasMany(Review::className(), ['software_id' => 'id'])->all();
+    }
+
+    /**
      * get the evaluations for this software
      * @return type
      */
-    public function getEvaluations() {
-        return $this->hasMany(Evaluation::className(), ['software_id' => 'id']);
+    public function getDetailedAnalysis() {
+        return $this->hasMany(Evaluation::className(), ['software_id' => 'id'])->all();
+    }
+
+    /**
+     * get the evaluations for this software
+     * @return type
+     */
+    public function getQuickAnalysis() {
+        return $this->hasMany(QuickAnalysis::className(), ['software_id' => 'id'])->all();
     }
 
     /**
@@ -120,6 +136,42 @@ class Software extends \yii\db\ActiveRecord {
             }
         }
         return "$result";
+    }
+
+    /**
+     * true if the software has almost one quick analysis
+     */
+    public function hasReviews() {
+        $result = false;
+        $ana = $this->getReviews();
+        if ($ana != null && count($ana) > 0) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    /**
+     * true if the software has almost one quick analysis
+     */
+    public function hasQuickAnalysis() {
+        $result = false;
+        $ana = $this->getQuickAnalysis();
+        if ($ana != null && count($ana) > 0) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    /**
+     * true if the software has almost one quick analysis
+     */
+    public function hasDetailedAnalysis() {
+        $result = false;
+        $ana = $this->getDetailedAnalysis();
+        if ($ana != null && count($ana) > 0) {
+            $result = true;
+        }
+        return $result;
     }
 
     /**
@@ -145,7 +197,7 @@ class Software extends \yii\db\ActiveRecord {
             }
         }
         //calcul the average
-        $average =$count/count($evaluations);
+        $average = $count / count($evaluations);
         if ($average > 0.5)
             $result = "D";
         if ($average > 1.5)
@@ -155,6 +207,20 @@ class Software extends \yii\db\ActiveRecord {
         if ($average > 3.5)
             $result = "A";
         return $result;
+    }
+
+    public function getAverageReviews() {
+        $count = 0;
+        $average = null;
+        $reviews = $this->getReviews();
+        if (count($reviews) > 0) {
+            foreach ($reviews as $review) {
+                $count+=$review->rating;
+            }
+            //calcul the average
+            $average = $count / count($reviews);
+        }
+        return $average;
     }
 
 }

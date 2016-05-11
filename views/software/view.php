@@ -161,9 +161,9 @@ $this->title = "$model->company - $model->name";
             </div>
             <div role="tabpanel" class="tab-pane" id="detailed-analysis">
                 <!-- display evaluations -->
-                <h3>Evaluations</h3>
+                <h3>Detailed Analysis</h3>
                 <?php
-                $evaluations = $model->evaluations;
+                $evaluations = $model->detailedAnalysis;
                 if ($evaluations != null) {
                     //display the evaluations
                     foreach ($evaluations as $evaluation) {

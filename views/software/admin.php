@@ -1,6 +1,8 @@
 <?php
+
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\rating\StarRating;
 
 $this->registerJs(
         '$("document").ready(function(){
@@ -52,39 +54,63 @@ $this->title = 'Softwares';
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
-        // 'filterModel' => $searchModel,
         'columns' => [
-            //    ['class' => 'yii\grid\SerialColumn'],
-            //  'id',
             ['attribute' => 'logo',
                 'format' => 'html',
                 'value' => function ($data) {
                     return Html::img($data->getLogoPicture(), ['class' => "img-responsive", "width" => "60", "height" => "60"]);
-                    // return $data->getLogoPicture();
                 }],
                     'name',
-                    'company',
-                    ['attribute' => 'evaluation',
+                    ['attribute' => 'Company',
                         'format' => 'html',
-                        'visible'=>!Yii::$app->user->isGuest&&Yii::$app->user->identity->isBBMRIMember,
-                        'value' => function ($data) {
-                            return $data->getEvaluation() == 'not available' && !Yii::$app->user->isGuest&&Yii::$app->user->identity->isBBMRIMember ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
+                        'value' => function($data){return strlen($data->company)>20?substr($data->company,0,20)."...":$data->company;}
+                    ],
+                    ['attribute' => 'Reviews', 'format' => 'html', 'value' => function ($data) {
+                            return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
                         }],
-                            'url_company:url',
-                            'url_software:url',
-                            ['class' => 'yii\grid\ActionColumn', 'template' => ' {view} {update}', 'buttons' => [
-                                    'update' => function ($url, $data) {
-                                        return Html::a(
-                                                        '<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                                                    'title' => 'Update',
-                                                    'data-pjax' => '0',
-                                                    'style' => $data->id != Yii::$app->user->id ? 'display:none' : ''
-                                                        ]
-                                        );
-                                    },
-                                        ]],
-                                ],
-                            ]);
-                            ?>
-                            <?php \yii\widgets\Pjax::end(); ?>
+                            ['attribute' => 'Average rating', 'format' => 'raw', 'value' => function ($data) {
+                                    return 
+                                StarRating::widget([
+                                    'name' => 'rating_' . $data->id,
+                                    'value' => $data->getAverageReviews(),
+                                    'pluginOptions' => ['disabled' => true, 'showClear' => false, 'animate' => false,
+                                        'stars' => 5,
+                                        'min' => 0,
+                                        'max' => 5,
+                                        'step' => 0.1,
+                                        'size' => 'xs',
+                                        'showCaption' => false,
+                                    ]
+                                ]);
+                                
+                                }],
+                            ['attribute' => 'quick analysis', 'format' => 'html', 'value' => function ($data) {
+                                    return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
+                                }],
+                                    ['attribute' => 'detailed analysis', 'format' => 'html', 'value' => function ($data) {
+                                            return $data->hasDetailedAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
+                                        }],
+                                            ['attribute' => 'evaluation',
+                                                'format' => 'html',
+                                                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember,
+                                                'value' => function ($data) {
+                                                    return $data->getEvaluation() == 'not available' && !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
+                                                }],
+                                                    'url_company:url',
+                                                    'url_software:url',
+                                                    ['class' => 'yii\grid\ActionColumn', 'template' => ' {view} {update}', 'buttons' => [
+                                                            'update' => function ($url, $data) {
+                                                                return Html::a(
+                                                                                '<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                                                            'title' => 'Update',
+                                                                            'data-pjax' => '0',
+                                                                            'style' => $data->id != Yii::$app->user->id ? 'display:none' : ''
+                                                                                ]
+                                                                );
+                                                            },
+                                                                ]],
+                                                        ],
+                                                    ]);
+                                                    ?>
+                                                    <?php \yii\widgets\Pjax::end(); ?>
 </div>
