@@ -35,13 +35,16 @@ $this->title = 'Update Software: ' . ' ' . "$model->company - $model->name";
     foreach ($model->getListPicturesResized() as $i => $screenshot) {
         ?> <div class="col-md-3 row" style="height: 150px"> <?=
         $screenshot;
-        ?><?= Html::a('<span class="glyphicon glyphicon-remove"></span> ' . Yii::t('common', 'remove'), ['delete-photo', 'i' => $i], ['class' => 'btn btn-danger', 'style' => 'margin :10px']) ?></div>
+        ?><?= Html::a('<span class="glyphicon glyphicon-remove"></span> ' . Yii::t('common', 'remove'), ['delete-photo', 'id'=>$model->id,'i' => $i], ['class' => 'btn btn-danger', 'style' => 'margin :10px']) ?></div>
 
         <?php
     } yii\widgets\Pjax::end();
     ?>
-    <div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'logo') ?>   <?=
-    Html::a('<span class="glyphicon glyphicon-download"></span> ' . Yii::t('common', 'add_logo'), ['add-logo', 'id' => $model->id], ['class' => 'btn btn-success'])
+    <div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'logo') ?>   <?php
+         //if logo is not set print link to add log   
+    if(!isset($model->logo)){
+        echo Html::a('<span class="glyphicon glyphicon-download"></span> ' . Yii::t('common', 'add_logo'), ['add-logo', 'id' => $model->id], ['class' => 'btn btn-success']);
+    }
     ?></h4>
 
     </div>

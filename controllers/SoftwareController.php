@@ -218,7 +218,6 @@ class SoftwareController extends Controller {
                 }
             }
             if ($model->save()) {
-
                 //copie du fichier dans le repo adapate
                 if ($uploadedFile->saveAs(Yii::$app->basePath . BBAConstants::PATH_PHOTOS . $prefix . $name . "." . $suffix)) {
                     Yii::$app->session->setFlash('success', 'The picture has been saved.');
@@ -233,13 +232,19 @@ class SoftwareController extends Controller {
         ));
     }
 
-    public function actionDeletePhoto() {
+    /**
+     * delete a picture.
+     * @param get param i = picture id
+     * @return type
+     */
+    public function actionDeletePhoto($id) {
         if (isset($_GET['i'])) {
-            $i = $_GET['i'];
-
+            $idpicture = $_GET['i'];
             if (isset(Yii::$app->user->id)) {
-                $model = $this->findModel(Yii::$app->user->id);
-                $name = "screenshot_" . $i;
+                //get the software id
+                $model = $this->findModel($id);
+                //reconstruct the name of the attribute
+                $name = "screenshot_" . $idpicture;
                 //suppression du fichier physique
                 $pathfile = Yii::$app->basePath . BBAConstants::PATH_PHOTOS . $model->$name;
                 if (file_exists($pathfile) && !is_dir($pathfile)) {
@@ -247,17 +252,16 @@ class SoftwareController extends Controller {
                 } else {
                     // Yii::log("file inexist cannot delete:" . $pathfile, "error");
                 }
-
+                //set an empty value for the screenshot attribute
                 $model->$name = null;
                 if ($model->save()) {
                     Yii::$app->session->setFlash('success', 'The picture has been deleted.');
-
                     return $this->render('update', ['model' => $model]);
                 } else
-                    Yii::$app->session->setFlash('error', 'The picture has not been deleted.');
+                    Yii::$app->session->setFlash('danger', 'The picture has not been deleted.');
             }
         }else {
-            Yii::$app->session->setFlash('error', 'The picture has not been deleted.');
+            Yii::$app->session->setFlash('danger', 'The picture has not been deleted.');
             // return $this->render('update', array(
             // 'model' => $model,
             //    ));
@@ -290,27 +294,24 @@ class SoftwareController extends Controller {
     }
 
     /**
+     * delete logo
+     * @param id = software id ( onlyone logo per software)
      */
-    public function actionDeleteLogo() {
+    public function actionDeleteLogo($id) {
         if (isset(Yii::$app->user->id)) {
-            $model = $this->findModel(Yii::$app->user->id);
+            $model = $this->findModel($id);
             //suppression du fichier physique
             $pathfile = Yii::$app->basePath . BBAConstants::PATH_PHOTOS . $model->logo;
             if (file_exists($pathfile) && !is_dir($pathfile)) {
                 unlink($pathfile);
             }
-//            else {
-//                Yii::$app->log->("file inexists, cannot delete:" . $pathfile, "error");
-//            }
             $model->logo = null;
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'The logo picture has been deleted with success.');
+            }else{
+                Yii::$app->session->setFlash('danger', 'The logo has not been deleted!');
             }
             return $this->render('update', ['model' => $model]);
         }
     }
-
-//    public function actionTest() {
-//        return $this->render('view', ['id' => 15]);
-//    }
 }
