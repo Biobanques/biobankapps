@@ -18,8 +18,8 @@ class FileForm extends Model
     public function rules() {
         return [
 
-
-            [['file'], 'file', 'extensions' => 'png, jpg,jpeg'],
+            //maxSize = 2 Mbytes
+            [['file'], 'file', 'extensions' => 'png, jpg,jpeg','maxSize' => 1024 * 1024 * 2],
         ];
     }
 
