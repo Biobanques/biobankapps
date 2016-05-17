@@ -264,12 +264,16 @@ class SoftwareController extends Controller {
         }
     }
 
+    /**
+     * add a logo picture to the software
+     * @param type $id
+     * @return type
+     */
     public function actionAddLogo($id) {
         $model = $this->findModel($id);
-        $fichierForm = new FichierForm;
-        if ($fichierForm->load(Yii::$app->request->post()) && $fichierForm->validate()) {
-
-            $uploadedFile = UploadedFile::getInstance($fichierForm, 'fichier');
+        $fileForm = new FileForm;
+        if ($fileForm->load(Yii::$app->request->post()) && $fileForm->validate()) {
+            $uploadedFile = UploadedFile::getInstance($fileForm, 'file');
             $suffix = $uploadedFile->extension;
             $name = "logo_" . $id . "." . $suffix;
             $model->logo = $name;
@@ -277,11 +281,11 @@ class SoftwareController extends Controller {
                 //copie du fichier dans le repo adapate
                 $uploadedFile->saveAs(Yii::$app->basePath . BBAConstants::PATH_PHOTOS . $name);
                 //redirection sur la vue
-                return $this->redirect(array('update', 'model' => $model));
+                 return $this->render('update', ['model' => $model]);
             }
         }
         return $this->render('add_software_logo', array(
-                    'model' => $fichierForm,
+                    'model' => $fileForm,
         ));
     }
 

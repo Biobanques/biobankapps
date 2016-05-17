@@ -1,3 +1,3 @@
-<h1>Ajouter un logo</h1>
+<h1>Add a logo</h1>
 
-<?php echo $this->render('_form_ajout_photo_logiciel', array('model' => $model)); ?>
+<?php echo $this->render('_form_add_software_picture', array('model' => $model)); ?>
