@@ -6,11 +6,11 @@ use Yii;
 use yii\base\Model;
 
 /**
- * LoginForm is the model behind the login form.
+ * FichierForm is the model behind the add picture form.
  */
-class FichierForm extends Model
+class FileForm extends Model
 {
-    public $fichier;
+    public $file;
 
     /**
      * @return array the validation rules.
@@ -19,7 +19,7 @@ class FichierForm extends Model
         return [
 
 
-            [['fichier'], 'file', 'extensions' => 'png, jpg,jpeg'],
+            [['file'], 'file', 'extensions' => 'png, jpg,jpeg'],
         ];
     }
 

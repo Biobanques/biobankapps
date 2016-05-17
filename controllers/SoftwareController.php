@@ -10,7 +10,7 @@ use app\models\QuickAnalysis;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\FichierForm;
+use app\models\FileForm;
 //use app\extensions\uploadedImage\EUploadedImage;
 use yii\web\UploadedFile;
 use app\components\BBAConstants;
@@ -31,7 +31,7 @@ class SoftwareController extends Controller {
                         'allow' => true,
                     ],
                     [
-                        'actions' => [ 'update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
+                        'actions' => ['update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -136,7 +136,7 @@ class SoftwareController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        if ($model->id == Yii::$app->user->id) {
+        if ($model->user_id == Yii::$app->user->id) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
@@ -179,10 +179,10 @@ class SoftwareController extends Controller {
 
     public function actionAddPhoto($id) {
         $model = $this->findModel($id);
-        $fichierForm = new FichierForm;
-        if ($fichierForm->load(Yii::$app->request->post())) {
-            if ($fichierForm->validate()) {
-                $uploadedFile = UploadedFile::getInstance($fichierForm, 'file');
+        $fileForm = new FileForm;
+        if ($fileForm->load(Yii::$app->request->post())) {
+            if ($fileForm->validate()) {
+                $uploadedFile = UploadedFile::getInstance($fileForm, 'file');
 //                $uploadedFile->maxWidth = 800;
 //                $uploadedFile->maxHeight = 600;
 //                $uploadedFile->thumb = array(
@@ -229,7 +229,7 @@ class SoftwareController extends Controller {
             }
         }
         return $this->render('add_software_picture', array(
-                    'model' => $fichierForm,
+                    'model' => $fileForm,
         ));
     }
 

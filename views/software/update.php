@@ -11,7 +11,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Software */
 
-$this->title = 'Update Software: ' . ' ' . "$model->societe - $model->nom";
+$this->title = 'Update Software: ' . ' ' . "$model->company - $model->name";
 
 ?>
 <div class="software-update">
