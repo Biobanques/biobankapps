@@ -223,7 +223,7 @@ class SoftwareController extends Controller {
                     Yii::$app->session->setFlash('success', 'The picture has been saved.');
                     return $this->redirect(array('update', 'id' => $model->id));
                 } else {
-                    Yii::$app->session->setFlash('error', 'The picture has not been saved.');
+                    Yii::$app->session->setFlash('danger', 'The picture has not been saved.');
                 } return $this->redirect(array('update', 'id' => $model->id));
             }
         }

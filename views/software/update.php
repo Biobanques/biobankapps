@@ -26,8 +26,11 @@ $this->title = 'Update Software: ' . ' ' . "$model->company - $model->name";
     yii\widgets\Pjax::begin();
     ?>
 
-    <div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'screenshots') ?>   <?=
-    Html::a('<span class="glyphicon glyphicon-download"></span> ' . Yii::t('common', 'add_screenshot'), ['add-photo', 'id' => $model->id], ['class' => 'btn btn-success'])
+    <div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'screenshots') ?>   <?php
+            //if number of screenshot set =5 no more link add screenshot
+    if(!(isset($model->screenshot_1)&&isset($model->screenshot_2)&&isset($model->screenshot_3)&&isset($model->screenshot_4)&&isset($model->screenshot_5))){
+        echo Html::a('<span class="glyphicon glyphicon-download"></span> ' . Yii::t('common', 'add_screenshot'), ['add-photo', 'id' => $model->id], ['class' => 'btn btn-success']);
+    }
     ?></h4>
 
     </div>
