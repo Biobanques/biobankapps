@@ -7,6 +7,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use kartik\icons\Icon;
+use app\components\CommonProperties;
 
 
 AppAsset::register($this);
@@ -22,7 +23,14 @@ Icon::map($this);
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <link rel="stylesheet" href="/css/font-awesome-4.5.0/css/font-awesome.css">
-        <?php $this->head() ?>
+       
+ <?php 
+ //if production, include stats tracker prod
+ if(!CommonProperties::$DEV_MODE){
+     echo $this->render('stats_tracker_prod');
+ }
+ 
+ $this->head() ?>
     </head>
     <body>
         <?php $this->beginBody() ?>
