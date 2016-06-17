@@ -73,12 +73,14 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
-            'rules' => array(
+            'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'softwareapi'],
+                //['class' => 'yii\rest\UrlRule', 'controller' => 'api'],
+                /*[
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                 ),
-            
+                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                ],*/],
         ],
         'i18n' => [
             'translations' => [
