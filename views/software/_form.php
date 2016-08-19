@@ -24,6 +24,7 @@ $form = ActiveForm::begin([
             ],
         ]);
 ?>
+<?= $form->errorSummary($model); ?>
 <div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_software') ?></h4></div>
 <?=
 $form->field($model, 'name', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
