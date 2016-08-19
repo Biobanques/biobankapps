@@ -87,7 +87,7 @@ Icon::map($this);
                 <div style="float:left;padding-left:10px;">
                     <?php echo Html::img(Yii::$app->request->baseUrl . '/images/logobb.png', array('height' => 75, 'width' => 100)); ?>
                 </div>
-                <div style="float:left;padding-left:200px;">Version 2.0.6  Copyright &copy; <?php echo date('Y'); ?> by BBMRI-ERIC.<br/>
+                <div style="float:left;padding-left:200px;">Version 2.0.7  Copyright &copy; <?php echo date('Y'); ?> by BBMRI-ERIC.<br/>
                     Project BBMRI-ERIC IT <a href="http://bbmri-eric.eu">www.bbmri-eric.eu</a><br/>
                     All Rights Reserved.<br/></div>
                 <div style="float:left;padding-left:200px;">
