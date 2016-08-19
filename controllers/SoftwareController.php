@@ -116,7 +116,7 @@ class SoftwareController extends Controller {
             return $this->render('account_needed');
         } else {
             $model = new Software();
-
+            $model->user_id = Yii::$app->user->id;
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('success', 'Your software is recorded, you can now add logo and screenshots from the update view.');
                 return $this->redirect(['view', 'id' => $model->id]);
