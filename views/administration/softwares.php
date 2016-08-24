@@ -72,7 +72,7 @@ $this->title = 'Softwares';
                                                 '<span class="glyphicon glyphicon-pencil"></span>', $url, [
                                             'title' => 'Update',
                                             'data-pjax' => '0',
-                                            'style' => $data->id != Yii::$app->user->id ? 'display:none' : ''
+                                            'style' => !Yii::$app->user->identity->isAdmin() ? 'display:none' : ''
                                                 ]
                                 );
                             },
