@@ -109,12 +109,12 @@ class AdministrationController extends Controller
         /**
      * Updates an existing Software model.
      * If update is successful, the browser will be redirected to the 'view' page.
+         * This action is only available for admin user here, and software editor in the common part of teh application
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        if ($model->user_id == Yii::$app->user->id) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
@@ -122,10 +122,7 @@ class AdministrationController extends Controller
                             'model' => $model,
                 ]);
             }
-        } else {
-            Yii::$app->session->setFlash('warning', 'Update not allowed');
-            return $this->redirect(['software/admin']);
-        }
+        
     }
 
         /**
