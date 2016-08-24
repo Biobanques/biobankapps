@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -26,7 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'username',
             'name',
             'firstname',
-            'role',
+            ['attribute'=>'role','value' => function ($data) {
+                return $data->roleValues[$data->role];
+            }],
             'email:email',
 
             ['class' => 'yii\grid\ActionColumn'],
