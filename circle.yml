@@ -1,0 +1,26 @@
+## Customize the test machine
+machine:
+
+  timezone:
+    Europe/Paris # Set the timezone
+
+  # Version of php to use
+  php:
+    version: 5.5.36
+
+  # Override /etc/hosts
+  hosts:
+    biobankapps.local: 127.0.0.1
+
+
+## Customize database setup
+database:
+  override:
+    - mysql -u ubuntu biobankapps < ./database/biobankapps-setup.sql
+
+## Customize test commands to use codeception
+test:
+  override:
+    - php vendor/codeception/codeception/codecept bootstrap
+    - php vendor/codeception/codeception/codecept run
+
