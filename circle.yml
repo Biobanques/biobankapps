@@ -16,7 +16,7 @@ machine:
 ## Customize database setup
 database:
   override:
-    - mysql -u ubuntu biobankapps < ./database/biobankapps-setup.sql
+    - mysql -u ubuntu circle_test < ./database/biobankapps-setup.sql
 
 ## Customize test commands to use codeception
 test:

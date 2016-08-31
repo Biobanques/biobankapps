@@ -4,3 +4,4 @@
 /web/phpinfo.php
 /web/photos/
 tests/_output/*
+/tests/_data/
