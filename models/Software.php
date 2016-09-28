@@ -29,7 +29,14 @@ class Software extends \yii\db\ActiveRecord {
             [['screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo'], 'string', 'max' => 50],
             [['keywords'], 'string', 'max' => 100],
             [['contact_email'], 'string', 'max' => 128],
-            [['contact_phone'], 'string', 'max' => 20]
+            [['contact_phone'], 'string', 'max' => 20],
+            /** Usage rights:  Values are integer : 
+             * 0 : not set
+             * 1 : open source & free to use
+             * 2 : free to use
+             * 3 : freemium
+             * 4 : commercial */
+            [['usage_rights'], 'integer'],
         ];
     }
 
@@ -58,6 +65,7 @@ class Software extends \yii\db\ActiveRecord {
             'contact_phone' => 'Contact Phone',
             'language_en' => 'Language En',
             'language_others' => 'Others Languages',
+            'usage_rights'=>'Usage rights'
         ];
     }
 
@@ -149,7 +157,7 @@ class Software extends \yii\db\ActiveRecord {
         }
         return $result;
     }
-    
+
     /**
      * return the number of reviews
      */
@@ -173,8 +181,8 @@ class Software extends \yii\db\ActiveRecord {
         }
         return $result;
     }
-    
-     /**
+
+    /**
      * return the count of quick analysis
      */
     public function getCountQuickAnalysis() {
@@ -209,6 +217,7 @@ class Software extends \yii\db\ActiveRecord {
         }
         return $result;
     }
+
     /**
      * calculate the average of evaluations.
      * @param type $evaluations
@@ -257,5 +266,13 @@ class Software extends \yii\db\ActiveRecord {
         }
         return $average;
     }
+    
+    const USAGE_RIGHTS_NOT_SET=0;
+    const USAGE_RIGHTS_OPEN_SOURCE_FREE = 1;
+    const USAGE_RIGHTS_FREE_USE = 2;
+    const USAGE_RIGHTS_FREEMIUM = 3;
+    const USAGE_RIGHTS_COMMERCIAL = 4;
+    
+    public $usageRightsValues = array(self::USAGE_RIGHTS_NOT_SET => 'not set',self::USAGE_RIGHTS_OPEN_SOURCE_FREE => 'open source & free to use', self::USAGE_RIGHTS_FREE_USE => 'free to use', self::USAGE_RIGHTS_FREEMIUM => 'freemium', self::USAGE_RIGHTS_COMMERCIAL => 'commercial');
 
 }

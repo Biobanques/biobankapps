@@ -38,6 +38,7 @@ $form->field($model, 'url_software', ['options' => ['class' => "col-sm-6"]])->te
 $form->field($model, 'license', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 
+<?= $form->field($model, 'usage_rights', ['options' => ['class' => "col-sm-6"]])->dropDownList($model->usageRightsValues) ?>
 <?=
 $form->field($model, 'price', ['options' => ['class' => "col-sm-6"]])->textInput()
 ?>
