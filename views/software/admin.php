@@ -58,9 +58,15 @@ $this->title = 'Softwares';
             ['attribute' => 'logo',
                 'format' => 'html',
                 'value' => function ($data) {
-                    return Html::img($data->getLogoPicture(), ['class' => "img-responsive", "width" => "60", "height" => "60"]);
+                    return "<a href=\"/software/view?id=".$data->id."\">".Html::img($data->getLogoPicture()."</a>", ['class' => "img-responsive", "width" => "60", "height" => "60"]);
                 }],
-                    'name',
+
+                        ['attribute' => 'name',
+                'format' => 'html',
+                'value' => function ($data) {
+                    return "<a href=\"/software/view?id=".$data->id."\">".$data->name."</a>";
+                }],
+                       
                     ['attribute' => 'Company',
                         'format' => 'html',
                         'value' => function($data){return strlen($data->company)>20?substr($data->company,0,20)."...":$data->company;}
