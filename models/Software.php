@@ -149,6 +149,18 @@ class Software extends \yii\db\ActiveRecord {
         }
         return $result;
     }
+    
+    /**
+     * return the number of reviews
+     */
+    public function getCountReviews() {
+        $result = 0;
+        $ana = $this->getReviews();
+        if ($ana != null && count($ana) > 0) {
+            $result = count($ana);
+        }
+        return $result;
+    }
 
     /**
      * true if the software has almost one quick analysis
@@ -158,6 +170,18 @@ class Software extends \yii\db\ActiveRecord {
         $ana = $this->getQuickAnalysis();
         if ($ana != null && count($ana) > 0) {
             $result = true;
+        }
+        return $result;
+    }
+    
+     /**
+     * return the count of quick analysis
+     */
+    public function getCountQuickAnalysis() {
+        $result = 0;
+        $ana = $this->getQuickAnalysis();
+        if ($ana != null && count($ana) > 0) {
+            $result = count($ana);
         }
         return $result;
     }
@@ -174,6 +198,17 @@ class Software extends \yii\db\ActiveRecord {
         return $result;
     }
 
+    /**
+     * return the count of detiled analysis
+     */
+    public function getCountDetailedAnalysis() {
+        $result = 0;
+        $ana = $this->getDetailedAnalysis();
+        if ($ana != null && count($ana) > 0) {
+            $result = count($ana);
+        }
+        return $result;
+    }
     /**
      * calculate the average of evaluations.
      * @param type $evaluations

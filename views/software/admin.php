@@ -66,13 +66,13 @@ $this->title = 'Softwares';
                         'value' => function($data){return strlen($data->company)>20?substr($data->company,0,20)."...":$data->company;}
                     ],
                     ['attribute' => 'Users Reviews', 'format' => 'html', 'value' => function ($data) {
-                            return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
+                            return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok'])." ".$data->getCountReviews()." reviews" : "";
                         }],
                             ['attribute' => 'Expert user quick analysis', 'format' => 'html', 'value' => function ($data) {
-                                    return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
+                                    return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok'])." ".$data->getCountQuickAnalysis()." quick analysis" : "";
                                 }],
                                     ['attribute' => 'Expert user detailed analysis', 'format' => 'html', 'value' => function ($data) {
-                                            return $data->hasDetailedAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
+                                            return $data->hasDetailedAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok'])." ".$data->getCountDetailedAnalysis()." detailed analysis" : "";
                                         }],
                                             ['attribute' => 'evaluation',
                                                 'format' => 'html',
