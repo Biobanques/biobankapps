@@ -65,13 +65,13 @@ $this->title = 'Softwares';
                         'format' => 'html',
                         'value' => function($data){return strlen($data->company)>20?substr($data->company,0,20)."...":$data->company;}
                     ],
-                    ['attribute' => 'Reviews', 'format' => 'html', 'value' => function ($data) {
+                    ['attribute' => 'Users Reviews', 'format' => 'html', 'value' => function ($data) {
                             return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
                         }],
-                            ['attribute' => 'quick analysis', 'format' => 'html', 'value' => function ($data) {
+                            ['attribute' => 'Expert user quick analysis', 'format' => 'html', 'value' => function ($data) {
                                     return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
                                 }],
-                                    ['attribute' => 'detailed analysis', 'format' => 'html', 'value' => function ($data) {
+                                    ['attribute' => 'Expert user detailed analysis', 'format' => 'html', 'value' => function ($data) {
                                             return $data->hasDetailedAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
                                         }],
                                             ['attribute' => 'evaluation',
