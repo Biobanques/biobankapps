@@ -68,22 +68,6 @@ $this->title = 'Softwares';
                     ['attribute' => 'Reviews', 'format' => 'html', 'value' => function ($data) {
                             return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
                         }],
-                            ['attribute' => 'Average rating', 'format' => 'raw', 'value' => function ($data) {
-                                    return 
-                                StarRating::widget([
-                                    'name' => 'rating_' . $data->id,
-                                    'value' => $data->getAverageReviews(),
-                                    'pluginOptions' => ['disabled' => true, 'showClear' => false, 'animate' => false,
-                                        'stars' => 5,
-                                        'min' => 0,
-                                        'max' => 5,
-                                        'step' => 0.1,
-                                        'size' => 'xs',
-                                        'showCaption' => false,
-                                    ]
-                                ]);
-                                
-                                }],
                             ['attribute' => 'quick analysis', 'format' => 'html', 'value' => function ($data) {
                                     return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
                                 }],
