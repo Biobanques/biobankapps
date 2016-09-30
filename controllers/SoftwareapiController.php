@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use yii\rest\ActiveController;
+use app\models\Software;
+use app\models\SoftwareApi;
 
 /**
  * class to expose fields to the API.
@@ -18,4 +20,28 @@ class SoftwareapiController extends ActiveController
 {
     public $modelClass = 'app\models\SoftwareApi';
     
+    /**
+     *  method to allow overriding actions in this API class
+     * @return type
+     */
+    public function actions()
+    {
+        $actions = parent::actions();
+        unset($actions['index']);
+        return $actions;
+    }
+    
+    /**
+     * return all the softwares
+     * 
+     */
+    public function actionIndex(){
+        $softwares = Software::find()->all();
+        //format result to expose only useful attributes
+        $result = array();
+        foreach($softwares as $software){
+            $result[]=SoftwareApi::convert($software);
+        }
+        return $result;
+    }
 }

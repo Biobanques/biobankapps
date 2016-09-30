@@ -47,11 +47,11 @@ class SoftwareApi extends \yii\db\ActiveRecord {
             'license' => 'License',
             'price' => 'Price',
             'description' => 'Description',
-           /* 'screenshot_1' => 'Screenshot 1',
-            'screenshot_2' => 'Screenshot 2',
-            'screenshot_3' => 'Screenshot 3',
-            'screenshot_4' => 'Screenshot 4',
-            'screenshot_5' => 'Screenshot 5',*/
+            /* 'screenshot_1' => 'Screenshot 1',
+              'screenshot_2' => 'Screenshot 2',
+              'screenshot_3' => 'Screenshot 3',
+              'screenshot_4' => 'Screenshot 4',
+              'screenshot_5' => 'Screenshot 5', */
             'logo' => 'Logo',
             'keywords' => 'Keywords',
             'user_id' => 'User',
@@ -64,14 +64,23 @@ class SoftwareApi extends \yii\db\ActiveRecord {
 
     // filter out some fields, best used when you want to inherit the parent implementation
 // and blacklist some sensitive fields.
-public function fields()
-{
-    $fields = parent::fields();
+    public function fields() {
+        $fields = parent::fields();
 
-    // remove fields that contain sensitive information or obsolete fields
-    unset($fields['user_id'],$fields['descriptif_fr'],$fields['keywords_fr'],$fields['screenshot_1'],$fields['screenshot_2'],$fields['screenshot_3'],$fields['screenshot_4'],$fields['screenshot_5']);
+        // remove fields that contain sensitive information or obsolete fields
+        unset($fields['user_id'], $fields['descriptif_fr'], $fields['keywords_fr'], $fields['screenshot_1'], $fields['screenshot_2'], $fields['screenshot_3'], $fields['screenshot_4'], $fields['screenshot_5']);
 
-    return $fields;
-}
+        return $fields;
+    }
+
+    /**
+     * convert a software to a software api
+     * @param type $software
+     */
+    public static function convert($software) {
+        $model = new SoftwareApi;
+        $model->name=$software->name;
+        return $model;
+    }
 
 }
