@@ -74,13 +74,7 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'softwareapi'],
-                //['class' => 'yii\rest\UrlRule', 'controller' => 'api'],
-                /*[
-                    '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                ],*/],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api'],],
         ],
         'i18n' => [
             'translations' => [

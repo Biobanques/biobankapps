@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\api;
 
 use Yii;
 
@@ -9,7 +9,7 @@ use Yii;
  * use it to control fields that need to be exposed.
  *
  */
-class SoftwareApi extends \yii\db\ActiveRecord {
+class Software extends \yii\db\ActiveRecord {
 
     /**
      * @inheritdoc
@@ -30,7 +30,14 @@ class SoftwareApi extends \yii\db\ActiveRecord {
             [['screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo'], 'string', 'max' => 50],
             [['keywords'], 'string', 'max' => 100],
             [['contact_email'], 'string', 'max' => 128],
-            [['contact_phone'], 'string', 'max' => 20]
+            [['contact_phone'], 'string', 'max' => 20],
+            /** Usage rights:  Values are integer : 
+             * 0 : not set
+             * 1 : open source & free to use
+             * 2 : free to use
+             * 3 : freemium
+             * 4 : commercial */
+            [['usage_rights'], 'integer'],
         ];
     }
 
@@ -47,11 +54,6 @@ class SoftwareApi extends \yii\db\ActiveRecord {
             'license' => 'License',
             'price' => 'Price',
             'description' => 'Description',
-            /* 'screenshot_1' => 'Screenshot 1',
-              'screenshot_2' => 'Screenshot 2',
-              'screenshot_3' => 'Screenshot 3',
-              'screenshot_4' => 'Screenshot 4',
-              'screenshot_5' => 'Screenshot 5', */
             'logo' => 'Logo',
             'keywords' => 'Keywords',
             'user_id' => 'User',
@@ -74,12 +76,23 @@ class SoftwareApi extends \yii\db\ActiveRecord {
     }
 
     /**
-     * convert a software to a software api
+     * convert a software from model package to a software api
      * @param type $software
      */
     public static function convert($software) {
-        $model = new SoftwareApi;
+        $model = new Software;
+        $model->id=$software->id;
         $model->name=$software->name;
+        $model->company=$software->company;
+        $model->url_company=$software->url_company;
+        $model->url_software=$software->url_software;
+        $model->price=$software->price;
+        $model->contact_email=$software->contact_email;
+        $model->contact_phone=$software->contact_phone;
+        $model->keywords=$software->keywords;
+        $model->description=$software->description;
+        $model->license=$software->license;
+        $model->usage_rights=$software->usageRightsValues[$software->usage_rights];
         return $model;
     }
 

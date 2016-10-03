@@ -29,6 +29,31 @@ $this->title = 'Softwares';
     <h1><?= Html::encode($this->title) ?></h1>
 
 
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">About this page</h3>
+        </div>
+        <div class="panel-body">
+            This software list is managed by BBMRI members. <br>
+            Software providers can add their own softwares, if they are related to the biobanking activies.
+            Biobankers can add softwares they know if it's missing.<br>
+            To add a software, you only need an account, it's free.<br>
+
+            <li><b>Users reviews</b><br>
+                Users reviews are provided by public users. If you want to add a review, you only need an account.<br>
+            <li><b>Expert User Quick Analysis</b><br>
+                Expert User Quick Analysis are provided by BBMRI expert members. If you are in the BBMRI network, and you have a good experience of a software, you can ask to have an account with rights on analysis.
+                Quick Analysis is an analysis with predefined questions. You need to know well the software before to fill in the questionnaire.<br>
+            <li><b>Expert User Detailed Analysis</b><br>
+                Expert User Detailed Analysis are provided by BBMRI expert members. If you are in the BBMRI network, and you have a good experience of a software, you can ask to have an account with rights on analysis.
+                Detailed Analysis is an analysis with deep questions on the software. You need to use really the software before to fill in this questionnaire. Only real users with experience on the software can fill a report.
+                Informations on detailed analysis are only available to a BBMRI-Member.
+
+        </div>
+    </div>
+
+
+
     <p>
         <?=
         Html::a('<span class="glyphicon glyphicon-search"></span> ' . Yii::t('common', 'advanced_search'), '#', ['class' => 'btn btn-primary btn-lg search-button']) .
@@ -58,27 +83,27 @@ $this->title = 'Softwares';
             ['attribute' => 'logo',
                 'format' => 'html',
                 'value' => function ($data) {
-                    return "<a href=\"/software/view?id=".$data->id."\">".Html::img($data->getLogoPicture()."</a>", ['class' => "img-responsive", "width" => "60", "height" => "60"]);
+                    return "<a href=\"/software/view?id=" . $data->id . "\">" . Html::img($data->getLogoPicture() . "</a>", ['class' => "img-responsive", "width" => "60", "height" => "60"]);
                 }],
-
-                        ['attribute' => 'name',
-                'format' => 'html',
-                'value' => function ($data) {
-                    return "<a href=\"/software/view?id=".$data->id."\">".$data->name."</a>";
-                }],
-                       
+                    ['attribute' => 'name',
+                        'format' => 'html',
+                        'value' => function ($data) {
+                            return "<a href=\"/software/view?id=" . $data->id . "\">" . $data->name . "</a>";
+                        }],
                     ['attribute' => 'Company',
                         'format' => 'html',
-                        'value' => function($data){return strlen($data->company)>20?substr($data->company,0,20)."...":$data->company;}
+                        'value' => function($data) {
+                            return strlen($data->company) > 20 ? substr($data->company, 0, 20) . "..." : $data->company;
+                        }
                     ],
                     ['attribute' => 'Users Reviews', 'format' => 'html', 'value' => function ($data) {
-                            return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok'])." ".$data->getCountReviews()." reviews" : "";
+                            return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountReviews() . " reviews" : "";
                         }],
                             ['attribute' => 'Expert user quick analysis', 'format' => 'html', 'value' => function ($data) {
-                                    return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok'])." ".$data->getCountQuickAnalysis()." quick analysis" : "";
+                                    return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountQuickAnalysis() . " quick analysis" : "";
                                 }],
                                     ['attribute' => 'Expert user detailed analysis', 'format' => 'html', 'value' => function ($data) {
-                                            return $data->hasDetailedAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok'])." ".$data->getCountDetailedAnalysis()." detailed analysis" : "";
+                                            return $data->hasDetailedAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountDetailedAnalysis() . " detailed analysis" : "";
                                         }],
                                             ['attribute' => 'evaluation',
                                                 'format' => 'html',
