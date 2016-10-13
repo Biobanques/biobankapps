@@ -33,7 +33,16 @@ INSTALLATION
 
 Get The last Github Archive.
 
-~~~
+Create a MySQL database
+'''
+create database biobankapps;
+use biobankapps;
+source /<absolutePath>/biobankapps/database/biobankapps-setup.sql
+'''
+
+Run the migration scripts
+sudo php ./yii migrate
+
 
 
 CONFIGURATION
@@ -52,6 +61,8 @@ return [
     'charset' => 'utf8',
 ];
 ```
+
+
 
 **NOTES:**
 - Yii won't create the database for you, this has to be done manually before you can access it.
