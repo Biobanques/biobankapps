@@ -82,8 +82,9 @@ $this->title = "$model->company - $model->name";
                     ],
                 ])
                 ?>
-                <?= \yii\bootstrap\Carousel::widget(['items' => $model->getListPictures(), 'options' => ['style' => 'width:750px']]);
-                ?>
+                <div style="clear:both;">
+                <?= $model->displayCarousel() ?>
+                </div>
 
 
             </div>

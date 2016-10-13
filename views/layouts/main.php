@@ -31,6 +31,13 @@ Icon::map($this);
  }
  
  $this->head() ?>
+        <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  </style>
     </head>
     <body>
         <?php $this->beginBody() ?>

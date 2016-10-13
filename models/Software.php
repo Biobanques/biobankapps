@@ -22,21 +22,21 @@ class Software extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'company', 'url_company', 'url_software', 'license', 'user_id'], 'required'],
-            [['price', 'language_en', 'language_others'], 'integer'],
-            [['name', 'company', 'url_company', 'url_software', 'license'], 'string', 'max' => 200],
-            [['description'], 'string', 'max' => 500],
-            [['screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo'], 'string', 'max' => 50],
-            [['keywords'], 'string', 'max' => 100],
-            [['contact_email'], 'string', 'max' => 128],
-            [['contact_phone'], 'string', 'max' => 20],
+                [['name', 'company', 'url_company', 'url_software', 'license', 'user_id'], 'required'],
+                [['price', 'language_en', 'language_others'], 'integer'],
+                [['name', 'company', 'url_company', 'url_software', 'license'], 'string', 'max' => 200],
+                [['description'], 'string', 'max' => 500],
+                [['screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo'], 'string', 'max' => 50],
+                [['keywords'], 'string', 'max' => 100],
+                [['contact_email'], 'string', 'max' => 128],
+                [['contact_phone'], 'string', 'max' => 20],
             /** Usage rights:  Values are integer : 
              * 0 : not set
              * 1 : open source & free to use
              * 2 : free to use
              * 3 : freemium
              * 4 : commercial */
-            [['usage_rights'], 'integer'],
+                [['usage_rights'], 'integer'],
         ];
     }
 
@@ -65,7 +65,7 @@ class Software extends \yii\db\ActiveRecord {
             'contact_phone' => 'Contact Phone',
             'language_en' => 'Language En',
             'language_others' => 'Others Languages',
-            'usage_rights'=>'Usage rights'
+            'usage_rights' => 'Usage rights'
         ];
     }
 
@@ -87,10 +87,42 @@ class Software extends \yii\db\ActiveRecord {
         for ($i = 1; $i < 6; $i++) {
             $name = 'screenshot_' . $i;
             if ($this->$name != null) {
-                $listPictures[] = \yii\helpers\Html::img(Yii::$app->request->baseUrl . '/photos/' . $this->$name);
+                $listPictures[] = \yii\helpers\Html::img(Yii::$app->request->baseUrl . '/photos/' . $this->$name, ['style' => 'height:375px;width:500px']);
             }
         }
         return $listPictures;
+    }
+
+    /**
+     * display the html code to show the picture carousel
+     */
+    public function displayCarousel() {
+        $head = "<div id=\"carousel-example-generic\" class=\"carousel slide\" data-ride=\"carousel\">
+  <ol class=\"carousel-indicators\">";
+        $body = " <div class=\"carousel-inner\">";
+        $i = 0;
+        foreach ($this->getListPictures() as $picture) {
+            $class = "";
+            $classItem = "";
+            if ($i == 0) {
+                $class = "class=\"active\"";
+                $classItem = "active";
+            }
+            $head .= "<li data-target=\"#carousel-example-generic\" data-slide-to=\"" . $i . "\" " . $class . "></li>";
+            $body .= "<div class=\"item " . $classItem . "\">" . $picture . "</div>";
+            $i++;
+        }
+        $head .= "</ol>";
+        $body .= "</div>
+ 
+        <a class=\"left carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"prev\">
+          <span class=\"glyphicon glyphicon-chevron-left\"></span>
+        </a>
+        <a class=\"right carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"next\">
+          <span class=\"glyphicon glyphicon-chevron-right\"></span>
+        </a>
+      </div>";
+        return $head . $body;
     }
 
     public function getListPicturesResized() {
@@ -228,15 +260,15 @@ class Software extends \yii\db\ActiveRecord {
         $count = 0;
         foreach ($evaluations as $eval) {
             switch ($eval->grade) {
-                case "A": $count+=4;
+                case "A": $count += 4;
                     break;
-                case "B": $count+=3;
+                case "B": $count += 3;
                     break;
-                case "C": $count+=2;
+                case "C": $count += 2;
                     break;
-                case "D": $count+=1;
+                case "D": $count += 1;
                     break;
-                case "E": $count+=0;
+                case "E": $count += 0;
                     break;
             }
         }
@@ -259,20 +291,20 @@ class Software extends \yii\db\ActiveRecord {
         $reviews = $this->getReviews();
         if (count($reviews) > 0) {
             foreach ($reviews as $review) {
-                $count+=$review->rating;
+                $count += $review->rating;
             }
             //calcul the average
             $average = $count / count($reviews);
         }
         return $average;
     }
-    
-    const USAGE_RIGHTS_NOT_SET=0;
+
+    const USAGE_RIGHTS_NOT_SET = 0;
     const USAGE_RIGHTS_OPEN_SOURCE_FREE = 1;
     const USAGE_RIGHTS_FREE_USE = 2;
     const USAGE_RIGHTS_FREEMIUM = 3;
     const USAGE_RIGHTS_COMMERCIAL = 4;
-    
-    public $usageRightsValues = array(self::USAGE_RIGHTS_NOT_SET => 'not set',self::USAGE_RIGHTS_OPEN_SOURCE_FREE => 'open source & free to use', self::USAGE_RIGHTS_FREE_USE => 'free to use', self::USAGE_RIGHTS_FREEMIUM => 'freemium', self::USAGE_RIGHTS_COMMERCIAL => 'commercial');
+
+    public $usageRightsValues = array(self::USAGE_RIGHTS_NOT_SET => 'not set', self::USAGE_RIGHTS_OPEN_SOURCE_FREE => 'open source & free to use', self::USAGE_RIGHTS_FREE_USE => 'free to use', self::USAGE_RIGHTS_FREEMIUM => 'freemium', self::USAGE_RIGHTS_COMMERCIAL => 'commercial');
 
 }
