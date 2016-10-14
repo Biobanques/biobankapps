@@ -38,12 +38,13 @@ $config = [
         'log' => [
 //'traceLevel' => YII_DEBUG ? 3 : 0,
 //traceLevel=3 enable file name and file number displaying into log 
-            'traceLevel' => 3,
+            'traceLevel' => 0,
             'flushInterval' => 1,
             'targets' => [
                 'file' => [
                     'class' => 'yii\log\FileTarget',
                     'logFile' => '@runtime/logs/application.log',
+                    'levels'=>['trace']
                 ],
                 /* 'file' => [
                   'class' => 'yii\log\FileTarget',

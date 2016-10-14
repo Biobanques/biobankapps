@@ -26,6 +26,7 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -40,4 +41,9 @@ class Tag extends \yii\db\ActiveRecord
             'name' => 'Name',
         ];
     }
+    
+    public function getSoftwares() {
+    return $this->hasMany(Software::className(), ['id' => 'software_id'])
+      ->viaTable('tag_software', ['tag_id' => 'id']);
+}
 }

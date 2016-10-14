@@ -61,10 +61,10 @@ $this->title = "$model->company - $model->name";
                         'url_company:url',
                         'url_software:url',
                         'license',
-                        ['label' => 'Usage Rights',
+                            ['label' => 'Usage Rights',
                             'type' => 'html',
                             'value' => $model->usageRightsValues[$model->usage_rights]],
-                        ['label' => 'price',
+                            ['label' => 'price',
                             'type' => 'html',
                             'value' => $model->price . '€ '],
                         //'logo',
@@ -72,18 +72,26 @@ $this->title = "$model->company - $model->name";
                         'keywords',
                         'contact_email:email',
                         'contact_phone',
-                        ['label' => 'language_en',
+                            ['label' => 'language_en',
                             'type' => 'html',
                             'value' => BBAConstants::getYesNo($model->language_en),]
                         ,
-                        ['label' => 'language_others',
+                            ['label' => 'language_others',
                             'type' => 'html',
                             'value' => BBAConstants::getYesNo($model->language_others),]
                     ],
                 ])
                 ?>
-                <?= \yii\bootstrap\Carousel::widget(['items' => $model->getListPictures(), 'options' => ['style' => 'width:750px']]);
-                ?>
+                <div class=""><h5>Tags</h5></div>
+                <div class="" > 
+                    <?php
+                    echo $model->displayTags();
+                    ?>
+                </div>
+                <div class="">
+                    <?= \yii\bootstrap\Carousel::widget(['items' => $model->getListPictures(), 'options' => ['style' => 'width:750px']]);
+                    ?>
+                </div>
 
 
             </div>
@@ -151,58 +159,57 @@ $this->title = "$model->company - $model->name";
                 <!-- display evaluations -->
                 <h3>Detailed Analysis</h3>
                 <?php
-                if( !Yii::$app->user->isGuest&&Yii::$app->user->identity->isBBMRIMember()){
-                $evaluations = $model->detailedAnalysis;
-                if ($evaluations != null) {
-                    //display the evaluations
-                    foreach ($evaluations as $evaluation) {
-                        ?>
+                if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember()) {
+                    $evaluations = $model->detailedAnalysis;
+                    if ($evaluations != null) {
+                        //display the evaluations
+                        foreach ($evaluations as $evaluation) {
+                            ?>
 
-                        <?=
-                        DetailView::widget([
-                            'model' => $evaluation,
-                            'attributes' => [
-                                'user.name',
-                                'software_version',
-                                'date_evaluation',
-                                'grade',
-                            ],
-                        ])
-                        ?>
-                        <table id="deail-view" class="table table-striped table-bordered detail-view">
-                            <tbody>
-                                <tr><th>Domain</th><th>Question</th><th>Evaluation method</th><th>Score</th></tr>
-                                <?php
-                                $evaluationCriteria = $evaluation->evaluationcriteria;
-                                //display criteria and answers
-                                if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
-                                    $values = array(1, 2, 3, 4);
-                                    //for each criterion display an input
-                                    foreach ($evaluationCriteria as $i => $evalCriterion) {
-                                        echo "<tr><th>" . $evalCriterion->name . "</th><td>" . $evalCriterion->question . "</td><td>" . $evalCriterion->evaluation_method . "</td>";
-                                        echo "<td>" . $evalCriterion->score . "</td>";
-                                        echo "</tr>";
+                            <?=
+                            DetailView::widget([
+                                'model' => $evaluation,
+                                'attributes' => [
+                                    'user.name',
+                                    'software_version',
+                                    'date_evaluation',
+                                    'grade',
+                                ],
+                            ])
+                            ?>
+                            <table id="deail-view" class="table table-striped table-bordered detail-view">
+                                <tbody>
+                                    <tr><th>Domain</th><th>Question</th><th>Evaluation method</th><th>Score</th></tr>
+                                    <?php
+                                    $evaluationCriteria = $evaluation->evaluationcriteria;
+                                    //display criteria and answers
+                                    if ($evaluationCriteria != null && is_array($evaluationCriteria)) {
+                                        $values = array(1, 2, 3, 4);
+                                        //for each criterion display an input
+                                        foreach ($evaluationCriteria as $i => $evalCriterion) {
+                                            echo "<tr><th>" . $evalCriterion->name . "</th><td>" . $evalCriterion->question . "</td><td>" . $evalCriterion->evaluation_method . "</td>";
+                                            echo "<td>" . $evalCriterion->score . "</td>";
+                                            echo "</tr>";
+                                        }
                                     }
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                                    ?>
+                                </tbody>
+                            </table>
+                            <?php
+                        }
+                    } else {
+                        ?>
+                        <h4>No evaluation available</h4>
                         <?php
                     }
                 } else {
                     ?>
-                    <h4>No evaluation available</h4>
-                    <?php
-                }
-                
-                }else{
-                    ?>
                     <div class="alert alert-warning" role="alert">You must be a BBMRI Member to view the detailed analysis.<br>
-                    Contact the administrator to get a BBMRI member account if you are in the BBMRI network.</div>
-                    
-                    <?php
-                }
-                ?></div>
+                        Contact the administrator to get a BBMRI member account if you are in the BBMRI network.</div>
+
+    <?php
+}
+?></div>
         </div>
     </div>
 </div>

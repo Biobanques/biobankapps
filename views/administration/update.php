@@ -46,29 +46,5 @@ $this->title = 'Update Software: ' . ' ' . "$model->company - $model->name";
     <div class="col-md-4 row" > <?= Html::img($model->getLogoPicture(false), ['class' => 'img-thumbnail', 'style' => 'width:240px']) ?></div>
 
 
-    <!--<div class="col-md-12 bg-primary "><h4>Tags</h4></div>
-    <div class="col-md-4 row" > 
-         <p>check the tags compliant with the domain of this software</p>-->
-         <?php
-         /* $tags = Tag::find()->all();
-          $formTags = ActiveForm::begin([
-            //  'layout' => 'horizontal',
-            'fieldConfig' => [
-                'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-                'horizontalCssClasses' => [
-                    'label' => 'col-sm-2',
-                    'offset' => 'col-sm-offset-4',
-                    'wrapper' => 'col-sm-2 form-group',
-                    'error' => '',
-                    'hint' => '',
-                ],
-            ],
-        ]);
-          foreach($tags as $tag){
-              echo $tag->name;
-              echo $formTags->field($model, $tag->id)->checkBox(['label' => $tag->name]); 
-          }
-          ActiveForm::end(); </div>*/
-         ?>
    
 </div>

@@ -1,8 +1,10 @@
 <?php
+
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
 use app\models\User;
+use app\models\Tag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Software */
@@ -90,8 +92,21 @@ $items = ArrayHelper::map(User::find()->all(), 'id', 'name');
 echo $form->field($model, 'user_id')->dropDownList($items);
 ?>
 
+<div class="col-md-12 bg-primary "><h4>Tags</h4></div>
+<div class="col-md-12 row" > 
+    <p>tick the tags compatible with the domain of this software</p>
+    <?php
+    $tags = Tag::find()->all();
+    $tagsArray = [];
+    foreach ($tags as $tag) {
+        $tagArray[$tag->id] = $tag->name;
+    }
+    echo $form->field($model, 'tags')->inline(true)->checkboxList($tagArray);
+    ?>
+</div>
+
 <div class="form-group col-sm-8">
-    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>
 
 <?php ActiveForm::end(); ?>

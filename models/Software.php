@@ -17,6 +17,8 @@ class Software extends \yii\db\ActiveRecord {
         return 'software';
     }
 
+    public $tags = [];
+
     /**
      * @inheritdoc
      */
@@ -37,6 +39,7 @@ class Software extends \yii\db\ActiveRecord {
              * 3 : freemium
              * 4 : commercial */
                 [['usage_rights'], 'integer'],
+                [['tags'], 'safe'],
         ];
     }
 
@@ -69,6 +72,15 @@ class Software extends \yii\db\ActiveRecord {
         ];
     }
 
+    /**
+     * 
+     * @return an ActiveQuery of Tags
+     */
+    public function getTags() {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+                        ->viaTable('tag_software', ['software_id' => 'id']);
+    }
+
     public function getLogoPicture($default = true) {
         if ($default)
             $imgurl = Yii::$app->request->baseUrl . "/images/picture_empty.png";
@@ -91,6 +103,19 @@ class Software extends \yii\db\ActiveRecord {
             }
         }
         return $listPictures;
+    }
+
+    /**
+     * display tags in a cool way.
+     */
+    public function displayTags() {
+        $result = "";
+        $tags = $this->getTags()->all();
+        if ($tags != null && is_array($tags) && count($tags) > 0)
+            foreach ($tags as $tag) {
+                $result .= "<i class=\"glyphicon glyphicon-pushpin\" style=\"padding-left:10px;padding-right:5px;\"></i>" . $tag->name;
+            }
+        return $result;
     }
 
     /**
