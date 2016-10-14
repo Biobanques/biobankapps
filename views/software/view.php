@@ -78,10 +78,14 @@ $this->title = "$model->company - $model->name";
                         ,
                         ['label' => 'language_others',
                             'type' => 'html',
-                            'value' => BBAConstants::getYesNo($model->language_others),]
+                            'value' => BBAConstants::getYesNo($model->language_others),],
+                        ['label' => 'Tags',
+                            'format' => 'html',
+                            'value' => $model->displayTags(),]
                     ],
                 ])
                 ?>
+                <br>
                 <div style="clear:both;">
                 <?= $model->displayCarousel() ?>
                 </div>
