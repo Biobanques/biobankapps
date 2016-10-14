@@ -19,6 +19,7 @@ use kartik\sidenav\SideNav;
             ['label' => 'Evaluations', 'icon' => 'list-alt', 'url' => Url::to(['/evaluation/index'])],
             ['label' => 'Reviews', 'icon' => 'list-alt', 'url' => Url::to(['/review/index'])],
             ['label' => 'Quick analysis', 'icon' => 'list-alt', 'url' => Url::to(['/quick-analysis/index'])],
+            ['label' => 'Tags', 'icon' => 'list-alt', 'url' => Url::to(['/tag/index'])],
         ],
     ]);   
     ?>
