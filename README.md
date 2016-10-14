@@ -45,6 +45,7 @@ sudo php ./yii migrate
 
 
 
+
 CONFIGURATION
 -------------
 
@@ -73,3 +74,10 @@ return [
 TESTING
 -------------
 Biobankapps is now built into the online server mananging the continuous integration CircleCI.
+
+
+UPGRAFES VIA COMPOSER
+
+To upgrade via composer , you need to install the asset plugin first:
+php /usr/local/bin/composer global require "composer-plugin-api:1.1.0"
+php /usr/local/bin/composer global require "fxp/composer-asset-plugin:v1.2.2"
