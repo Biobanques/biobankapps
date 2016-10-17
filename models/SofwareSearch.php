@@ -43,8 +43,6 @@ class SofwareSearch extends Software {
      */
     public function search($params) {
         $query = Software::find();
-        //join with tag relation
-        //$query->joinWith(['tags']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -74,7 +72,6 @@ class SofwareSearch extends Software {
                 ->andFilterWhere(['like', 'keywords', $this->global_keywords])
                 ->andFilterWhere(['like', 'contact_email', $this->contact_email])
                 ->andFilterWhere(['like', 'contact_phone', $this->contact_phone]);
-        //->andFilterWhere(['in','tag_software.tag_id',$this->tags]);
         if (isset($this->tags) && is_array($this->tags) && count($this->tags) > 0) {
             $query->leftJoin('tag_software', '`tag_software`.`software_id` = `software`.`id`')
                     ->where(['in', 'tag_software.tag_id', $this->tags]);
