@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "software".
@@ -73,12 +74,50 @@ class Software extends \yii\db\ActiveRecord {
     }
 
     /**
-     * 
-     * @return an ActiveQuery of Tags
+     * save the given tags if not already saved.
+     * delete the tags registered if not present in the array given
+     * @param array $tags Darray of tags given by teh post method
      */
-    public function getTags() {
-        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
-                        ->viaTable('tag_software', ['software_id' => 'id']);
+    public function saveTags($tags) {
+        //get the existing tags
+        $exTags = $this->getTags();
+        //check if tags are ticked
+        Yii::trace('tags analyze');
+        if (isset($tags) && is_array($tags) && count($tags) > 0) {
+            Yii::trace('tags not null' . count($this->tags));
+            foreach ($tags as $tagId) {
+                //if not already existing we insert the tag
+                $existing = false;
+                foreach ($exTags as $exTag) {
+                    if ($exTag->id == $tagId) {
+                        $existing = true;
+                    }
+                }
+                if ($existing == false) {
+                    $ts = new TagSoftware();
+                    $ts->software_id = $this->id;
+                    $ts->tag_id = $tagId;
+                    $ts->save();
+                    Yii::trace('tag insert:' . $tagId);
+                }
+            }
+            Yii::trace('end foreach atgs');
+        }
+        //FIXME use a method to compare array instead of this ugly code
+        //remove old tags not in the current selection
+        foreach ($exTags as $exTag) {
+            $existing = false;
+            if (isset($tags) && is_array($tags) && count($tags) > 0)
+                foreach ($tags as $tagId) {
+                    if ($exTag->id == $tagId) {
+                        $existing = true;
+                    }
+                }
+            //if not existing, delete the tag
+            if ($existing == false) {
+                (new Query)->createCommand()->delete('tag_software', ['software_id' => $this->id, 'tag_id' => $exTag->id])->execute();
+            }
+        }
     }
 
     public function getLogoPicture($default = true) {
@@ -110,7 +149,7 @@ class Software extends \yii\db\ActiveRecord {
      */
     public function displayTags() {
         $result = "";
-        $tags = $this->getTags()->all();
+        $tags = $this->getTags();
         if ($tags != null && is_array($tags) && count($tags) > 0)
             foreach ($tags as $tag) {
                 $result .= "<i class=\"glyphicon glyphicon-pushpin\" style=\"padding-left:10px;padding-right:5px;\"></i>" . $tag->name;
@@ -183,6 +222,15 @@ class Software extends \yii\db\ActiveRecord {
      */
     public function getQuickAnalysis() {
         return $this->hasMany(QuickAnalysis::className(), ['software_id' => 'id'])->all();
+    }
+
+    /**
+     * 
+     * @return an ActiveQuery of Tags
+     */
+    public function getTags() {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+                        ->viaTable('tag_software', ['software_id' => 'id'])->all();
     }
 
     /**

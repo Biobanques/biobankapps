@@ -15,6 +15,7 @@ use app\models\FileForm;
 use yii\web\UploadedFile;
 use app\components\BBAConstants;
 use yii\filters\AccessControl;
+use app\models\TagSoftware;
 
 /**
  * SoftwareController implements the CRUD actions for Software model.
@@ -137,7 +138,10 @@ class SoftwareController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
         if ($model->user_id == Yii::$app->user->id) {
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) ) {
+                $tags=$model->tags;
+                $model->save();
+                $model->saveTags($tags);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('update', [

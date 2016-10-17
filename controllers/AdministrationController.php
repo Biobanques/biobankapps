@@ -8,14 +8,9 @@ use app\models\SofwareSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\FichierForm;
-//use app\extensions\uploadedImage\EUploadedImage;
-use yii\web\UploadedFile;
-use app\components\BBAConstants;
 use yii\filters\AccessControl;
 use app\models\Review;
 use app\models\QuickAnalysis;
-use app\models\TagSoftware;
 
 /**
  * AdministrationController .
@@ -119,19 +114,7 @@ class AdministrationController extends Controller
             if ($model->load(Yii::$app->request->post()) ) {
                 $tags=$model->tags;
                 $model->save();
-                //check if tags are ticked
-                Yii::trace('tags analyze');
-                if(isset($tags)){
-                    Yii::trace('tags not null'.count($model->tags));
-                    foreach($tags as $tagId){
-                        $ts = new TagSoftware();
-                        $ts->software_id=$model->id;
-                        $ts->tag_id=$tagId;
-                        $ts->save();
-                        Yii::trace('tag insert:'.$tagId);
-                    }
-                    Yii::trace('end foreach atgs');
-                }
+                $model->saveTags($tags);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('update', [

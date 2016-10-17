@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use app\models\Tag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Software */
@@ -25,7 +26,7 @@ $form = ActiveForm::begin([
         ]);
 ?>
 <?= $form->errorSummary($model); ?>
-<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_software') ?></h4></div>
+<div class="col-md-12 bg-primary "><h4>Software informations</h4></div>
 <?=
 $form->field($model, 'name', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
@@ -56,7 +57,22 @@ $form->field($model, 'description', ['options' => ['class' => "col-sm-6"]])->tex
 $form->field($model, 'keywords', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
 
-<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'support_languages') ?></h4></div>
+<div class="col-md-12 bg-primary "><h4>Tags</h4></div>
+<div class="col-md-12 row" > 
+    <p>tick the tags compatible with the domain of this software</p>
+    <?php
+    $tags = Tag::find()->all();
+    $tagsArray = [];
+    foreach ($tags as $tag) {
+        $tagArray[$tag->id] = $tag->name;
+    }
+    //checked tags
+    $model->tags=$model->getTags();
+    echo $form->field($model, 'tags')->inline(true)->checkboxList($tagArray);
+    ?>
+</div>
+
+<div class="col-md-12 bg-primary "><h4>Languages</h4></div>
 
 <?=
 $form->field($model, 'language_en', ['options' => ['class' => "col-sm-2"]])->checkbox()
@@ -65,7 +81,7 @@ $form->field($model, 'language_en', ['options' => ['class' => "col-sm-2"]])->che
 <?=
 $form->field($model, 'language_others', ['options' => ['class' => "col-sm-2"]])->checkbox()
 ?>
-<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_company') ?></h4></div>
+<div class="col-md-12 bg-primary "><h4>Company informations</h4></div>
 <?=
 $form->field($model, 'company', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
@@ -74,7 +90,7 @@ $form->field($model, 'company', ['options' => ['class' => "col-sm-6"]])->textInp
 <?=
 $form->field($model, 'url_company', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
 ?>
-<div class="col-md-12 bg-primary "><h4><?= Yii::t('common', 'informations_contact') ?></h4></div>
+<div class="col-md-12 bg-primary "><h4>Contact informations</h4></div>
 
 <?=
 $form->field($model, 'contact_email', ['options' => ['class' => "col-sm-6"]])->textInput(['maxlength' => true])
