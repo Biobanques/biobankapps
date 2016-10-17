@@ -13,14 +13,16 @@ use app\models\Software;
 class SofwareSearch extends Software {
 
     public $global_keywords;
+    public $tags = [];
 
     /**
      * @inheritdoc
      */
     public function rules() {
         return [
-            [['id', 'price', 'language_en', 'language_others'], 'integer'],
-            [['name', 'company', 'url_company', 'url_software', 'license', 'description', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
+                [['id', 'price', 'language_en', 'language_others'], 'integer'],
+                [['name', 'company', 'url_company', 'url_software', 'license', 'description', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
+                [['tags'], 'safe'],
         ];
     }
 
@@ -41,6 +43,8 @@ class SofwareSearch extends Software {
      */
     public function search($params) {
         $query = Software::find();
+        //join with tag relation
+        //$query->joinWith(['tags']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -67,15 +71,14 @@ class SofwareSearch extends Software {
                 ->andFilterWhere(['like', 'url_software', $this->url_software])
                 ->andFilterWhere(['like', 'license', $this->license])
                 ->andFilterWhere(['like', 'description', $this->description])
-                ->andFilterWhere(['like', 'screenshot_1', $this->screenshot_1])
-                ->andFilterWhere(['like', 'screenshot_2', $this->screenshot_2])
-                ->andFilterWhere(['like', 'screenshot_3', $this->screenshot_3])
-                ->andFilterWhere(['like', 'screenshot_4', $this->screenshot_4])
-                ->andFilterWhere(['like', 'screenshot_5', $this->screenshot_5])
-                ->andFilterWhere(['like', 'logo', $this->logo])
                 ->andFilterWhere(['like', 'keywords', $this->global_keywords])
                 ->andFilterWhere(['like', 'contact_email', $this->contact_email])
                 ->andFilterWhere(['like', 'contact_phone', $this->contact_phone]);
+        //->andFilterWhere(['in','tag_software.tag_id',$this->tags]);
+        if (isset($this->tags) && is_array($this->tags) && count($this->tags) > 0) {
+            $query->leftJoin('tag_software', '`tag_software`.`software_id` = `software`.`id`')
+                    ->where(['in', 'tag_software.tag_id', $this->tags]);
+        }
 
         return $dataProvider;
     }

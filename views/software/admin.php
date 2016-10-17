@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use kartik\rating\StarRating;
 
 $this->registerJs(
         '$("document").ready(function(){
@@ -22,13 +21,10 @@ $this->registerJs(
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Softwares';
-//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="software-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">About this page</h3>
