@@ -101,6 +101,8 @@ echo $form->field($model, 'user_id')->dropDownList($items);
     foreach ($tags as $tag) {
         $tagArray[$tag->id] = $tag->name;
     }
+    //checked tags
+    $model->tags=$model->getTags()->all();
     echo $form->field($model, 'tags')->inline(true)->checkboxList($tagArray);
     ?>
 </div>
