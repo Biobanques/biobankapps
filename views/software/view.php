@@ -19,6 +19,17 @@ $this->title = "$model->company - $model->name";
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <div class="panel panel-info"><div class="panel-heading">Informations</div>
+    <div class="panel-body">
+    The software view is divided in 4 parts:
+    <ul>
+        <li>File tab : this tab is filled by software provider or an authenticated user.It contains generic informations, contact informations, a description, and pictures of the software.
+        <li>Reviews tab : this tab is filled by authenticated users, that they have worked with the software. They can have a short experience or a long experience of the usage of this software.
+        <li>Quick analysis tab : This tab is filled by authenticated users, with a significant experience with the software. Questions are predefined and common to all the sofwtares.
+        <li>Detailed analysis tab : This tab is filled by authenticated users, with a significant experience with the software and testing the software.Many poinst of the software are evaluated and a grade is calculated. The detailed analysis is only available for BBMRI members.
+    </ul>
+  </div>
+</div>
     <div>
 
         <!-- Nav tabs -->
