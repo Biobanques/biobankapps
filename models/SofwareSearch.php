@@ -21,7 +21,7 @@ class SofwareSearch extends Software {
     public function rules() {
         return [
                 [['id', 'price', 'language_en', 'language_others'], 'integer'],
-                [['name', 'company', 'url_company', 'url_software', 'license', 'description', 'screenshot_1', 'screenshot_2', 'screenshot_3', 'screenshot_4', 'screenshot_5', 'logo', 'keywords', 'contact_email', 'contact_phone', 'global_keywords'], 'safe'],
+                [['name', 'company', 'url_company', 'url_software', 'license', 'description', 'keywords', 'contact_email', 'contact_phone', 'global_keywords','usage_rights'], 'safe'],
                 [['tags'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class SofwareSearch extends Software {
             'price' => $this->price,
             'language_en' => $this->language_en,
             'language_others' => $this->language_others,
+            'usage_rights' => $this->usage_rights,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
