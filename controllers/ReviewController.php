@@ -14,6 +14,10 @@ use yii\filters\VerbFilter;
  */
 class ReviewController extends Controller
 {
+       /**
+    * set the layout for the left menu
+    */
+   public $layout = 'administration';
     /**
      * @inheritdoc
      */
