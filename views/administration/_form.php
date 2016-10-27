@@ -107,6 +107,12 @@ echo $form->field($model, 'user_id')->dropDownList($items);
     ?>
 </div>
 
+<div class="col-md-12 bg-primary "><h4>Bibbox Integration</h4></div>
+
+<?=
+$form->field($model, 'bibbox_link_url', ['options' => ['class' => "col-sm-12"]])->textInput(['maxlength' => true])
+?>
+
 <div class="form-group col-sm-8">
 <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>

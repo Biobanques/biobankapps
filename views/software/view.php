@@ -92,7 +92,8 @@ $this->title = "$model->company - $model->name";
                             'value' => BBAConstants::getYesNo($model->language_others),],
                         ['label' => 'Tags',
                             'format' => 'html',
-                            'value' => $model->displayTags(),]
+                            'value' => $model->displayTags(),],
+                        'bibbox_link_url:url',
                     ],
                 ])
                 ?>

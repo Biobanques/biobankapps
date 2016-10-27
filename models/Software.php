@@ -33,6 +33,8 @@ class Software extends \yii\db\ActiveRecord {
                 [['keywords'], 'string', 'max' => 100],
                 [['contact_email'], 'string', 'max' => 128],
                 [['contact_phone'], 'string', 'max' => 20],
+            /* link to the bibbox page of each software */
+                [['bibbox_link_url'], 'string', 'max' => 500],
             /** Usage rights:  Values are integer : 
              * 0 : not set
              * 1 : open source & free to use
@@ -69,7 +71,9 @@ class Software extends \yii\db\ActiveRecord {
             'contact_phone' => 'Contact Phone',
             'language_en' => 'Language En',
             'language_others' => 'Others Languages',
-            'usage_rights' => 'Usage rights'
+            'usage_rights' => 'Usage rights',
+            'bibbox_link_url'=>'Bibbox link Url'
+            
         ];
     }
 
