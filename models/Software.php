@@ -314,6 +314,17 @@ class Software extends \yii\db\ActiveRecord {
         }
         return $result;
     }
+    
+        /**
+     * true if the software is integrated into the bibbox page
+     */
+    public function isIntegratedIntoBibbox() {
+        $result = false;
+        if (isset($this->bibbox_link_url)&&!empty($this->bibbox_link_url)) {
+            $result = true;
+        }
+        return $result;
+    }
 
     /**
      * return the count of detiled analysis
