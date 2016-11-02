@@ -14,6 +14,11 @@ use yii\filters\VerbFilter;
  */
 class QuickAnalysisController extends Controller
 {
+    
+           /**
+    * set the layout for the left menu
+    */
+   public $layout = 'administration';
     /**
      * @inheritdoc
      */
