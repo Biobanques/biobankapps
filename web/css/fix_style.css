@@ -13,3 +13,6 @@ Some of the styles need to be overriden to align some elements and delete to muc
 .page-header>h1{
     margin-top:0px;
 }
+a {
+    color: blue;
+}

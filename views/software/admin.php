@@ -52,74 +52,94 @@ $this->title = 'Softwares';
     </div>
 </div>
 <div class="row">
-    <p>
-        <?=
-        Html::a('<span class="glyphicon glyphicon-search"></span> ' . Yii::t('common', 'advanced_search'), '#', ['class' => 'btn btn-primary btn-lg search-button']) .
-        '';
+    <div class="col-md-12">
+        <p>
+            <?=
+            Html::a('<span class="glyphicon glyphicon-search"></span> ' . Yii::t('common', 'advanced_search'), '#', ['class' => 'btn btn-primary btn-lg search-button']) .
+            '';
 //
-        ?>
-        <?=
-        Html::a('<span class="glyphicon glyphicon-print"></span> ' . Yii::t('common', 'list_printable_softwares'), ['software/index'], ['class' => 'btn btn-success btn-lg']) .
-        '';
-        ?>
-    </p>
+            ?>
+            <?=
+            Html::a('<span class="glyphicon glyphicon-print"></span> ' . Yii::t('common', 'list_printable_softwares'), ['software/index'], ['class' => 'btn btn-success btn-lg']) .
+            '';
+            ?>
+        </p>
+    </div>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-    <?php
-    \yii\widgets\Pjax::begin(['id' => 'gridData']);
-    ?>
-    <?=
-    GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-                ['attribute' => 'logo',
-                'format' => 'html',
-                'value' => function ($data) {
-                    return "<a href=\"/software/view?id=" . $data->id . "\">" . Html::img($data->getLogoPicture() . "</a>", ['class' => "img-responsive", "width" => "60", "height" => "60"]);
-                }],
-                ['attribute' => 'name',
-                'format' => 'html',
-                'value' => function ($data) {
-                    return "<a href=\"/software/view?id=" . $data->id . "\">" . $data->name . "</a>";
-                }],
-                ['attribute' => 'Company',
-                'format' => 'html',
-                'value' => function($data) {
-                    return strlen($data->company) > 20 ? substr($data->company, 0, 20) . "..." : $data->company;
-                }
+    <div class="col-md-12">
+        <?php
+        \yii\widgets\Pjax::begin(['id' => 'gridData']);
+        ?>
+
+        <?=
+        GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                    ['attribute' => 'logo',
+                    'format' => 'html',
+                        'contentOptions'=>['style'=>'width: 100px;'],
+
+                    'value' => function ($data) {
+                        return "<a href=\"/software/view?id=" . $data->id . "\">" . Html::img($data->getLogoPicture() . "</a>", ['class' => "img-responsive", "width" => "60", "height" => "60"]);
+                    }],
+                    ['attribute' => 'name',
+                    'format' => 'html',
+                    'value' => function ($data) {
+                        return "<a href=\"/software/view?id=" . $data->id . "\">" . $data->name . "</a>";
+                    }],
+                    ['attribute' => 'Company',
+                    'format' => 'html',
+                    'value' => function($data) {
+                        return strlen($data->company) > 20 ? substr($data->company, 0, 20) . "..." : $data->company;
+                    }
+                ],
+                    ['attribute' => 'Users Reviews', 'format' => 'html', 'value' => function ($data) {
+                        return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountReviews() . " reviews" : "";
+                    }],
+                    ['attribute' => 'Expert user<br> quick analysis','encodeLabel' => false, 'format' => 'html', 'value' => function ($data) {
+                        return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountQuickAnalysis() . " quick analysis" : "";
+                    }],
+                    ['attribute' => 'Expert user <br> detailed analysis', 'encodeLabel' => false,'format' => 'html', 'value' => function ($data) {
+                        return $data->hasDetailedAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountDetailedAnalysis() . " detailed analysis" : "";
+                    }],
+                    ['attribute' => 'Bibbox<br> Integration','encodeLabel' => false, 'format' => 'html', 'value' => function ($data) {
+                        return $data->isIntegratedIntoBibbox() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
+                    }],
+                    ['attribute' => 'evaluation',
+                    'format' => 'html',
+                    'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember(),
+                    'value' => function ($data) {
+                        return $data->getEvaluation() == 'not available' && !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember() ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
+                    }],
+                            [
+             'label'=>'Company<br> Website','encodeLabel' => false,
+             'format' => 'raw',
+             'value'=>function ($data) {
+                        return Html::a(strlen($data->url_company) > 15 ? substr($data->url_company, 0, 15) . "..." : $data->url_company, $data->url_company);
+                      },
+             ],
+                                [
+             'label'=>'Software<br> Website','encodeLabel' => false,
+             'format' => 'raw',
+             'value'=>function ($data) {
+                        return Html::a(strlen($data->url_software) > 15 ? substr($data->url_software, 0, 15) . "..." : $data->url_software, $data->url_software);
+                      },
+             ],
+                    ['class' => 'yii\grid\ActionColumn', 'template' => ' {view} {update}', 'buttons' => [
+                        'update' => function ($url, $data) {
+                            return Html::a(
+                                            '<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                        'title' => 'Update',
+                                        'data-pjax' => '0',
+                                        'style' => $data->user_id != Yii::$app->user->id ? 'display:none' : ''
+                                            ]
+                            );
+                        },
+                    ]],
             ],
-                ['attribute' => 'Users Reviews', 'format' => 'html', 'value' => function ($data) {
-                    return $data->hasReviews() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountReviews() . " reviews" : "";
-                }],
-                ['attribute' => 'Expert user quick analysis', 'format' => 'html', 'value' => function ($data) {
-                    return $data->hasQuickAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountQuickAnalysis() . " quick analysis" : "";
-                }],
-                ['attribute' => 'Expert user detailed analysis', 'format' => 'html', 'value' => function ($data) {
-                    return $data->hasDetailedAnalysis() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) . " " . $data->getCountDetailedAnalysis() . " detailed analysis" : "";
-                }],
-                ['attribute' => 'Bibbox Integration', 'format' => 'html', 'value' => function ($data) {
-                    return $data->isIntegratedIntoBibbox() ? Html::tag('span', "", ['class' => 'glyphicon glyphicon-ok']) : "";
-                }],
-                ['attribute' => 'evaluation',
-                'format' => 'html',
-                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember(),
-                'value' => function ($data) {
-                    return $data->getEvaluation() == 'not available' && !Yii::$app->user->isGuest && Yii::$app->user->identity->isBBMRIMember() ? Html::a('Create<br>Evaluation', ['evaluation/create', 'id' => $data->id], ['class' => 'btn btn-success']) : $data->getEvaluation();
-                }],
-            'url_company:url',
-            'url_software:url',
-                ['class' => 'yii\grid\ActionColumn', 'template' => ' {view} {update}', 'buttons' => [
-                    'update' => function ($url, $data) {
-                        return Html::a(
-                                        '<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                                    'title' => 'Update',
-                                    'data-pjax' => '0',
-                                    'style' => $data->user_id != Yii::$app->user->id ? 'display:none' : ''
-                                        ]
-                        );
-                    },
-                ]],
-        ],
-    ]);
-    ?>
-    <?php \yii\widgets\Pjax::end(); ?>
+        ]);
+        ?>
+
+        <?php \yii\widgets\Pjax::end(); ?>
+    </div>
 </div>
