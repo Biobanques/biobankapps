@@ -1,0 +1,72 @@
+/* *****************************************************************
+ *  Theme:    Sample Theme
+ *  Author:   Max Mustermann
+ *  URI: http://www.muster.com/
+ *  ***************************************************************** */
+
+@import '../bootstrap/scss/variables.scss';
+@import '../bootstrap/scss/mixins/breakpoints.scss';
+@import '_partials/variables.scss';
+@import '_partials/typography.scss';
+@import '_partials/navbar.scss';
+@import '_partials/carousel.scss';
+@import '_partials/dropdowns.scss';
+@import '_partials/breadcrumbs.scss';
+@import '_partials/masonry-columns.scss';
+@import '_partials/forms.scss';
+@import '_partials/table.scss';
+@import '_partials/layout.scss';
+@import '_partials/cards.scss';
+@import '_partials/accordion.scss';
+@import '_partials/footer.scss';
+
+html {
+  font-size: 14px;
+  @include media-breakpoint-up(sm) { 
+    font-size: 16px;
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: 16px;
+  }
+  @include media-breakpoint-up(xl) {
+    font-size: 16px;
+  }
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: $base-font-family; 
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    color: $black;
+    &:hover {
+        color: $orange; 
+    }
+   
+}
+
+h1 {
+    margin-top: 5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid $dark-grey;
+    margin-bottom: 1rem;
+}
+
+h2 {
+
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+

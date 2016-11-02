@@ -1,0 +1,63 @@
+/* _masonry-columns.scss */
+
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 1;
+  }
+  @include media-breakpoint-only(md) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(lg) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 4;
+  }
+}
+
+.card {
+  background-color: $grey;
+  border: 0;
+  border-radius: 0;
+}
+
+.card-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card-img-top {
+  border-radius: 0;
+}
+
+.card-category-info {
+  font-size: 0.81rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-category {
+  width: 13%;
+  display: inline-block;
+  color: $dark-grey;
+}
+
+.card-date {
+  display: inline-block;
+  border-bottom: 1px solid $dark-grey;
+  position: relative;
+  top: -0.6rem;
+  width: 85%;
+  text-align: right;
+  color: $black;
+}
+
+.card-block {
+  padding-bottom: 2.5rem;
+}
+
+.card-block a {
+  color: $orange;
+}
+

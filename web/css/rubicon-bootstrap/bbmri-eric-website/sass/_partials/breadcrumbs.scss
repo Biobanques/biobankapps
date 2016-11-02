@@ -1,0 +1,27 @@
+/* _breadcrumbs.scss */
+
+.breadcrumbs {
+
+  .breadcrumb {
+    background-color: transparent;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .breadcrumb-item {
+    transition: color $transition;
+    &:hover {
+      color: $orange;
+      text-decoration: none;
+    }
+  }
+
+  .breadcrumb-item.active {
+    color: $orange;
+  }
+
+  .breadcrumb-item+.breadcrumb-item::before {
+    content: "-";
+  }
+  
+}

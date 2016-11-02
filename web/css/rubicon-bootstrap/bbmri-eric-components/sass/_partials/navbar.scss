@@ -1,0 +1,134 @@
+/* _navbar.scss */
+
+.search input {
+  height: 1.87rem;
+  border-radius: 0;
+  background-image: url(images/search-icon.png);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.navbar {
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+.navbar-nav .nav-link {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-brand img {
+  width: 16.56rem;
+} 
+
+
+nav.meta, nav.main {
+  .right {
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      right: 1.3rem;
+    }
+  }
+
+  .collapsing {
+    display: none;
+  }
+
+  .collapse {  
+    width: 80%;
+    background-color: $grey;
+    display: none;
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    right: 1.3rem;
+  }
+}
+
+nav.meta {
+  height: 2.75rem;
+  background-color: $grey;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.9rem;
+  .right .nav-item {
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
+    border-left: 1px solid $black;
+    margin-top: 0.3rem;
+    margin-left: 0;
+  }
+  .nav-item.social-btn {
+    border: 0;
+    padding-right: 0;
+    transition: filter $transition;
+    &:hover {
+      filter: brightness(110%);
+    }
+  }
+  .nav-item:first-child {
+    border-left: 0;
+  }
+  .dropdown-toggle::after {
+    content: "";
+    border: 0;
+  }
+}
+
+nav.main {
+  text-transform: uppercase;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+  ul {
+    margin-bottom: 1rem;
+  }
+  .nav-item {
+    margin-right: 1.3rem;
+  }
+  .dropdown-toggle::after {
+    content: "∨";
+    float: right;
+    color: $orange;
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+    border: 0;
+  }
+  .right {
+    top: 3rem;
+  }
+}
+
+.accessibility {
+  font-size: 0.75rem;
+  margin-left: 1rem;
+  color: $light-black;
+  margin-top: 0.1rem;
+}
+
+.accessibility .nav-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: $light-black;
+  background-color: $white;
+  background-position: center center;
+  border-radius: 20rem;
+  height: 1.7rem;
+  width: 1.7rem;
+  text-align: center;
+  margin-left: 0 !important;
+  transition: $transition;
+  &:hover {
+    background-color: $orange;
+    color: $white;
+  }
+}
+

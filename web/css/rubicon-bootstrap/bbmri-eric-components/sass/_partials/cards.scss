@@ -1,0 +1,26 @@
+/* _cards.scss */
+
+.cards {
+  
+  .card {
+    border-top: 1px solid $light-black;
+    background-color: transparent;
+    padding-top: 1rem;
+    @include media-breakpoint-up(md) {
+       width: 60%;
+    }
+    @include media-breakpoint-up(lg) {
+       width: 30%;
+    }
+  }
+
+  .card-img-right {
+    width: 8rem;
+    float: right;
+  }
+
+  .icon {
+    width: 2rem;
+  }
+
+}

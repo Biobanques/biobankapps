@@ -1,0 +1,54 @@
+﻿/* _dropdowns.scss */
+
+.dropdowns {
+
+  .dropdown-toggle {
+    background-color: $black;
+    color: $white;
+    border-radius: 0;
+    padding: 1rem 3rem 1rem 3rem;
+    font-weight: bold;
+    transition: background-color $transition;
+    &:hover {
+      background-color: $orange;
+    }
+  }
+  .menu .dropdown-toggle {
+    padding: 0.5rem 2rem 0.5rem 2rem;
+  }
+  .dropdown-toggle::after {
+    border: 0;
+    content: "∨";
+    position: absolute;
+    font-size: 0.8rem;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 65%;
+    margin: 0 auto;
+  }
+  .menu .dropdown-toggle::after {
+   content: "";
+  }
+}
+
+.dropdown-menu {
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 0;
+    padding-top: 0;
+    box-shadow: 0.3rem 0.7rem 2rem $black;
+  }
+
+.dropdown-item {
+  border-bottom: 1px dotted $dark-grey;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  &:last-child {
+    border-bottom: 0;
+  }
+  &:hover {
+    color: $orange;
+  }
+}

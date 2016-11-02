@@ -1,0 +1,206 @@
+footer {
+  /*border-top: 1px solid $black;*/
+  margin-top: 5rem;
+  padding-top: 0.7rem;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+#footer {
+  clear: both;
+  float: left;
+  margin: 40px 0 0;
+  width: 100%;
+  >.container{
+    @include media-breakpoint-up(xl) {max-width:1050px; }
+  }
+  img{
+    width:auto;
+  }
+  h3 {
+    clear: both;
+    display: block;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 21px;
+    margin: 0 0 10px;
+  }
+  .footerblock {
+      h3 {
+        /*font-weight: 600;*/
+        text-transform: uppercase;
+        margin: 0 0 10px 0;
+      }
+      .footerlinklist {
+        list-style: outside none none;
+        min-height: 0;
+        margin: 0px;
+        padding: 0;
+        margin: 0px;
+        li {
+          padding: 0px 0 0px 8px;
+          margin: 0px;
+          &::before {
+            content: " - ";
+            margin: 0 0 0 -7px;
+            position: absolute;
+          }
+        }
+      }
+  }
+  .footerBlock1 {
+    .logobottom {
+      margin: -33px 0 0;
+      max-width: 242px;
+    }
+    form{
+      position:relative;
+      width:200px;
+    }
+    .footersubmit {
+      margin: 4px 4px 0 -24px;
+    }
+  }
+  .footerBlock2 {
+    width: 260px;
+    margin: 0 auto;
+    padding-left: 42px;
+    @include media-breakpoint-down(sm) { 
+      margin:0;
+      width:100%;
+    }
+  }
+  .footerBlock3 {
+    margin-right: 0;
+    float:right;
+    width: 157px;
+    @include media-breakpoint-down(sm) { 
+      float:left;
+      width:100%;
+    }
+  }
+  .footerinput {
+    background: #eeeeee none repeat scroll 0 0;
+    border: 1px solid #cccccc;
+    font-size: 12px;
+    font-style: italic;
+    padding: 5px;
+    max-width: 200px;
+    width:100%;
+  }
+  .footersubmit {
+    background: #004275 none repeat scroll 0 0;
+    margin: 4px 0 0 -25px;
+    padding: 6px 8px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+right: 0;
+  }
+  div.wpcf7 {
+    margin: 0;
+    padding: 0;
+    .screen-reader-response {
+      position: absolute;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      height: 1px;
+      width: 1px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    img.ajax-loader {
+      border: none;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+  }    
+  .newsletterblock{
+    .wpcf7-form {
+      float: left;
+      margin: 0 !important;
+      width: 90%;
+    }
+    p {
+      margin: 0px;
+      position: relative;
+    }
+    .wpcf7-form-control-wrap {
+      display: block;
+      float: left;
+      margin: 0 !important;
+      width: 60%;
+      
+      input {
+        background: #eeeeee none repeat scroll 0 0 !important;
+        border: 1px solid #cccccc !important;
+        font-size: 12px !important;
+        font-style: inherit !important;
+        min-width: 1px !important;
+        padding: 10px 3px !important;
+        background: #eeeeee none repeat scroll 0 0 !important;
+        border: 1px solid #cccccc !important;
+        font-size: 12px !important;
+        font-style: italic !important;
+        padding: 5px !important;
+        width: 200px !important;
+      }
+    }
+    .footersubmit {
+      margin: 4px 0 0 -28px;
+    }
+
+  }
+  div.wpcf7-response-output {
+    display: block !important;
+    float: left !important;
+    margin: 30px 0 0 !important;
+    padding: 10px 0 10px 0% !important;
+    width: 90% !important;
+  }
+  .socialiconbottom {
+    opacity: 0.7;
+    -webkit-transition: all 400ms;
+    -moz-transition: all 400ms;
+    -o-transition: all 400ms;
+    transition: all 400ms;
+  }
+  .lastline {
+    border-top: 1px solid #666666;
+    font-size: 11px;
+    margin: 20px 0;
+    padding: 10px 0 0;
+    color: #666666;
+    #copyright {
+      float: left;
+    }
+    .gotop {
+      position:absolute;
+      left:50%;
+      margin-left:-25px;
+      width:50px;
+      font-size: 11px;
+      text-align: center;
+      cursor: pointer;
+      top: -2em;
+      .toparrow {
+        background: #ffffff none repeat scroll 0 0;
+        margin: 0 0 -10px;
+        padding: 10px;
+        position: relative;
+        text-align: center;
+      }
+      .footertopText {
+        display: block;
+        margin-top:1em;
+      }
+    }
+    .credits {
+      float: right;
+      a {
+        color: #666666;
+      }
+    }
+  }
+}

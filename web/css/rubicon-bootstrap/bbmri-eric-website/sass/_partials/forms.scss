@@ -1,0 +1,34 @@
+﻿/* _forms.scss */
+
+.form-control, select.form-control:not([size]):not([multiple]) {
+  border-radius: 0;
+  height: 2rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  background-color: $form-grey;
+  border: 1px solid $light-black;
+  &:focus {
+    background-color: $form-grey;
+  }
+}
+
+.input-group {
+   width: 11.875rem;
+}
+
+.input-group-btn:not(:first-child)>.btn, .input-group-btn:not(:first-child)>.btn-group {
+  height: 2rem;
+  color: $white;
+  background-color: $blue;
+  background-image: url(images/arrow-right.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 0;
+  border-radius: 0;
+  border: 1px solid $light-black;
+}
+
+
+.form-group {
+  width: 11.875rem;
+}

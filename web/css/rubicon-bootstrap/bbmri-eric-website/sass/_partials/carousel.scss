@@ -1,0 +1,47 @@
+/* _carousel.scss */
+
+.carousel h3 {
+  font-weight: 700;
+  text-shadow: 0 0 0;
+  text-transform: uppercase;
+  @include media-breakpoint-up(md) {
+    font-size: 3.6rem;
+  }
+}
+.carousel p {
+  font-size: 1.4rem;
+  text-shadow: 0 0 0;
+}
+.carousel-indicators {
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  left: 1%;
+  height: auto;
+  padding-bottom: 0;
+  height: 3rem;
+}
+.carousel-indicators li {
+  background-color: $black;
+  display: block;
+  border: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.carousel-indicators li.active {
+  background-color: $white;
+  border: 2px solid $black;
+  width: 1rem;
+  height: 1rem;
+} 
+.information {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+

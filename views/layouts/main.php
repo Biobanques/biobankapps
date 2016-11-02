@@ -23,7 +23,7 @@ Icon::map($this);
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <link rel="stylesheet" href="/css/font-awesome-4.5.0/css/font-awesome.css">
-       
+      
  <?php 
  //if production, include stats tracker prod
  if(!CommonProperties::$DEV_MODE){
@@ -38,6 +38,8 @@ Icon::map($this);
       margin: auto;
   }
   </style>
+   <!-- integration of the rubicon-bootstrap theme -->
+       <link rel="stylesheet" href="/css/rubicon-bootstrap/bbmri-eric-website/style.css">
     </head>
     <body>
         <?php $this->beginBody() ?>
