@@ -5,3 +5,5 @@
 /web/photos/
 tests/_output/*
 /tests/_data/
+tests/_output/*
+/codeception.yml
