@@ -31,6 +31,9 @@ $this->title = "$model->company - $model->name";
   </div>
 </div>
     <div>
+        Do you already tried this software ? Share your experience : <?=  Html::a('Write a review for this software', ['/software/addreview','id'=>$model->id], ['class'=>'btn btn-success']) ?>
+    </div>
+    <div>
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">

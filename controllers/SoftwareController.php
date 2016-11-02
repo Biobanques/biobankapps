@@ -32,7 +32,7 @@ class SoftwareController extends Controller {
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo'],
+                        'actions' => ['update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo','addreview'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -151,6 +151,45 @@ class SoftwareController extends Controller {
         } else {
             Yii::$app->session->setFlash('warning', 'Update not allowed');
             return $this->redirect(['software/admin']);
+        }
+    }
+    
+     /**
+     * Add a review
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionAddreview($id) {
+        $mreview = null;
+        $saved=false;
+        if (!Yii::$app->user->isGuest) {
+            $mreview = new Review();
+            $mreview->software_id = $id;
+            if (isset(Yii::$app->user->identity->id)) {
+                $mreview->user_id = Yii::$app->user->identity->id;
+                //get the review of the user if existing
+                $mreviewOld = Review::find()->where(['user_id' => Yii::$app->user->identity->id, 'software_id' => $id])->one();
+                if ($mreviewOld != null)
+                    $mreview = $mreviewOld;
+                $mreview->date_review = date("Y-m-d H:m:s");
+                if ($mreview->load(Yii::$app->request->post()) && $mreview->save()) {
+                    //message validation
+                    $saved=true;
+                } else {
+                    //message error
+                }
+            } else {
+                $mreview->user_id = null;
+            }
+        }
+
+        if ($saved) {
+            return $this->redirect(['view', 'id' => $id]);
+        } else {
+            return $this->render('create_review', [
+                'model' => $mreview,
+            ]);
         }
     }
 
