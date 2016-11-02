@@ -1,28 +1,35 @@
 <?php
+
 use yii\helpers\Html;
 
 $this->title = Yii::$app->name . ' - ' . Yii::t('common', 'about');
 ?>
-<div class="col-lg-9">
+<div class="page-header">
     <h1>About</h1>
-    <div class="col-lg-9"><p>
+    <div>
+        <p>
             Biobankapps.com is a website to help biobankers to find softwares related to their activities.
             <br>
             This website is free and was initially developed with the french infrastructure for biobanking, Biobanques <a href="http://biobanques.eu">biobanques.eu</a><br>
             Now, this project is maintained by the european infrastructure related to the biobanking,<a href="http://bbmri-eric.eu/">BBMRI-ERIC.eu</a></p>
         <p>
     </div>
-    <div class="col-lg-3">
-        <?php echo Html::img(Yii::$app->request->baseUrl . '/images/logobb.png', array('height' => 75, 'width' => 100)); ?>
-        <br><br><?php echo Html::img(Yii::$app->request->baseUrl . '/images/bbmri_eric.png', array('height' => 60, 'width' => 150)); ?>            
+</div>
+<div class="row">
+    <div class="col-md-3">
+<?php echo Html::img(Yii::$app->request->baseUrl . '/images/bbmri_eric.png'); ?>            
     </div>
-    <div style="clear:both;">
+    <div class="col-md-3">
+<?php echo Html::img(Yii::$app->request->baseUrl . '/images/logobb.png'); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
         <h3>The team</h3>
         <ul><li>Nicolas Malservet ( Biobanques, BBMRI-FR)
             <li>Heimo Muller ( Medical Univesity of Graz, BBMRI-AT)
             <li>Matthieu Penicaud ( Biobanques, BBMRI-FR)
-            
-        </ul></p>
+                
+        </ul>
     </div>
-
 </div>
