@@ -34,7 +34,7 @@ $this->title = 'Softwares';
                 Software providers can add their own softwares, if they are related to the biobanking activies.
                 Biobankers can add softwares they know if it's missing.<br>
                 To add a software, you only need an account, it's free.<br>
-
+                <ul>
                 <li><b>Users reviews</b><br>
                     Users reviews are provided by public users. If you want to add a review, you only need an account.<br>
                 <li><b>Expert User Quick Analysis</b><br>
@@ -46,7 +46,10 @@ $this->title = 'Softwares';
                     Informations on detailed analysis are only available to a BBMRI-Member.
                 <li><b>Bibbox Integration</b><br>
                     A software can be integrated to the bibbox project if its' compliant to the guidelines of the Bibbox Framework. If a software is integrated, we provide the link to the bibbox page and you can find here a tick indicating that the software is integrated into the bibbox project. Please refer to the bibbox page for more informations : <a href="http://bibbox.org">bibbox.org</a>.
-
+                    </ul><br>
+                    <div class="col-md-12">
+        Do you already tried a software and want to  share your experience : <?=  Html::a('Write a review', ['/software/writereview'], ['class'=>'btn btn-success']) ?>
+    </div>
             </div>
         </div>
     </div>
@@ -60,11 +63,12 @@ $this->title = 'Softwares';
 //
             ?>
             <?=
-            Html::a('<span class="glyphicon glyphicon-print"></span> ' . Yii::t('common', 'list_printable_softwares'), ['software/index'], ['class' => 'btn btn-success btn-lg']) .
+            Html::a('<span class="glyphicon glyphicon-print"></span> ' . "Print list", ['software/index'], ['class' => 'btn btn-success btn-lg']) .
             '';
             ?>
         </p>
     </div>
+    
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
     <div class="col-md-12">
         <?php

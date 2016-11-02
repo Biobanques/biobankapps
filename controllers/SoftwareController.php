@@ -27,12 +27,12 @@ class SoftwareController extends Controller {
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    [
+                        [
                         'actions' => ['index', 'view', 'admin', 'create'],
                         'allow' => true,
                     ],
-                    [
-                        'actions' => ['update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo','addreview'],
+                        [
+                        'actions' => ['update', 'add-photo', 'delete-photo', 'add-logo', 'delete-logo', 'addreview', 'writereview'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -138,8 +138,8 @@ class SoftwareController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
         if ($model->user_id == Yii::$app->user->id) {
-            if ($model->load(Yii::$app->request->post()) ) {
-                $tags=$model->tags;
+            if ($model->load(Yii::$app->request->post())) {
+                $tags = $model->tags;
                 $model->save();
                 $model->saveTags($tags);
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -153,8 +153,8 @@ class SoftwareController extends Controller {
             return $this->redirect(['software/admin']);
         }
     }
-    
-     /**
+
+    /**
      * Add a review
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -162,7 +162,7 @@ class SoftwareController extends Controller {
      */
     public function actionAddreview($id) {
         $mreview = null;
-        $saved=false;
+        $saved = false;
         if (!Yii::$app->user->isGuest) {
             $mreview = new Review();
             $mreview->software_id = $id;
@@ -175,7 +175,7 @@ class SoftwareController extends Controller {
                 $mreview->date_review = date("Y-m-d H:m:s");
                 if ($mreview->load(Yii::$app->request->post()) && $mreview->save()) {
                     //message validation
-                    $saved=true;
+                    $saved = true;
                 } else {
                     //message error
                 }
@@ -188,7 +188,57 @@ class SoftwareController extends Controller {
             return $this->redirect(['view', 'id' => $id]);
         } else {
             return $this->render('create_review', [
-                'model' => $mreview,
+                        'model' => $mreview,
+            ]);
+        }
+    }
+
+    /**
+     * write a review for a selected software
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * TODO ajax call if software selected already reviewed
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionWritereview() {
+        $mreview = null;
+        $saved = false;
+        if (!Yii::$app->user->isGuest) {
+            $mreview = new Review();
+            if (isset(Yii::$app->user->identity->id)) {
+                $mreview->user_id = Yii::$app->user->identity->id;
+                $mreview->date_review = date("Y-m-d H:m:s");
+                if ($mreview->load(Yii::$app->request->post())) {
+                    $mreviewOld = Review::find()->where(['user_id' => Yii::$app->user->identity->id, 'software_id' => $mreview->software_id])->one();
+                    if ($mreviewOld != null) {
+                        $mreviewOld->rating = $mreview->rating;
+                        $mreviewOld->date_review=$mreview->date_review;
+                        $mreviewOld->title=$mreview->title;
+                        $mreviewOld->comment=$mreview->comment;
+                        //$mreview->setIsNewRecord(false);
+                        if ($mreviewOld->update()!== false) {
+                            //message validation
+                            $saved = true;
+                        }
+                    } else {
+                        if ($mreview->save()) {
+                            //message validation
+                            $saved = true;
+                        } else {
+                            //message error
+                        }
+                    }
+                }
+            } else {
+                $mreview->user_id = null;
+            }
+        }
+
+        if ($saved) {
+            return $this->redirect(['view', 'id' => $mreview->software_id]);
+        } else {
+            return $this->render('write_review', [
+                        'model' => $mreview,
             ]);
         }
     }
@@ -328,7 +378,7 @@ class SoftwareController extends Controller {
                 //copie du fichier dans le repo adapate
                 $uploadedFile->saveAs(Yii::$app->basePath . BBAConstants::PATH_PHOTOS . $name);
                 //redirection sur la vue
-                 return $this->render('update', ['model' => $model]);
+                return $this->render('update', ['model' => $model]);
             }
         }
         return $this->render('add_software_logo', array(
@@ -351,10 +401,11 @@ class SoftwareController extends Controller {
             $model->logo = null;
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'The logo picture has been deleted with success.');
-            }else{
+            } else {
                 Yii::$app->session->setFlash('danger', 'The logo has not been deleted!');
             }
             return $this->render('update', ['model' => $model]);
         }
     }
+
 }
