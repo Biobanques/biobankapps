@@ -45,7 +45,7 @@ $this->title = Yii::$app->name;
 </div>
 <div class="row">
     <div class="col-md-6">
-        <div class=" panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">If you are a BBMRI-ERIC Member</h3></div>
             <div class="panel-body">
                 You can review softwares and leave some comments.<br>
