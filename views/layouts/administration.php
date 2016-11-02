@@ -4,7 +4,7 @@ use kartik\sidenav\SideNav;
     // use kartik\sidenav\SideNav;
     use yii\helpers\Url;/* @var $this Controller */ ?>
 <?php $this->beginContent('@app/views/layouts/main.php'); ?>
-<div class="container">
+<div class="row">
     <div class="col-lg-3">
           <?php 
     echo SideNav::widget([

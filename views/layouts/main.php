@@ -4,7 +4,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use kartik\icons\Icon;
 use app\components\CommonProperties;
@@ -40,6 +39,8 @@ Icon::map($this);
   </style>
    <!-- integration of the rubicon-bootstrap theme -->
        <link rel="stylesheet" href="/css/rubicon-bootstrap/bbmri-eric-website/style.css">
+          <!-- fix some problems after integrtaion ( spaces etc.) -->
+       <link rel="stylesheet" href="/css/fix_style.css">
     </head>
     <body>
         <?php $this->beginBody() ?>
@@ -77,7 +78,7 @@ Icon::map($this);
             ]);
             NavBar::end();
             ?>
-
+            
             <div class="container">
                 <?php
                 $flashMessages = Yii::$app->session->getAllFlashes();
@@ -87,10 +88,12 @@ Icon::map($this);
                     }
                 }
                 ?>
+                
+                
                 <?= $content ?>
+                
             </div>
         </div>
-
         <footer class="footer">
             <div class="container">
                 <div style="float:left;padding-left:10px;">

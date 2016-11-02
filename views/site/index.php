@@ -1,19 +1,18 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this SiteController */
 $this->title = Yii::$app->name;
 ?>
 <div class="page-header">
-    <div >
-        <h1><?php echo Yii::t('common', 'home') . ' <i>' . Html::encode(Yii::$app->name); ?></i></h1>
+    <h1><?php echo Yii::t('common', 'home') . ' <i>' . Html::encode(Yii::$app->name).'</i>'; ?></h1>
+    <div>
         <p>
             <?php echo Yii::t('common', 'homepage'); ?>
-
         </p>
     </div>
 </div>
-<br>
 
 <!-- Example row of columns -->
 <div class="row">
@@ -25,7 +24,7 @@ $this->title = Yii::$app->name;
                 <br><br>
                 If you are interested by some softwares, contact informations are provided into each detailled view of each software.<br>
                 Software publishers are free to publish their own softwares on this website.<br>
-                </div>
+            </div>
         </div>
     </div>
 
@@ -40,7 +39,7 @@ $this->title = Yii::$app->name;
                 You can update directly your informations for each software.
                 <br>
                 This website is developed by the BBMRI-ERIC commin service IT.
-               </div>
+            </div>
         </div>
     </div>
 </div>
@@ -52,7 +51,7 @@ $this->title = Yii::$app->name;
                 You can review softwares and leave some comments.<br>
                 You can add short and detailed analysis.<br>
                 You can view short and detailed analysis.<br>      
-                </div>
+            </div>
         </div>
     </div>
 
@@ -63,15 +62,15 @@ $this->title = Yii::$app->name;
                 You can review softwares and leave some comments.<br>
                 You can view short analysis.<br>
                 You can't edit short analysis and view detailed analysis.<br>      
-                </div>
+            </div>
         </div>
     </div>
 </div>
 <div>
     If you want to create an account, to publish a software, or review softwares, click on the button below :
-    <?= Html::a('Sign up', ['/site/signup'], ['class'=>'btn btn-primary']) ?>
+    <?= Html::a('Sign up', ['/site/signup'], ['class' => 'btn btn-primary']) ?>
 </div>
 
 <br><br>
-                If you have question or suggestion, feel free to contact us : <?php echo Html::a(Yii::t('common', 'contact'), array('site/contact')); ?>
+If you have question or suggestion, feel free to contact us : <?php echo Html::a(Yii::t('common', 'contact'), array('site/contact')); ?>
             
