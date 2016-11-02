@@ -1,2 +1,10 @@
 <?php
-// Here you can initialize variables that will be available to your tests
+
+require('components/CommonProperties.php');
+
+require('vendor/autoload.php');
+require('vendor/yiisoft/yii2/Yii.php');
+
+$config = require('config/web.php');
+
+(new yii\web\Application($config));

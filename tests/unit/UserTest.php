@@ -18,7 +18,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreate()
     {
-        $model = new User();
+        $model = new User;
         assertFalse($model->save(),"user canot be saved, no fields");
     }
     /*
