@@ -7,8 +7,10 @@ use yii\bootstrap\NavBar;
 use app\assets\AppAsset;
 use kartik\icons\Icon;
 use app\components\CommonProperties;
-
-
+//ensure that content is not hidden by navbar 
+$this->registerJs(' 
+$("nav + .container").css("padding-top",(($("nav").height())+10)+"px")        
+');
 AppAsset::register($this);
 //enable icons library
 Icon::map($this);
@@ -26,7 +28,7 @@ Icon::map($this);
  <?php 
  //if production, include stats tracker prod
  if(!CommonProperties::$DEV_MODE){
-     echo $this->render('stats_tracker_prod');
+     echo $this->render("stats_tracker_prod");
  }
  
  $this->head() ?>

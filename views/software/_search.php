@@ -50,9 +50,9 @@ use app\models\Tag;
                 $tags = Tag::find()->all();
                 $tagsArray = [];
                 foreach ($tags as $tag) {
-                    $tagArray[$tag->id] = $tag->name;
+                    $tagsArray[$tag->id] = $tag->name;
                 }
-                echo $form->field($model, 'tags')->checkboxList($tagArray);
+                echo $form->field($model, 'tags')->checkboxList($tagsArray);
                 ?>
             </div>
 
