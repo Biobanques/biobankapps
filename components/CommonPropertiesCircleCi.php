@@ -18,7 +18,7 @@ class CommonProperties
     /*
      * connection string used in ./protected/config/main_dev.php
      */
-    public static $CONNECTION_STRING = 'mysql:host=localhost;dbname=circle_test';
+    public static $CONNECTION_STRING = 'mysql:host=127.0.0.1;dbname=circle_test';
     public static $CONNECTION_LOGIN = 'ubuntu';
     public static $CONNECTION_PASSWORD = '';
     /**
