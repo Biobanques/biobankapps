@@ -11,7 +11,9 @@ machine:
   # Override /etc/hosts
   hosts:
     biobankapps.local: 127.0.0.1
-
+  
+  post:
+    - mv /home/ubuntu/biobankapps/components/CommonPropertiesCircleCi.php /home/ubuntu/biobankapps/components/ebiobanques/CommonProperties.php
 
 ## Customize database setup
 database:
