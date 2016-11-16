@@ -21,6 +21,6 @@ database:
 ## Customize test commands to use codeception
 test:
   override:
-    - php vendor/codeception/codeception/codecept bootstrap
+   ## - php vendor/codeception/codeception/codecept bootstrap
     - php vendor/codeception/codeception/codecept run
 
