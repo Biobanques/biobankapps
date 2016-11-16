@@ -2,8 +2,9 @@
 namespace app\tests\unit;
 
 use app\models\User;
+use PHPUnit_Framework_TestCase;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+class UserTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
@@ -18,8 +19,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreate()
     {
-        $model = new User;
-        assertFalse($model->save(),"user canot be saved, no fields");
+        $model = new User();
+        $this->assertFalse($model->save(),"user canot be saved, no fields");
     }
     /*
      * test update user
