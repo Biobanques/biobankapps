@@ -13,7 +13,9 @@ class m160509_123322_add_user_id_to_software extends Migration {
      * @inheritdoc
      */
     public function up() {
-        $this->addColumn('software', 'user_id', $this->integer());
+     //   $this->addColumn('software', 'user_id', $this->integer());
+
+
         /**
          * todo migrate contact to users
          */
@@ -44,9 +46,9 @@ class m160509_123322_add_user_id_to_software extends Migration {
                 
                 $user->email = $email;
                 $user->role=User::ROLE_SOFTWARE_PUBLISHER;
-                if ($user->save()) {
+                if ($user->save(false)) {
                     $software->user_id = $user->id;
-                    $software->save();
+                    $software->save(false);
                 }else{
                     //pb saving user
                     echo "pb saving user for software:".$software->name."\n";

@@ -1,7 +1,13 @@
 <?php
 
-use yii\helpers\Html;
+use app\components\FBWidget\FollowButtonWidget;
+use app\models\SofwareSearch;
+use app\models\UserSoftwareFollow;
+use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\web\View;
+use yii\widgets\Pjax;
 
 $this->registerJs(
         '$("document").ready(function(){
@@ -16,9 +22,9 @@ $this->registerJs(
 );
 
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\SofwareSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this View */
+/* @var $searchModel SofwareSearch */
+/* @var $dataProvider ActiveDataProvider */
 
 $this->title = 'Softwares';
 ?>
@@ -54,13 +60,15 @@ $this->title = 'Softwares';
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-12">
         <p>
             <?=
-            Html::a('<span class="glyphicon glyphicon-search"></span> ' . Yii::t('common', 'advanced_search'), '#', ['class' => 'btn btn-primary btn-lg search-button']) .
+ 
+Html::a('<span class="glyphicon glyphicon-search"></span> ' . Yii::t('common', 'advanced_search'), '#', ['class' => 'btn btn-primary btn-lg search-button']) .
             '';
-//
+
             ?>
             <?=
             Html::a('<span class="glyphicon glyphicon-print"></span> ' . "Print list", ['software/index'], ['class' => 'btn btn-success btn-lg']) .
@@ -72,7 +80,7 @@ $this->title = 'Softwares';
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
     <div class="col-md-12">
         <?php
-        \yii\widgets\Pjax::begin(['id' => 'gridData']);
+        Pjax::begin(['id' => 'gridData']);
         ?>
 
         <?=
@@ -89,7 +97,15 @@ $this->title = 'Softwares';
                     ['attribute' => 'name',
                     'format' => 'html',
                     'value' => function ($data) {
-                        return "<a href=\"/software/view?id=" . $data->id . "\">" . $data->name . "</a>";
+                       return "<a href=\"/software/view?id=" . $data->id . "\">" . $data->name . "</a>";
+                        ;
+                    }],
+                    ['attribute' => 'follow',
+                    'format' => 'raw',
+                    'visible' => !Yii::$app->user->isGuest ,
+                    'contentOptions'=>['style'=>'text-align: center;'],
+                    'value' => function ($data) {
+                       return  FollowButtonWidget::widget(['action'=> UserSoftwareFollow::findOne(['user_id'=>Yii::$app->user->getId(),'software_id'=>$data->id])!=null?'unfollow':'follow','user_id'=>Yii::$app->user->getId(),'software_id'=>$data->id]);
                     }],
                     ['attribute' => 'Company',
                     'format' => 'html',
@@ -140,10 +156,11 @@ $this->title = 'Softwares';
                             );
                         },
                     ]],
+                                
             ],
         ]);
         ?>
 
-        <?php \yii\widgets\Pjax::end(); ?>
+        <?php Pjax::end(); ?>
     </div>
 </div>

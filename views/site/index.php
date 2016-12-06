@@ -1,5 +1,6 @@
 <?php
 
+use app\controllers\SiteController;
 use yii\helpers\Html;
 
 /* @var $this SiteController */
@@ -10,6 +11,7 @@ $this->title = Yii::$app->name;
     <div>
         <p>
             <?php echo Yii::t('common', 'homepage'); ?>
+            
         </p>
     </div>
 </div>

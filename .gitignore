@@ -1,9 +1,10 @@
 /nbproject/private/
+/vendor/
 /components/CommonPropertiesProd.php
 /revision_number.php
 /web/phpinfo.php
 /web/photos/
-tests/_output/*
+/tests/_output/*
 /tests/_data/
-tests/_output/*
-/codeception.yml
+/tests/_output/*
+/tests/_output/*
