@@ -32,9 +32,9 @@ class CommonProperties
     /*
      * SMTP Sender. Allow the script sendmailcommand to send mails via smtp with autentication
      */
-    public static $SMTP_SENDER_HOST = 'smtp_host';
-    public static $SMTP_SENDER_PORT = '25';
-    public static $SMTP_SENDER_USERNAME = 'SMTP_UN';
-    public static $SMTP_SENDER_PASSWORD = 'SMTP_PWD';
-    public static $SMTP_SENDER_FROM_EMAIL = 'appname@mail.com';
+    public static $SMTP_SENDER_HOST = 'smtp.orange.fr';
+    public static $SMTP_SENDER_PORT = '587';
+    public static $SMTP_SENDER_USERNAME = 'matthieu.penicaud@orange.fr';
+    public static $SMTP_SENDER_PASSWORD = 'guizmo54310';
+    public static $SMTP_SENDER_FROM_EMAIL = 'robot@biobankapps.com';
 }

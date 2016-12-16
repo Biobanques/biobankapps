@@ -33,7 +33,22 @@ $config = [
             // send all mails to a file by default. You have to set
 // 'useFileTransport' to false and configure a transport
 // for the mailer to send real emails.
-            'useFileTransport' => true,
+
+            /*
+              'useFileTransport' => true,
+              'fileTransportPath'=>'@runtime/mail',
+             * 
+             * 
+             */
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => CommonProperties::$SMTP_SENDER_HOST,
+                'username' => CommonProperties::$SMTP_SENDER_USERNAME,
+                'password' => CommonProperties::$SMTP_SENDER_PASSWORD,
+                'port' => CommonProperties::$SMTP_SENDER_PORT,
+                'encryption' => CommonProperties::$SMTP_SENDER_PORT!='25'?'tls':'',
+            ],
+            'htmlLayout' => '@app/mail/layouts/html.php'
         ],
         'log' => [
 //'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -44,7 +59,7 @@ $config = [
                 'file' => [
                     'class' => 'yii\log\FileTarget',
                     'logFile' => '@runtime/logs/application.log',
-                    'levels'=>['trace']
+                    'levels' => ['trace']
                 ],
                 /* 'file' => [
                   'class' => 'yii\log\FileTarget',
@@ -75,7 +90,7 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api'],],
+                    ['class' => 'yii\rest\UrlRule', 'controller' => 'api'],],
         ],
         'i18n' => [
             'translations' => [

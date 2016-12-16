@@ -3,13 +3,15 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 use yii\db\Query;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "software".
  *
  */
-class Software extends \yii\db\ActiveRecord {
+class Software extends ActiveRecord {
 
     /**
      * @inheritdoc
@@ -142,7 +144,7 @@ class Software extends \yii\db\ActiveRecord {
         for ($i = 1; $i < 6; $i++) {
             $name = 'screenshot_' . $i;
             if ($this->$name != null) {
-                $listPictures[] = \yii\helpers\Html::img(Yii::$app->request->baseUrl . '/photos/' . $this->$name, ['style' => 'height:375px;width:500px']);
+                $listPictures[] = Html::img(Yii::$app->request->baseUrl . '/photos/' . $this->$name, ['style' => 'height:375px;width:500px']);
             }
         }
         return $listPictures;
@@ -198,7 +200,7 @@ class Software extends \yii\db\ActiveRecord {
         for ($i = 1; $i < 6; $i++) {
             $name = 'screenshot_' . $i;
             if ($this->$name != null) {
-                $listPictures[$i] = \yii\helpers\Html::img(Yii::$app->request->baseUrl . '/photos/' . $this->$name, ['class' => 'img-thumbnail', 'style' => 'height:90px;width:160px']);
+                $listPictures[$i] = Html::img(Yii::$app->request->baseUrl . '/photos/' . $this->$name, ['class' => 'img-thumbnail', 'style' => 'height:90px;width:160px']);
             }
         }
         return $listPictures;

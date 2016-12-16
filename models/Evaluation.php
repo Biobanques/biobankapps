@@ -2,7 +2,8 @@
 
 namespace app\models;
 
-use Yii;
+use app\components\AppUtils;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "evaluation".
@@ -12,7 +13,7 @@ use Yii;
  * @property string $date_evaluation
  * @property integer $grade
  */
-class Evaluation extends \yii\db\ActiveRecord
+class Evaluation extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -80,5 +81,19 @@ class Evaluation extends \yii\db\ActiveRecord
      public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    
+    public function save($runValidation = true, $attributeNames = null) {
+        
+            if (parent::save($runValidation, $attributeNames)) {
+if ($this->getIsNewRecord()) {
+                AppUtils::sendMailToFollowers($this->software_id, 'detailled analysis','create');
+               
+            } else {
+               AppUtils::sendMailToFollowers($this->software_id, 'detailled analysis','update');    
+            }
+        } else {
+            return false;
+        }
     }
 }

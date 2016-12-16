@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\components\FBWidget\FollowButtonWidget;
+use app\models\Software;
+use app\models\User;
 use app\models\UserSoftwareFollow;
 use yii\web\Controller;
 
@@ -30,6 +32,7 @@ class UserSoftwareFollowController extends Controller
 
     public function actionUnfollow()
     {
+        
                 $idUser=$_POST['idUser'];
         $idSoftware=$_POST['idSoftware'];
         
@@ -39,6 +42,18 @@ class UserSoftwareFollowController extends Controller
         }            
         return  FollowButtonWidget::widget(['action'=>'follow','user_id'=>$idUser,'software_id'=>$idSoftware]);
 ;
+    }
+    
+    public function actionUnfollowFromMail(){
+        $idUser=$_GET['idUser'];
+        $idSoftware=$_GET['idSoftware'];
+        $user= User::findOne($idUser);
+        $software= Software::findOne($idSoftware);
+        $entry = UserSoftwareFollow::findOne(['user_id'=>$idUser,'software_id'=>$idSoftware]);
+        if($entry!=null){
+            $entry->delete();
+        }
+        return $this->render('unfollowed', ['user'=>$user,'software'=>$software]);
     }
 
 }

@@ -2,7 +2,8 @@
 
 namespace app\models;
 
-use Yii;
+use app\components\AppUtils;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "quick_analysis".
@@ -16,7 +17,7 @@ use Yii;
  * @property string $value_added
  * @property string $date_update
  */
-class QuickAnalysis extends \yii\db\ActiveRecord
+class QuickAnalysis extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -73,5 +74,19 @@ class QuickAnalysis extends \yii\db\ActiveRecord
      public function getSoftware()
     {
         return $this->hasOne(Software::className(), ['id' => 'software_id']);
+    }
+    
+     public function save($runValidation = true, $attributeNames = null) {
+        
+            if (parent::save($runValidation, $attributeNames)) {
+if ($this->getIsNewRecord()) {
+                AppUtils::sendMailToFollowers($this->software_id, 'quick analysis','create');
+               
+            } else {
+               AppUtils::sendMailToFollowers($this->software_id, 'quick analysis','update');    
+            }
+        } else {
+            return false;
+        }
     }
 }
