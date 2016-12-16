@@ -32,7 +32,7 @@ class TestSendmailController extends Controller {
         $message = Yii::$app->mailer->compose('follow/create', 
                 [
                     'software' => Software::findOne(5), 
-                    'follower'=> User::findOne(87),
+                    'follower'=> User::findOne(3),
                     'typeAdded'=>'review'
                     ]);
         

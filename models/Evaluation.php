@@ -13,37 +13,34 @@ use yii\db\ActiveRecord;
  * @property string $date_evaluation
  * @property integer $grade
  */
-class Evaluation extends ActiveRecord
-{
+class Evaluation extends ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'evaluation';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [[ 'user_id', 'date_evaluation'], 'required'],
-            [['id', 'user_id'], 'integer'],
-            [['software_id'], 'integer'],
-            [['software_version'], 'string', 'max' => 50],
-            [['grade'], 'string', 'max' => 3],
-            [['date_evaluation'], 'safe'],
-            //['date_evaluation', 'date', 'format' => 'Y-m-d H:m:s']
+                [['user_id', 'date_evaluation'], 'required'],
+                [['id', 'user_id'], 'integer'],
+                [['software_id'], 'integer'],
+                [['software_version'], 'string', 'max' => 50],
+                [['grade'], 'string', 'max' => 3],
+                [['date_evaluation'], 'safe'],
+                //['date_evaluation', 'date', 'format' => 'Y-m-d H:m:s']
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
@@ -53,17 +50,16 @@ class Evaluation extends ActiveRecord
             'grade' => 'Grade',
         ];
     }
-    
+
     /**
      * relation with table software.
      * @return type
      * @since 2.0.1
      */
-     public function getSoftware()
-    {
+    public function getSoftware() {
         return $this->hasOne(Software::className(), ['id' => 'software_id']);
     }
-    
+
     /**
      * get the criteria for this evaluation
      * @return type
@@ -72,28 +68,39 @@ class Evaluation extends ActiveRecord
     public function getEvaluationcriteria() {
         return $this->hasMany(EvaluationCriterion::className(), ['evaluation_id' => 'id']);
     }
-    
+
     /**
      * relation with table software.
      * @return type
      * @since 2.0.1
      */
-     public function getUser()
-    {
+    public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
-    
+
     public function save($runValidation = true, $attributeNames = null) {
-        
-            if (parent::save($runValidation, $attributeNames)) {
-if ($this->getIsNewRecord()) {
-                AppUtils::sendMailToFollowers($this->software_id, 'detailled analysis','create');
-               
+        $user = User::findOne(\Yii::$app->user->id);
+        if (parent::save($runValidation, $attributeNames)) {
+            if ($this->getIsNewRecord()) {
+                try {
+                    if ($user->isAdmin() || $user->isBBMRIMember())
+                        AppUtils::sendMailToFollowers($this->software_id, 'detailled analysis', 'create');
+                } catch (Exception $ex) {
+                    
+                }
+                return true;
             } else {
-               AppUtils::sendMailToFollowers($this->software_id, 'detailled analysis','update');    
+                try {
+                    if ($user->isAdmin() || $user->isBBMRIMember())
+                        AppUtils::sendMailToFollowers($this->software_id, 'detailled analysis', 'update');
+                } catch (Exception $ex) {
+                    
+                }
+                return true;
             }
         } else {
             return false;
         }
     }
+
 }

@@ -49,7 +49,7 @@ $config = [
             'htmlLayout' => '@app/mail/layouts/html.php'
         ],
         'urlManager' => [
-            'baseUrl' => 'http://biobankapps.local',
+            'baseUrl' => CommonProperties::$DEV_MODE?'http://biobankapps.local':"http://biobankapps.com",
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
